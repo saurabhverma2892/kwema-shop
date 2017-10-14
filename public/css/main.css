@@ -1,0 +1,233 @@
+@font-face {
+    font-family: CaviarDreams;
+    src: url(/fonts/CaviarDreams.ttf);
+    font-weight: bold;
+
+}
+
+
+@font-face{
+    font-family: CaviarDreams;
+    src:url(/fonts/CaviarDreams_Bold.ttf);
+    font-weight: bold;
+}
+
+@font-face{
+    font-family: CaviarDreams;
+    src:url(/fonts/CaviarDreams_Italic.ttf);
+    font-style: italic;
+}
+
+@font-face{
+    font-family: CaviarDreams;
+    src:url(/fonts/CaviarDreams_BoldItalic.ttf);
+    font-style: italic;
+    font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6,p, html{
+    font-family: CaviarDreams;
+    color:black;
+}
+
+h1, h2, h3, h4{
+    font-family: CaviarDreams;
+}
+
+.padding-sides{
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.padding-top-bottom{
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.padding-right{
+    padding-right: 40px;
+}
+
+.reviews .profile-picture{
+    width:50px;
+    height:50px;
+    border-radius: 100%;
+    background-size: cover;
+    background-position: center center;
+    display: inline-block;
+    margin-top: -25px;
+}
+
+.reviews{
+    background-color: #E9E9E9;
+    padding:20px;
+    padding-top: 0px;
+    margin-top: 40px;
+}
+
+.reviews p.reviewer-name{
+    margin-top: 4px;
+    margin-bottom: 0px;
+}
+
+.pink-color{
+    color:#DB0988;
+}
+
+.features p{
+    color:white;
+    max-width: 200px;
+    text-align: center;
+    display: inline-block;
+}
+
+.features img{
+    margin-bottom: 10px;
+}
+
+.features .feature{
+    padding-bottom: 20px;
+}
+
+.app-buttons button .app-button-container,.app-buttons button .app-detail-container{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.app-buttons button .app-button-container{
+    padding-right: 10px;
+}
+
+.app-buttons button p{
+    color:white;
+    margin-top:1px;
+    margin-bottom: 1px;
+}
+
+.app-buttons button{
+    padding-left:30px;
+    padding-right:30px;
+    margin-bottom: 10px;
+}
+
+.app-buttons button .app-detail-container{
+    text-align: left;
+    padding-left: 10px;
+}
+
+.contact-form{
+    width:300px;
+    display: inline-block;
+}
+
+.contact-form input, .contact-form textarea{
+    width:100%;
+    margin-bottom: 10px;
+    border:2px solid #a90066 !important;
+    border-radius: 8px;
+    color:#a90066 !important;
+    padding:10px !important;
+    height:initial !important;
+}
+
+.contact-form textarea{
+    height:100px !important;
+}
+
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #f58fcd!important;
+}
+input::-moz-placeholder { /* Firefox 19+ */
+  color: #f58fcd!important;
+}
+input:-ms-input-placeholder { /* IE 10+ */
+  color: #f58fcd!important;
+}
+input:-moz-placeholder { /* Firefox 18- */
+  color: #f58fcd!important;
+}
+input::placeholder{
+    color:#f58fcd!important;
+}
+textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #f58fcd!important;
+}
+textarea::-moz-placeholder { /* Firefox 19+ */
+  color: #f58fcd!important;
+}
+textarea:-ms-input-placeholder { /* IE 10+ */
+  color: #f58fcd!important;
+}
+textarea:-moz-placeholder { /* Firefox 18- */
+  color: #f58fcd!important;
+}
+textarea::placeholder{
+    color:#f58fcd!important;
+}
+
+.contact .sub-title{
+    margin-bottom: 40px;
+}
+
+.contact-text{
+    width:300px;
+    display: inline-block;
+}
+
+footer{
+    background-color: #232525;
+    padding:10px;
+}
+
+footer ul li {
+    display: inline-block;
+    padding:10px;
+    color:white;
+}
+
+footer a{
+    color:white;
+}
+
+footer ul{
+    margin:0px;
+    padding:0px;
+}
+
+footer p{
+    color:white;
+    margin:0px;
+    padding:10px;
+}
+
+.logo-black{
+    display: none;
+}
+
+.language{
+    margin-top: 5px;
+}
+
+.language button{
+    border-radius: 100%;
+    width:32px;
+    padding:0px;
+    margin-right: 10px;
+}
+
+.language-dropdown{
+    width:37px;
+    left:-10px;
+    background-color: transparent;
+}
+
+.language-dropdown li a{
+    padding: 8px;
+    padding-top: 6px;
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    background-color: white;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
