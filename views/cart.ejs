@@ -8,99 +8,99 @@
 <body>
     <%include includes/navbar.ejs %>
 
-    <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
-        <h1>YOUR SHOPPING CART</h1>
-        
-        <div class="cart-container">
-            <div class="uk-grid" data-uk-grid style="padding-top:30px;">
-                <div class="uk-width-medium-1-2 uk-text-left">
-                    <div class="cart-product-image inline-block inline-block-top"></div>
-                    <div class="inline-block inline-block-top">
-                        <p><b>EVE DREAM GOLD PLATED</b></p>
-                        <p><b>Ship:</b> 12 Business Days - <b>Free</b> | <b><a href="/shop/delivery-address">Get Delivery Address</a></b></p>
-                    </div>
-                </div>
-                <div class="uk-width-medium-1-2 uk-text-right">$189.00</div>
-            </div>
-        </div>
-        <div class="cart-container uk-text-left">
-            <h2>SHIPPING</h2>
-            <div class="uk-grid" data-uk-grid>
-                
-                <div class="uk-width-medium-1-2 uk-grid" data-uk-grid>
-
-                    <div class="uk-width-small-1-2">
-                        <input type="text" name="firstName" placeholder="First Name" class="uk-input">
-                    </div>
-                    <div class="uk-width-small-1-2">
-                        <input type="text" name="lastName" placeholder="Last Name" class="uk-input">
-                    </div>
-                    <div class="uk-width-small-1-2">
-                        <input type="number" name="areaCode" placeholder="Area Code" class="uk-input">
-                    </div>
-                    <div class="uk-width-small-1-2">
-                        <input type="number" name="phone" placeholder="Phone" class="uk-input">
-                    </div>
-                    <div class="uk-width-small-1-1">
-                        <input type="text" name="address" placeholder="Address" class="uk-input">
-                    </div>
-                    <div class="uk-width-small-1-2">
-                        <input type="text" name="city" placeholder="City" class="uk-input">
-                    </div>
-                    <div class="uk-width-small-1-1">
-                        <input type="text" name="state" placeholder="State" class="uk-input">
-                    </div>
-                    <div class="uk-width-small-1-1">
-                        <input type="text" name="zipCode" placeholder="Zip Code" class="uk-input">
-                    </div>
-                </div>
-                <div class="uk-width-medium-1-2 uk-text-left">
-                    <p><b>Shipping Notifications</b></p>
-                    <p>Shipment notification emails are sent to the billing contact.</p>
-                    <p>Another recipient email adress may be added below.</p>
-                    <div>
-                    <input type="text" name="otherEmail" class="uk-input" placeholder="Email (optional)">
-                    </div>
-                </div> 
-            </div>
-        </div>
-        <div class="cart-container uk-text-left">
-            <h2>PAYMENT</h2>
-            <div>
-                <div class="uk-width-1-1">
-                    <div style="margin-bottom:10px;">
-                        <button class="uk-button choose-payment-type-button active">Credit Card</button>
-                        <button class="uk-button choose-payment-type-button">Paypal</button>
-                    </div>
-                </div>
-                <div class="uk-width-medium-1-2">
-                    <input type="text" name="cardholderName" class="uk-input" placeholder="Cardholder's Name">
-                </div>
-                <div class="inline-inputs">
-                    <input type="number" name="cardNumber" placeholder="Card Number" class="uk-input">
-                    <input type="number" name="cvv" placeholder="CVV" class="uk-input">
-                    <input type="date" name="expiry" placeholder="Expiry" class="uk-input">
-                </div>
-            </div>
-        </div>
-        <div class="cart-container uk-text-left">
-            <h2>TOTAL</h2>
-            <div class="uk-grid uk-text-left" data-uk-grid>
-                <div class="uk-width-medium-1-2">
-                    <p class="pink-color"><b>Enter promo Code here</b></p>
-                </div>
-                <div class="uk-width-medium-1-2 uk-text-right">
-                    <p><b>Subtotal $00.00</b></p>
-                    <p class="grey"><b>Free Shipping</b></p>
-                    <p><b>Order Total $00.00</b></p>
-                    <div><button class="uk-button uk-button-primary">PROCEED</button></div>
-                </div>
-            </div>
+    <form action="/shop/paynow" method="POST">
+        <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
+            <h1>YOUR SHOPPING CART</h1>
             
+            <div class="cart-container">
+                <div class="uk-grid" data-uk-grid style="padding-top:30px;">
+                    <div class="uk-width-medium-1-2 uk-text-left">
+                        <div class="cart-product-image inline-block inline-block-top"></div>
+                        <div class="inline-block inline-block-top">
+                            <p><b>EVE DREAM GOLD PLATED</b></p>
+                            <p><b>Ship:</b> 12 Business Days - <b>Free</b> | <b><a href="/shop/delivery-address">Get Delivery Address</a></b></p>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-2 uk-text-right">$189.00</div>
+                </div>
+            </div>
+            <div class="cart-container uk-text-left">
+                <h2>SHIPPING</h2>
+                <div class="uk-grid" data-uk-grid>
+                    
+                    <div class="uk-width-medium-1-2 uk-grid" data-uk-grid>
 
+                        <div class="uk-width-small-1-2">
+                            <input type="text" name="firstName" placeholder="First Name" class="uk-input">
+                        </div>
+                        <div class="uk-width-small-1-2">
+                            <input type="text" name="lastName" placeholder="Last Name" class="uk-input">
+                        </div>
+                        <div class="uk-width-small-1-2">
+                            <input type="number" name="areaCode" placeholder="Area Code" class="uk-input">
+                        </div>
+                        <div class="uk-width-small-1-2">
+                            <input type="number" name="phone" placeholder="Phone" class="uk-input">
+                        </div>
+                        <div class="uk-width-small-1-1">
+                            <input type="text" name="address" placeholder="Address" class="uk-input">
+                        </div>
+                        <div class="uk-width-small-1-2">
+                            <input type="text" name="city" placeholder="City" class="uk-input">
+                        </div>
+                        <div class="uk-width-small-1-1">
+                            <input type="text" name="state" placeholder="State" class="uk-input">
+                        </div>
+                        <div class="uk-width-small-1-1">
+                            <input type="text" name="zipCode" placeholder="Zip Code" class="uk-input">
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-2 uk-text-left">
+                        <p><b>Shipping Notifications</b></p>
+                        <p>Shipment notification emails are sent to the billing contact.</p>
+                        <p>Another recipient email adress may be added below.</p>
+                        <div>
+                        <input type="text" name="otherEmail" class="uk-input" placeholder="Email (optional)">
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="cart-container uk-text-left">
+                <h2>PAYMENT</h2>
+                <div>
+                    <div class="uk-width-1-1">
+                        <div style="margin-bottom:10px;">
+                            <button class="uk-button choose-payment-type-button active">Credit Card</button>
+                            <button class="uk-button choose-payment-type-button">Paypal</button>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-2">
+                        <input type="text" name="cardholderName" class="uk-input" placeholder="Cardholder's Name">
+                    </div>
+                    <div class="inline-inputs">
+                        <input type="number" name="cardNumber" placeholder="Card Number" class="uk-input">
+                        <input type="number" name="cvv" placeholder="CVV" class="uk-input">
+                        <input type="date" name="expiry" placeholder="Expiry" class="uk-input">
+                    </div>
+                </div>
+            </div>
+            <div class="cart-container uk-text-left">
+                <h2>TOTAL</h2>
+                <div class="uk-grid uk-text-left" data-uk-grid>
+                    <div class="uk-width-medium-1-2">
+                        <p class="pink-color"><b>Enter promo Code here</b></p>
+                    </div>
+                    <div class="uk-width-medium-1-2 uk-text-right">
+                        <p><b>Subtotal $00.00</b></p>
+                        <p class="grey"><b>Free Shipping</b></p>
+                        <p><b>Order Total $00.00</b></p>
+                        <div><button class="uk-button uk-button-primary">PROCEED</button></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-    </div>
+    </form>
+    
     
     <%include includes/footer.ejs%>
 

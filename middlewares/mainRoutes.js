@@ -6,6 +6,10 @@ module.exports = app => {
         res.render("main");
     });
 
+    app.get("/explore", (req, res, next) => {
+        res.render("explore");
+    });
+
     app.use("/shop", app.routes.shop);
 
     /*app.get("/shop/plans", (req, res, next) => {
