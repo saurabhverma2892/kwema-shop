@@ -1,37 +1,39 @@
+
+@font-face{
+    font-family: Roboto;
+    src:url(/fonts/Roboto-Regular.ttf);
+}
+
 @font-face {
-    font-family: CaviarDreams;
-    src: url(/fonts/CaviarDreams.ttf);
-    font-weight: bold;
-
-}
-
-
-@font-face{
-    font-family: CaviarDreams;
-    src:url(/fonts/CaviarDreams_Bold.ttf);
+    font-family: Roboto;
+    src: url(/fonts/Roboto-Bold.ttf);
     font-weight: bold;
 }
 
 @font-face{
-    font-family: CaviarDreams;
-    src:url(/fonts/CaviarDreams_Italic.ttf);
+    font-family: Roboto;
+    src:url(/fonts/Roboto-Italic.ttf);
     font-style: italic;
 }
 
 @font-face{
-    font-family: CaviarDreams;
-    src:url(/fonts/CaviarDreams_BoldItalic.ttf);
+    font-family: Roboto;
+    src:url(/fonts/Roboto-Light.ttf);
     font-style: italic;
-    font-weight: bold;
+    font-weight: lighter;
 }
 
 h1, h2, h3, h4, h5, h6,p, html{
-    font-family: CaviarDreams;
+    font-family: Roboto;
     color:black;
 }
 
 h1, h2, h3, h4{
-    font-family: CaviarDreams;
+    font-family: Roboto;
+}
+
+*{
+    box-sizing: border-box;
 }
 
 .padding-sides{
@@ -120,11 +122,11 @@ h1, h2, h3, h4{
     display: inline-block;
 }
 
-.contact-form input, .contact-form textarea{
-    width:100%;
-    margin-bottom: 10px;
+input,textarea{
+    width:100% !important;
+    margin-bottom: 10px !important;
     border:2px solid #a90066 !important;
-    border-radius: 8px;
+    border-radius: 8px !important;
     color:#a90066 !important;
     padding:10px !important;
     height:initial !important;
@@ -230,4 +232,109 @@ footer p{
     background-color: white;
     box-sizing: border-box;
     margin-bottom: 5px;
+}
+
+.product-description{
+    margin-top: 20px;
+}
+
+#shop{
+    /* start 'enter' transition */
+        &.ng-enter {
+            /* transition on enter for .5s */
+            transition: .5s;
+     
+            /* start with opacity 0 (invisible) */
+            opacity: 0;
+        }
+     
+        /* end 'enter' transition */
+        &.ng-enter-active {
+            /* end with opacity 1 (fade in) */
+            opacity: 1;
+        }
+}
+
+#cart .cart-product-image{
+    min-width:80px;
+    min-height:80px;
+    background-image: url(/images/bg1.png);
+    background-size: cover;
+    background-position: center center;
+}
+
+#cart .uk-modal-dialog{
+    position:absolute;
+    right:0px;
+    background-color: rgba(255,255,255,1);
+    margin:0px;
+}
+
+#cart{
+    /*background-color: transparent;*/
+}
+
+#cart .uk-modal-dialog{
+    -webkit-transform:translateX(100px) !important;
+    transform: translateX(100px) !important;
+    width:445px;
+}
+
+#cart.uk-open .uk-modal-dialog{
+    -webkit-transform:translateX(0) !important;
+    transform: translateX(0) !important;
+    min-height:100%;
+}
+
+.cart-details{
+    border-bottom:1px solid #666666;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.checkout-button{
+    padding-top: 10px;
+    font-weight:bolder;
+}
+
+.choose-plan-button.active{
+    color:#a90066;
+    border-color: #a90066;
+}
+
+.choose-payment-type-button.active{
+    color:#a90066;
+    border-color: #a90066;
+}
+
+.register-login-container{
+    border:2px solid #a90066;
+    border-radius: 8px;
+    padding:25px;
+    margin:25px;
+    -webkit-flex:initial !important;
+    flex:initial !important;
+    display:inline-block;
+}
+
+.cart-container .cart-product-image{
+    width:80px;
+    height:80px;
+    background-image: url(/images/bg1.png);
+    background-size: cover;
+    background-position: center center;
+}
+
+.inline-inputs input{
+    width:initial !important;
+    display: inline-block;
+}
+
+.inline-inputs input:first-child{
+    min-width:300px;
+}
+
+.cart-container{
+    padding:20px 0px;
+    border-bottom:1px solid #999999;
 }

@@ -6,4 +6,10 @@ module.exports = app => {
         res.render("main");
     });
 
+    app.use("/shop", app.routes.shop);
+
+    /*app.get("/shop/plans", (req, res, next) => {
+        res.render("plans");
+    });*/
+
 };

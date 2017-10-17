@@ -17,14 +17,24 @@
     color:white;
 }
 
+.uk-button{
+    border-radius: 18px;
+    padding:2px 40px;
+    border:2px solid #666666;
+    color:#666666;
+    background-color: white;
+}
+
 .uk-button-primary{
     background-color: #DB0988;
     color:white;
     border-radius: 18px;
     padding:2px 40px;
+    border-color: #DB0988;
 }
 .uk-button-primary:focus, .uk-button-primary:hover{
     background-color: #a90066;
+    border-color: #a90066;
 }
 
 img{
@@ -34,4 +44,20 @@ img{
 
 .uk-navbar.active{
     background: #DB0988;
+}
+
+.uk-link, a{
+    color:#DB0988;
+}
+
+.uk-link:hover, a:hover{
+    color:#a90066;
+    text-decoration: none;
+}
+
+.inline-block{
+    display: inline-block;
+} 
+.inline-block-top{
+    vertical-align: top;
 }

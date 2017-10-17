@@ -2,52 +2,10 @@
 <html>
 <head>
     <title>Kwema Shop</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/css/uikit.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/muikit.css">
-    <link rel="stylesheet" type="text/css" href="/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/css/components/slideshow.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/css/components/dotnav.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/css/components/slidenav.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <%include includes/styles.ejs%>
 </head>
 <body>
-    <nav class="uk-navbar">
-        <a href="" class="uk-navbar-brand">
-            <img src="/images/logo.png" class="logo-white">
-            <img src="/images/logo2.png" class="logo-black">
-        </a>
-        <div class="uk-navbar-flip">
-            <ul class="uk-navbar-nav">
-                <li data-uk-dropdown="{mode:'click'}" class="language">
-                        <button class="uk-button uk-button-default" type="button">EN</button>
-                        <div class="uk-dropdown language-dropdown">
-                            <ul class="uk-nav uk-dropdown-nav">
-                                <li><a href="/?language=en">EN</a></li>
-                                <li><a href="/">ES</a></li>
-                            </ul>
-                        </div>
-                </li>
-            </ul>
-        </div>
-        <div class="uk-navbar-flip uk-hidden-small">
-                <ul class="uk-navbar-nav">
-                    <li><a href="">SHOP</a></li>
-                    <li><a href="">EXPLORE</a></li>
-                    <li><a href="">BLOG</a></li>
-                </ul>
-        </div>
-        <a href="#toggler" class="uk-navbar-nav uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
-    </nav>
-    <div id="toggler" class="uk-offcanvas">
-        <div class="uk-offcanvas-bar">
-            <ul>
-                <li><a href="#Home" data-uk-smooth-scroll>SHOP</a></li>
-                <li><a href="#HotelAndCulture" data-uk-smooth-scroll>EXPLORE</a></li>
-                <li><a href="#RoomAndPrices" data-uk-smooth-scroll>BLOG</a></li>
-            </ul>
-        </div>
-    </div>
+    <%include includes/navbar.ejs %>
     <div class="banner-slider">
         <div class="uk-slidenav-position" data-uk-slideshow="{kenburns:true, autoplay:true}">
             <ul class="uk-slideshow uk-overlay-active uk-slideshow-fullscreen" data-uk-slideshow>
@@ -56,7 +14,7 @@
                     <div class="uk-overlay-panel uk-overlay-background uk-overlay-fade overlay-inside-content uk-flex uk-flex-center uk-flex-middle uk-text-center">
                         <div class="overlay-inside-content">
                             <h1>SMART BRACELET WITH A PANIC BUTTON</h1>
-                            <p><button class="uk-button uk-button-primary">BUY NOW</button></p>
+                            <p><a href="/shop"><button class="uk-button uk-button-primary">BUY NOW</button></a></p>
                         </div>
                     </div>
                 </li>
@@ -121,30 +79,32 @@
             <div class="uk-grid" data-uk-grid>
                 <div class="uk-width-medium-1-3">
                     <div class="feature">
-                        <img src="/images/share.png">
-                        <div>
-                            <p>Stay Connected With Your Loved Ones</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="uk-width-medium-1-3">
-                    <div class="feature">
                         <img src="/images/caution.png">
                         <div>
                             <p>Stay Safe By Alerting Your Personal Contacts</p>
                         </div>
                     </div>
                 </div>
+
+                <div class="uk-width-medium-1-3">
+                    <div class="feature">
+                        <img src="/images/share.png">
+                        <div>
+                            <p>Stay connected through Kwema's Community wherever you go.</p>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="uk-width-medium-1-3">
                     <div class="feature">
                         <img src="/images/location.png">
                         <div>
-                            <p>Share Your Real Time Location Using GPS Tracking</p>
+                            <p>Share your exact location in real time.</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="uk-grid" data-uk-grid>
+            <!-- <div class="uk-grid" data-uk-grid>
                 <div class="uk-width-1-1">
                     <div class="feature">
                         <img src="/images/heart.png">
@@ -153,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="uk-width-1-1 padding-sides padding-top-bottom">
@@ -228,39 +188,9 @@
             </div>
         </div>
     </div>
-    <footer>
-        <div class="uk-grid" data-uk-grid>
-            <div class="uk-width-1-3 uk-text-left">
-                <p><a href="">Contact</a></p>
-            </div>
-            <div class="uk-width-1-3 uk-text-center">
-                <div>
-                    <a href="">
-                        <img src="/images/logo.png">
-                    </a>
-                </div>
-                <ul>
-                    <li><a href="">SHOP</a></li>
-                    <li><a href="">EXPLORE</a></li>
-                    <li><a href="">BLOG</a></li>
-                </ul>
-            </div>
-            <div class="uk-width-1-3 uk-text-right">
-                <div><p><a href="">TERMS OF SERVICE</a></p></div>
-                <div><p>© 2017 KWEMA. All Rights Reserved.</p></div>
-            </div>
-        </div>
-    </footer>
+    <%include includes/footer.ejs%>
 
-<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>
-<script type="text/javascript" src="/bower_components/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/uikit.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/components/slideshow.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/components/datepicker.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/core/smooth-scroll.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/core/dropdown.min.js"></script>
-<script type="text/javascript" src="/js/main.js"></script>
+<%include includes/scripts.ejs%>
 <script type="text/javascript">
     
     $(window).on("scroll", function() {
