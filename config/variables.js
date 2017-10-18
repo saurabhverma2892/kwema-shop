@@ -9,7 +9,7 @@ module.exports = {
         password: process.env.KW_DB_PASSWORD,
         database: process.env.KW_DB_NAME,
         options:{
-            host: process.env.CAL_DB_HOST,
+            host: process.env.KW_DB_HOST,
             timezone: '+05:30',
             dialect: "mysql"
         } 
