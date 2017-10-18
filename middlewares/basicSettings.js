@@ -8,6 +8,7 @@ let morgan = require("morgan");
 let dotenv = require("dotenv");
 let passport = require("passport");
 let session = require("express-session");
+let flash    = require('connect-flash');
 
 
 module.exports = app => {
@@ -28,9 +29,10 @@ module.exports = app => {
     app.use(session({
         secret:'kwemashop',
         saveUninitialized: true,
-        resave: true
+        resave: false
     }))
 
     app.use(passport.initialize());
     app.use(passport.session());
+    app.use(flash());
 };

@@ -7,92 +7,142 @@
 <body>
     <%include includes/navbar.ejs %>
     <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
-        <h1>EVE COLLECTION</h1>
-        <div class="uk-grid" data-uk-grid style="padding-top:30px;">
-            <div class="uk-width-medium-1-2">
-                <div class="product-colors-container">
-                    <div class="uk-slidenav-position" data-uk-slideshow="{kenburns:true, autoplay:true}">
-                        <ul class="uk-slideshow" data-uk-slideshow>
-                            <li>
-                                <img src="/images/bg1.png" width="800" height="400">
-                            </li>
-                            <li>
-                                <img src="/images/bg2.png" width="800" height="400">
-                            </li>
-                        </ul>
-                        <!-- <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
-                        <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a> -->
-                        <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
-                            <li data-uk-slideshow-item="0"><a href=""></a></li>
-                            <li data-uk-slideshow-item="1"><a href=""></a></li>
-                        </ul>
-                    </div>
-                </div> 
-            </div>
-            <div class="uk-width-medium-1-2">
-                <div class="product-features">
-                    <h4>Eve Dream</h4>
-                    <div class="uk-grid" data-uk-grid>
-                        <div class="uk-width-small-1-2">
-                            <p>Coin cell battery</p>
-                            <p class="grey">CR1220</p>
+        <h1><%=product.design.name%></h1>
+            <div class="uk-grid products product<%=product.id%>" data-uk-grid style="padding-top:30px;">
+                <div class="uk-width-medium-1-2 uk-flex uk-flex-middle">
+                    <div class="product-colors-container">
+                        <div class="uk-slidenav-position" data-uk-slideshow="{kenburns:true, autoplay:true}">
+                            <ul class="uk-slideshow">
+                                <li>
+                                    <img src="/images/bg1.png" width="800" height="400">
+                                </li>
+                                <li>
+                                    <img src="/images/bg2.png" width="800" height="400">
+                                </li>
+                            </ul>
+                            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+                            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
+                            <!-- <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
+                                <li data-uk-slideshow-item="0"><a href=""></a></li>
+                                <li data-uk-slideshow-item="1"><a href=""></a></li>
+                            </ul> -->
                         </div>
-                        <div class="uk-width-small-1-2">
-                            <p><img src="/images/bluetooth.png"></p>
-                            <p>Bluetooth 4.0</p>
-                            <p class="grey">Low Energy</p>
+                        <div class="product-selector" >
+                            <%products.forEach(function(productdetails){%>
+                            <a href="/shop/plans?id=<%=product.design.id%>&&productId=<%=productdetails.id%>">
+                            <button class="select-product <%=productdetails.name%> 
+                            <%
+                            if(productdetails.id == product.id){
+                                %>active<%
+                            }
+                            %>" value="<%=productdetails.id%>"></button></a>
+                            <%})%>
                         </div>
-                        <div class="uk-width-1-1 uk-text-left">
-                            <p>Choose a plan that fits you best:</p>
-                            <p><span class="pink-color">$185/Bracelet - One Time Payment</span></p>
-                            <div class="uk-grid" data-uk-grid>
-                                <div class="uk-width-small-1-3"><button class="uk-button choose-plan-button active">$4.99/mo</button></div>
-                                <div class="uk-width-small-1-3"><button class="uk-button choose-plan-button">Silver Plan</button></div>
-                                <div class="uk-width-small-1-3"><button class="uk-button choose-plan-button">Premium Plan</button></div>
+                    </div> 
+                </div>
+                <div class="uk-width-medium-1-2">
+                    <div class="product-features">
+                        <h4><%=product.name%></h4>
+                        <p><%=product.details%></p>
+                        <div class="uk-grid" data-uk-grid>
+                            <div class="uk-width-small-1-2">
+                                <p>Coin cell battery</p>
+                                <p class="grey">CR1220</p>
                             </div>
-                            <div class="uk-text-right" style="margin:5px;"><p><a href="">Already have a plan?</a></p></div>
-                            <div class="uk-text-center"><button data-uk-modal="{target:'#cart'}" class="uk-button uk-button-primary">ADD TO CART</button></div>
+                            <div class="uk-width-small-1-2">
+                                <p><img src="/images/bluetooth.png"></p>
+                                <p>Bluetooth 4.0</p>
+                                <p class="grey">Low Energy</p>
+                            </div>
+                            <div class="uk-width-1-1 uk-text-left">
+                                <p>Choose a plan that fits you best:</p>
+                                <div class="uk-grid" data-uk-grid>
+                                    <%
+                                    product.plans.forEach(function(planDetails){
+                                    %>
+                                        <div class="uk-width-small-1-3">
+                                            <form action="/shop/usercart" method="POST" class="usercart">
+                                                <div class="uk-text-center">
+                                                    <div><h2><%=planDetails.name%></h2></div>
+                                                    <!-- <ul class="features">
+                                                        <li>Bracelet: $<%=planDetails.devicePrice%></li>
+                                                        <li>Monthly: $<%=planDetails.monthlyPrice%></li>
+                                                        <li>Yearly: $<%=planDetails.yearlyPrice%></li>
+                                                    </ul> -->
+                                                    <div class="uk-button uk-form-select" data-uk-form-select>
+                                                        <span></span>
+                                                        <i class="uk-icon-caret-down"></i>
+                                                        <select name="planType">
+                                                            <option value="bracelet">Bracelet:$<%=planDetails.devicePrice%></option>
+                                                            <option value="monthly">Monthly:$<%=planDetails.monthlyPrice%></option>
+                                                            <option value="yearly">Yearly:$<%=planDetails.yearlyPrice%></option>
+                                                        </select>
+                                                    </div>
+                                                    <input type="hidden" name="planId" value="<%=planDetails.id%>">
+                                                    <div class="uk-width-small-1-1 uk-text-center">
+                                                        <span class="pink-color minus">
+                                                            <i class="fa fa-minus"></i>
+                                                        </span> 
+                                                        <input class="quantity" type="text" style="display:inline; width:25px !important; padding:2px!important; text-align:center; margin:10px;" value="1" name="quantity"/>
+                                                        <span class="pink-color plus">
+                                                            <i class="fa fa-plus"></i>
+                                                        </span>
+                                                    </div>
+                                                    <button class="uk-button uk-button-primary" id="addToCart">+ CART</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    <%
+                                    })
+                                    %>
+                                </div>
+                                <div class="uk-text-right" style="margin:5px;"><p><a href="">Already have a plan?</a></p></div>
+                                
+                            </div>
                         </div>
-                    </div>
-                </div> 
-            </div>
-        </div>
+                    </div> 
+                </div>
+            </div>        
     </div>
     <%include includes/footer.ejs%>
 
     <!-- This is the modal -->
     <div id="cart" class="uk-modal">
         <div class="uk-modal-dialog">
-            <a class="uk-modal-close uk-close"></a>
-            <b>Subtotal</b> $189 USD
-            <div class="cart-details">
-                <div class="uk-grid" data-uk-grid>
-                    <div class="uk-width-small-1-5">
-                        <div class="cart-product-image"></div>
-                    </div>
-                    <div class="uk-width-small-3-5 uk-text-left">
+            <form action="/shop/checkout" method="GET" id="checkoutForm">
+                <a class="uk-modal-close uk-close"></a>
+                <!-- <b>Subtotal</b> $189 USD -->
+                <b>Your Cart</b>
+                <div class="cart-details">
+                    <div class="uk-grid" data-uk-grid>
+                        <div class="uk-width-small-1-5">
+                            <div class="cart-product-image"></div>
+                        </div>
+                        <div class="uk-width-small-3-5 uk-text-left">
 
-                        <p>Eve Dream Gold Plated</p>
-                        <p class="pink-color">$185.00</p>
+                            <p><%=product.name%></p>
+                            <p class="pink-color"><%=product.price%></p>
+                        </div>
+                        <div class="uk-width-small-1-5 uk-text-right">
+                            <span class="pink-color">1</span>
+                        </div>
                     </div>
-                    <div class="uk-width-small-1-5 uk-text-right">
-                        <span class="pink-color minus"><i class="fa fa-minus"></i></span> <span class="quantity" style="padding:0px 8px;">0</span> <span class="pink-color plus"><i class="fa fa-plus"></i></span>
-                    </div>
+                    <!-- <div class="uk-grid" data-uk-grid style="margin-top:12px;">
+                        <div class="uk-width-1-1 uk-text-center">
+                            <button class="uk-button" type="button">+ Add</button>
+                            <button class="uk-button" type="button">Cancel</button>
+                        </div>
+                    </div> -->
                 </div>
-                <div class="uk-grid" data-uk-grid style="margin-top:12px;">
-                    <div class="uk-width-1-1 uk-text-center">
-                        <button class="uk-button">Edit</button>
-                        <button class="uk-button">Remove</button>
-                    </div>
-                </div>
-            </div>
-            <div class="checkout-button">
-                <a href="/shop/login">
+                <div class="checkout-button">
+                    <input type="hidden" name="planId" id="planId" value="">
                     <button class="uk-button uk-button-primary uk-width-1-1 uk-margin  uk-text-center">CHECKOUT</button>
-                </a>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
+
+    
 
 <%include includes/scripts.ejs%>
 
@@ -107,7 +157,61 @@
 
     $(".choose-plan-button").click(function(){
         $(".choose-plan-button").removeClass("active");
-        $(this).addClass("active");
+        var self = $(this);
+        self.addClass("active");
+        var planId = self.val();
+        $("#planId").val(planId);
+    })
+
+    $("#checkoutForm").submit(function(){
+        /*var self = $(this);
+        if($("#planId").val().trim()==""){
+            return false;
+        }
+        else{
+            return true;
+        }*/
+    })
+
+    var cartModal = UIkit.modal("#cart");
+
+    $(".usercart").submit(function(e){
+        var self = $(this);
+        $.ajax({
+            url:"/shop/usercart",
+            method:"POST",
+            data:self.serialize(),
+            success:function(data){
+                $(".cart-details").html("");
+                cartModal.show();
+                data.forEach(function(cartItem){
+                    var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image"></div></div><div class="uk-width-small-3-5 uk-text-left"><p>Caribbean Cruise('+cartItem.planId+')</p><p class="pink-color">140</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+cartItem.quantity+'</span></div></div>'
+                    console.log(itemHtml);
+                    $(".cart-details").append(itemHtml);
+                })
+                
+                console.log(data);
+            },
+            error:function(data){
+                console.log(err);
+            }
+        })
+        return false;
+    })
+
+    $(".fa-plus").click(function(){
+        var self = $(this);
+        var inputfield = self.parent().prev();
+        console.log(inputfield.val());
+        inputfield.val(parseInt(inputfield.val())+1);
+    })
+    $(".fa-minus").click(function(){
+        var self = $(this);
+        var inputfield = self.parent().next();
+        if(parseInt(inputfield.val())>1){
+            inputfield.val(parseInt(inputfield.val())-1);
+        }
+        
     })
 
 </script>

@@ -11,13 +11,20 @@ consign()
     .then("./db/connection.js")
     .then("./middlewares/staticResources.js")
     .then("./models")
-    /*.then("./auth/passport.js")*/
+    .then("./auth/passport.js")
     .then("./services")
     .then("./controllers")
     .then("./routes")
     .then("./middlewares/mainRoutes.js")
     .then("./middlewares/errorHandler.js")
     .into(app);
+
+app.models.cart.initialize();
+app.models.design.initialize();
+app.models.product.initialize();
+app.models.transaction.initialize();
+app.models.user.initialize();
+app.models.plan.initialize();
 
 if (process.env.NODE_ENV !== "test") {
     app.listen(appPort, () => {

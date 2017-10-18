@@ -412,3 +412,80 @@ footer p{
 .plans-about-us .uk-width-medium-1-3{
     padding:10px;
 }
+
+#register input{
+    display: inline-block;
+    max-width: 400px;
+}
+.products{
+    display: none;
+}
+.products:nth-of-type(1) {
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.products .select-product{
+    width:20px;
+    height:20px;
+    border-radius: 100%;
+    background-color: #ebebeb;
+    border:1px solid #ebebeb;
+    cursor: pointer;
+    margin:0px 2px;
+}
+
+.products .select-product.All.Black{
+    background-color: black;
+    border-color:black;
+}
+.products .select-product.Life.is{
+    background-color: red;
+    border-color:red;
+}
+.products .select-product.Caribbean.Cruise{
+    background-color: blue;
+    border-color:blue;
+}
+.products .select-product.Amore{
+    background-color: black;
+    border-color:black;
+}
+.products .select-product.Timeless{
+    background-color: black;
+    border-color:black;
+}
+
+.products .product-selector{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.product-colors-container{
+    width:450px;
+    display: inline-block;
+}
+
+.product-features ul.features li{
+    display: block;
+}
+.product-features ul{
+    margin:0px;
+    padding:0px;
+    padding-bottom: 20px;
+}
+
+.uk-form-select.uk-button{
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 10px;
+    background-color: white;
+    color:#DB0988;
+    border-color: #DB0988;
+}
+
+.fa-plus, .fa-minus{
+    cursor: pointer;
+}
