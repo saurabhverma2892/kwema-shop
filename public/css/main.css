@@ -531,6 +531,7 @@ footer p{
 
 .main-cart-details-list-details{
     margin-top: -5px;
+    margin-left: 8px;
 }
 
 .main-cart-details-list{
@@ -560,6 +561,15 @@ footer p{
   border-color: #fa755a;
 }
 
+.StripeElement{
+    border: 2px solid #DB0988;
+    border-radius: 20px;
+}
+
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+.card-element{
+    margin-bottom: 10px;
 }

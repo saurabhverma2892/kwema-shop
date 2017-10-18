@@ -103,9 +103,21 @@ module.exports = app => {
 
     function saveUserCardInfoAndMakeCharge(cartItems,params, user){
         var promises = [];
+        var amount = 0;
+
         return new Promise((resolve,reject)=>{
             Cart.addNewCart(user).then(cartCreated=>{
                 cartItems.forEach(cartItemDetails=>{
+                    var planAmount = 0;
+                    if(cartItemDetails.planType=="monthly"){
+                        planAmount = cartItemDetails.planDetails.monthlyPrice;
+                    }
+                    else if(cartItemDetails.planType=="yearly"){
+                        planAmount = cartItemDetails.planDetails.yearlyPrice;
+                    }
+                    amount = amount+planAmount+cartItemDetails.planDetails.product.price;
+                    console.log("total amount is");
+                    console.log(amount);
                     var cartPromise = CartItem.addCartItem(user,cartCreated.id,cartItemDetails);
                     promises.push(cartPromise);
                 })
@@ -114,7 +126,7 @@ module.exports = app => {
                     stripeService.getUserDetails(params.stripeToken,user).then(paymentInfo=>{
                         console.log(paymentInfo);
                         User.savePaymentInfo(paymentInfo.id,user).then(response=>{
-                            stripeService.chargeUser(100,paymentInfo.id).then(transactionInfo=>{
+                            stripeService.chargeUser(amount,paymentInfo.id).then(transactionInfo=>{
                                 console.log(transactionInfo);
                                 Transaction.addTransaction(transactionInfo,user,cartCreated.id);
                                 return resolve(transactionInfo);

@@ -1,6 +1,6 @@
 "use strict";
 
-let stripe = require("stripe")(process.env.KW_STRIPE_KEY);
+let stripe = require("stripe")(process.env.KW_STRIPE_KEY || "sk_test_5NwDRLVogjG5a73rvakeoJb1");
 
 module.exports = app => {
 

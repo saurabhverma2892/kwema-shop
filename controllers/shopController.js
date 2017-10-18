@@ -94,13 +94,19 @@ module.exports = app => {
     }
 
     function saveUserCardInfoAndMakeCharge(req,res,next){
-        shopService.saveUserCardInfoAndMakeCharge(req.session.cart,req.body,req.user).then(data=>{
-            console.log(data);
-            res.redirect("/explore");
+        shopService.getPlanDetailsForEachCartItem(req).then(cartItems=>{
+            shopService.saveUserCardInfoAndMakeCharge(cartItems,req.body,req.user).then(data=>{
+                console.log(data);
+                res.redirect("/explore");
+            }).catch(err=>{
+                console.log(err);
+                next(err);
+            })
         }).catch(err=>{
             console.log(err);
             next(err);
         })
+        
     }
 
     return {
