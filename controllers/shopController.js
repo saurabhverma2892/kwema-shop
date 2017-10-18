@@ -97,6 +97,7 @@ module.exports = app => {
         shopService.getPlanDetailsForEachCartItem(req).then(cartItems=>{
             shopService.saveUserCardInfoAndMakeCharge(cartItems,req.body,req.user).then(data=>{
                 console.log(data);
+                req.session.cart=[];
                 res.redirect("/explore");
             }).catch(err=>{
                 console.log(err);
