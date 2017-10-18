@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kwema Shop</title>
+    <base href="/shop/">
+    <%include includes/styles.ejs%>
+</head>
+<body>
+    <%include includes/navbar.ejs %>
+
+    <form action="/shop/pay/card/charge" method="POST" id="payment-form">
+        <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
+            <h1>YOUR SHOPPING CART</h1>
+            
+            <div class="cart-container">
+                <div class="uk-grid" data-uk-grid style="padding-top:30px;">
+                    <%cartDetails.forEach(function(cart){%>
+                        <div class="uk-width-medium-1-2 uk-text-left main-cart-details-list">
+                            <div class="cart-product-image inline-block inline-block-top"></div>
+                            <div class="inline-block inline-block-top main-cart-details-list-details">
+                                <p><b><%=cart.planDetails.design.name%></b> Collection</p>
+                                <p><b><%=cart.planDetails.product.name%></b> (<%=cart.planDetails.product.details%>)</p>
+                                <p><b><%=cart.planDetails.name%></b> Plan</p>
+                                <p><b>Ship:</b> 12 Business Days - <b>Free</b> | <b><a href="/shop/delivery-address">Get Delivery Address</a></b></p>
+                            </div>
+                        </div>
+                        <div class="uk-width-medium-1-2 uk-text-right">$</div>
+                    <%})%>
+                    
+                </div>
+            </div>
+            
+            <div class="cart-container uk-text-left" style="border-bottom:none;">
+                <h2>TOTAL</h2>
+                <div class="uk-grid uk-text-left" data-uk-grid>
+                    <div class="uk-width-medium-1-2">
+                            <h2>PAYMENT</h2>
+                            <div>
+                                <div class="uk-width-1-1">
+                                    <div style="margin-bottom:10px;">
+                                        <button class="uk-button choose-payment-type-button active">Credit Card</button>
+                                        <a href="/shop/pay/other">
+                                            <button class="uk-button choose-payment-type-button">Paypal</button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <label for="card-element">
+                                      Credit or debit card
+                                    </label>
+                                    <div id="card-element">
+                                      <!-- a Stripe Element will be inserted here. -->
+                                    </div>
+
+                                    <!-- Used to display form errors -->
+                                    <div id="card-errors" role="alert"></div>
+                                </div>
+                                <!-- <div class="uk-width-medium-1-2">
+                                    <input type="text" name="cardholderName" class="uk-input" placeholder="Cardholder's Name" required>
+                                </div>
+                                <div class="uk-width-medium-1-2">
+                                    <input type="number" name="cardNumber" placeholder="Card Number" class="uk-input" required>
+                                </div>
+                                <div class="uk-1-1 uk-grid" data-uk-grid>
+                                    <div class="uk-width-small-1-5">
+                                        <input type="number" name="expiryMonth" placeholder="Month" class="uk-input" required>
+                                    </div>
+                                    <div class="uk-width-small-1-5">
+                                        <input type="number" name="expiryMonth" placeholder="Month" class="uk-input" required>
+                                    </div>
+                                    <div class="uk-width-small-1-5">
+                                        <input type="number" name="cvv" placeholder="CVV" class="uk-input" required>
+                                    </div>
+                                </div> -->
+                            </div>
+                    </div>
+                    <div class="uk-width-medium-1-2 uk-text-right">
+                        <p><b>Subtotal $</b></p>
+                        <p><b>Plan $</b></p>
+                        <p class="grey"><b>Free Shipping</b></p>
+                        <p><b>Order Total $</b></p>
+                        <div><button class="uk-button uk-button-primary">PAY NOW  <i class="fa fa-caret-right"></i></button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+    
+    <%include includes/footer.ejs%>
+
+<%include includes/scripts.ejs%>
+<script src="https://js.stripe.com/v3/"></script>
+<script type="text/javascript">
+    
+    toggleLogo();
+
+    function toggleLogo(){
+            $(".uk-navbar").addClass("active");
+            $(".logo-white").hide();
+            $(".logo-black").show("slow");
+    }
+
+    $(".choose-payment-type-button").click(function(){
+        var self = $(this);
+        $(".choose-payment-type-button").removeClass("active");
+        self.addClass("active");
+    })
+
+    var stripe = Stripe('pk_live_bS7UxdiRjwHh1GDaPutox7GU');
+    var elements = stripe.elements();
+    var style = {
+      base: {
+        color: '#32325d',
+        lineHeight: '24px',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
+        }
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
+    };
+    var card = elements.create('card', {style: style});
+    card.mount('#card-element');
+    card.addEventListener('change', function(event) {
+      var displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+
+    function stripeTokenHandler(token) {
+      // Insert the token ID into the form so it gets submitted to the server
+      var form = document.getElementById('payment-form');
+      var hiddenInput = document.createElement('input');
+      hiddenInput.setAttribute('type', 'hidden');
+      hiddenInput.setAttribute('name', 'stripeToken');
+      hiddenInput.setAttribute('value', token.id);
+      form.appendChild(hiddenInput);
+      // Submit the form
+      console.log("workignignignigng");
+      form.submit();
+    }
+
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          // Inform the user if there was an error
+          var errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          // Send the token to your server
+          stripeTokenHandler(result.token);
+        }
+      });
+    });
+</script>
+</body>
+</html>

@@ -77,6 +77,24 @@ module.exports = app => {
         },
         planId: {
             type: Sequelize.INTEGER
+        },
+        optionalEmail: {
+            type: Sequelize.STRING
+        },
+        addressedToName: {
+            type: Sequelize.STRING
+        },
+        areaCode:{
+            type: Sequelize.STRING
+        },
+        country:{
+            type: Sequelize.STRING
+        },
+        cardToken:{
+            type: Sequelize.STRING
+        },
+        stripeId:{
+            type: Sequelize.STRING
         }
     },
     {
@@ -110,8 +128,51 @@ module.exports = app => {
 
     }
 
+    function addShippingInfo(params,user){
+        return User.update({
+            addressedToName:params.addressedToName,
+            areaCode:params.areaCode,
+            phone:params.phone,
+            address:params.address,
+            city:params.city,
+            state:params.state,
+            country:params.country,
+            zipCode:params.zipCode,
+            optionalEmail:params.otherEmail
+        },{
+            where:{
+                id:user.id
+            }
+        });
+    }
+
+    function saveCardToken(token,user){
+        return User.update({
+            cardToken:token
+        },
+        {
+            where:{
+                id:user.id
+            }
+        });
+    }
+
+    function savePaymentInfo(stripeId,user){
+        return User.update({
+            stripeId:stripeId
+        },
+        {
+            where:{
+                id:user.id
+            }
+        });
+    }
+
     return {
         User,
-        initialize
+        initialize,
+        addShippingInfo,
+        saveCardToken,
+        savePaymentInfo
     };
 };

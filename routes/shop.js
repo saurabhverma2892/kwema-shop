@@ -31,6 +31,10 @@ module.exports = app => {
         shopController.getCartDetails(req,res,next)
         //res.render("cart");
     })
+
+    router.route("/pay/card").get(isLoggedIn, (req,res,next)=>{
+        shopController.getPaymentPage(req,res,next)
+    })
     router.route("/kwema-app").get((req,res,next)=>{
         res.render("getapp");
     })
@@ -41,6 +45,14 @@ module.exports = app => {
 
     router.route("/paynow").post((req,res,next)=>{
         res.redirect("/shop/kwema-app");
+    })
+
+    router.route("/shipping").post(isLoggedIn,(req,res,next)=>{
+        shopController.addShippingInfoToUser(req,res,next);
+    })
+
+    router.route("/pay/card/charge").post(isLoggedIn,(req,res,next)=>{
+        shopController.saveUserCardInfoAndMakeCharge(req,res,next);
     })
 
     router.route("/usercart").post((req,res,next)=>{

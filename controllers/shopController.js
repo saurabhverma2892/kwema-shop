@@ -48,11 +48,58 @@ module.exports = app => {
     }
 
     function getCartDetails(req,res,next){
+        console.log("cartttt");
+        console.log(req.session.cart);
         if(!req.session.cart){
-            req.session.cart=[];
+            req.flash("message","Please add items to cart first");
+            res.redirect("/shop");
         }
-        shopService.getPlanDetailsForEachCartItem(req).then(data=>{
-            res.render("cart", {cartDetails:data, user:req.user});
+        else if(req.session.cart.length<1){
+            req.flash("message","Please add items to cart first");
+            res.redirect("/shop");
+        }
+        else
+        {
+            shopService.getPlanDetailsForEachCartItem(req).then(data=>{
+                res.render("cart", {cartDetails:data, user:req.user});
+            })
+        }
+        
+    }
+
+    function addShippingInfoToUser(req,res,next){
+        shopService.addShippingInfo(req.body, req.user).then(data=>{
+            res.redirect("/shop/pay/card");
+        }).catch(err=>{
+            console.log(err);
+            return reject(err);
+        })
+    }
+
+    function getPaymentPage(req,res,next){
+        if(!req.session.cart){
+            req.flash("message","Please add items to cart first");
+            res.redirect("/shop");
+        }
+        else if(req.session.cart.length<1){
+            req.flash("message","Please add items to cart first");
+            res.redirect("/shop");
+        }
+        else
+        {
+            shopService.getPlanDetailsForEachCartItem(req).then(data=>{
+                res.render("paybycard", {cartDetails:data, user:req.user});
+            });
+        }
+    }
+
+    function saveUserCardInfoAndMakeCharge(req,res,next){
+        shopService.saveUserCardInfoAndMakeCharge(req.session.cart,req.body,req.user).then(data=>{
+            console.log(data);
+            res.redirect("/explore");
+        }).catch(err=>{
+            console.log(err);
+            next(err);
         })
     }
 
@@ -61,6 +108,9 @@ module.exports = app => {
         getProductsForDesignId,
         getCartDetailsByPlanId,
         getPlanDetailsForEachCartItem,
-        getCartDetails
+        getCartDetails,
+        addShippingInfoToUser,
+        getPaymentPage,
+        saveUserCardInfoAndMakeCharge
     }
 }

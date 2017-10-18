@@ -186,9 +186,6 @@ module.exports = {
         },
         updatedAt: {
             type: Sequelize.DATE
-        },
-        sessionId: {
-            type: Sequelize.STRING
         }
     },
     {

@@ -16,23 +16,14 @@ module.exports = app => {
         userId: {
             type: Sequelize.INTEGER
         },
-        productId: {
-            type: Sequelize.INTEGER
-        },
-        designId: {
-            type: Sequelize.INTEGER
-        },
-        quantity: {
-            type: Sequelize.INTEGER
-        },
         createdAt: {
             type: Sequelize.DATE
         },
         updatedAt: {
             type: Sequelize.DATE
         },
-        sessionId: {
-            type: Sequelize.STRING
+        transactionId: {
+            type: Sequelize.INTEGER
         }
     },
     {
@@ -44,9 +35,16 @@ module.exports = app => {
 
     }
 
+    function addNewCart(user){
+        return Cart.create({
+            userId:user.id
+        });
+    }
+
 
     return {
         Cart,
-        initialize
+        initialize,
+        addNewCart
     };
 };

@@ -8,7 +8,7 @@
 <body>
     <%include includes/navbar.ejs %>
 
-    <form action="/shop/paynow" method="POST">
+    <form action="/shop/shipping" method="POST">
         <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
             <h1>YOUR SHOPPING CART</h1>
             
@@ -35,29 +35,26 @@
                     
                     <div class="uk-width-medium-1-2 uk-grid" data-uk-grid>
 
-                        <div class="uk-width-small-1-2">
-                            <input type="text" name="firstName" placeholder="First Name" class="uk-input" required>
+                        <div class="uk-width-small-1-1">
+                            <input type="text" name="addressedToName" placeholder="Addressed To Name" class="uk-input" value="<%=user.addressedToName || user.firstName +" "+ user.lastName%>" required>  
                         </div>
                         <div class="uk-width-small-1-2">
-                            <input type="text" name="lastName" placeholder="Last Name" class="uk-input">
+                            <input type="text" name="areaCode" placeholder="Area Code" class="uk-input" value="<%=user.areaCode%>" required> 
                         </div>
                         <div class="uk-width-small-1-2">
-                            <input type="number" name="areaCode" placeholder="Area Code" class="uk-input" required>
-                        </div>
-                        <div class="uk-width-small-1-2">
-                            <input type="number" name="phone" placeholder="Phone" class="uk-input" required>
+                            <input type="number" name="phone" placeholder="Phone" class="uk-input" value="<%=user.phone%>" required> 
                         </div>
                         <div class="uk-width-small-1-1">
-                            <input type="text" name="address" placeholder="Address" class="uk-input" required>
+                            <input type="text" name="address" placeholder="Address" class="uk-input" value="<%=user.address%>" required> 
                         </div>
                         <div class="uk-width-small-1-2">
-                            <input type="text" name="city" placeholder="City" class="uk-input" required>
+                            <input type="text" name="city" placeholder="City" class="uk-input" value="<%=user.city%>" required> 
                         </div>
                         <div class="uk-width-small-1-2">
-                            <input type="text" name="state" placeholder="State" class="uk-input" required>
+                            <input type="text" name="state" placeholder="State" class="uk-input" value="<%=user.state%>" required> 
                         </div>
                         <div class="uk-width-small-1-2">
-                            <input type="text" name="zipCode" placeholder="Zip Code" class="uk-input" required>
+                            <input type="text" name="zipCode" placeholder="Zip Code" class="uk-input" value="<%=user.zipCode%>" required> 
                         </div>
                     </div>
                     <div class="uk-width-medium-1-2 uk-text-left">
@@ -65,40 +62,12 @@
                         <p>Shipment notification emails are sent to the billing contact.</p>
                         <p>Another recipient email adress may be added below</p>
                         <div>
-                        <input type="text" name="otherEmail" class="uk-input" placeholder="Email (optional)">
+                        <input type="text" name="otherEmail" class="uk-input" value="<%=user.optionalEmail%>"placeholder="Email (optional)"> 
                         </div>
                     </div> 
                 </div>
             </div>
-            <div class="cart-container uk-text-left">
-                <h2>PAYMENT</h2>
-                <div>
-                    <div class="uk-width-1-1">
-                        <div style="margin-bottom:10px;">
-                            <button class="uk-button choose-payment-type-button active">Credit Card</button>
-                            <button class="uk-button choose-payment-type-button">Paypal</button>
-                        </div>
-                    </div>
-                    <div class="uk-width-medium-1-2">
-                        <input type="text" name="cardholderName" class="uk-input" placeholder="Cardholder's Name" required>
-                    </div>
-                    <div class="uk-width-medium-1-2">
-                        <input type="number" name="cardNumber" placeholder="Card Number" class="uk-input" required>
-                    </div>
-                    <div class="uk-1-1 uk-grid" data-uk-grid>
-                        <div class="uk-width-small-1-5">
-                            <input type="number" name="expiryMonth" placeholder="Month" class="uk-input" required>
-                        </div>
-                        <div class="uk-width-small-1-5">
-                            <input type="number" name="expiryMonth" placeholder="Month" class="uk-input" required>
-                        </div>
-                        <div class="uk-width-small-1-5">
-                            <input type="number" name="cvv" placeholder="CVV" class="uk-input" required>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="cart-container uk-text-left">
+            <div class="cart-container uk-text-left" style="border-bottom:none;">
                 <h2>TOTAL</h2>
                 <div class="uk-grid uk-text-left" data-uk-grid>
                     <div class="uk-width-medium-1-2">
@@ -109,7 +78,7 @@
                         <p><b>Plan $</b></p>
                         <p class="grey"><b>Free Shipping</b></p>
                         <p><b>Order Total $</b></p>
-                        <div><button class="uk-button uk-button-primary">PROCEED</button></div>
+                        <div><button class="uk-button uk-button-primary">PROCEED TO PAYMENT  <i class="fa fa-caret-right"></i></button></div>
                     </div>
                 </div>
             </div>

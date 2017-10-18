@@ -12,6 +12,11 @@ module.exports = app => {
 
     app.use("/shop", app.routes.shop);
 
+    app.get("/*", (req,res,next)=>{
+        res.redirect("/");
+    });
+
+
     /*app.get("/shop/plans", (req, res, next) => {
         res.render("plans");
     });*/
