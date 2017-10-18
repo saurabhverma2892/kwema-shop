@@ -2,6 +2,8 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
+    queryInterface.dropTable('plan');
+    
     queryInterface.createTable('plan', {
         id: {
               allowNull: false,
@@ -330,8 +332,6 @@ module.exports = {
         yearlyPrice:119.90
       }
     ]); 
-
-
 
   },
 

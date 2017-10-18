@@ -14,6 +14,8 @@ module.exports = app => {
     }
 
     function getProductsForDesignId(req,res,next){
+        console.log("working in getProductsForDesignId");
+        console.log(req.query);
         shopService.getProductsForDesignId(req.query).then(data=>{
             console.log(data);
             res.render("plans",{products:data, product:data.productData});
@@ -35,9 +37,30 @@ module.exports = app => {
         })
     }
 
+    function getPlanDetailsForEachCartItem(req,res,next){
+        console.log("getPlanDetailsForEachCartItem");
+        shopService.getPlanDetailsForEachCartItem(req).then(data=>{
+            res.send(data);
+        }).catch(err=>{
+            console.log(err);
+            next(err);
+        })
+    }
+
+    function getCartDetails(req,res,next){
+        if(!req.session.cart){
+            req.session.cart=[];
+        }
+        shopService.getPlanDetailsForEachCartItem(req).then(data=>{
+            res.render("cart", {cartDetails:data, user:req.user});
+        })
+    }
+
     return {
         getDesignsAndRenderShop,
         getProductsForDesignId,
-        getCartDetailsByPlanId
+        getCartDetailsByPlanId,
+        getPlanDetailsForEachCartItem,
+        getCartDetails
     }
 }

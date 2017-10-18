@@ -489,3 +489,50 @@ footer p{
 .fa-plus, .fa-minus{
     cursor: pointer;
 }
+
+.cart-all-details-sidebar{
+    margin-top: -5px;
+}
+
+.cart-all-details-sidebar p{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.navbar-cart{
+    background-color: transparent;
+    border:none;
+    margin-top: 7px;
+    margin-right: 10px;
+    margin-left: 0px;
+    cursor: pointer;
+}
+
+.cart-item-grid{
+    margin-top:16px;
+}
+.cart-count{
+    font-weight: bolder;
+    font-size: 15px;
+    border-radius: 100%;
+    background-color: white;
+    width:20px;
+    height:20px;
+    display: inline-block;
+    padding-top: 2px;
+    color:#DB0988;
+    cursor: pointer;
+}
+
+.main-cart-details-list p{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.main-cart-details-list-details{
+    margin-top: -5px;
+}
+
+.main-cart-details-list{
+    margin-bottom: 10px;
+}

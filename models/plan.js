@@ -68,9 +68,23 @@ module.exports = app => {
         })
     }
 
+    function getPlanById(id){
+        return Plan.findById(id,{
+            include:[
+                {
+                    model:Product
+                },
+                {
+                    model:Design
+                }
+            ]
+        });
+    }
+
     return {
         Plan,
         initialize,
-        getCartDetailsByPlanId
+        getCartDetailsByPlanId,
+        getPlanById
     };
 };

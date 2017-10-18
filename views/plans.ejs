@@ -73,9 +73,8 @@
                                                         <span></span>
                                                         <i class="uk-icon-caret-down"></i>
                                                         <select name="planType">
-                                                            <option value="bracelet">Bracelet:$<%=planDetails.devicePrice%></option>
-                                                            <option value="monthly">Monthly:$<%=planDetails.monthlyPrice%></option>
-                                                            <option value="yearly">Yearly:$<%=planDetails.yearlyPrice%></option>
+                                                            <option value="monthly">Monthly: $<%=planDetails.monthlyPrice%></option>
+                                                            <option value="yearly">Yearly: $<%=planDetails.yearlyPrice%></option>
                                                         </select>
                                                     </div>
                                                     <input type="hidden" name="planId" value="<%=planDetails.id%>">
@@ -106,41 +105,7 @@
     </div>
     <%include includes/footer.ejs%>
 
-    <!-- This is the modal -->
-    <div id="cart" class="uk-modal">
-        <div class="uk-modal-dialog">
-            <form action="/shop/checkout" method="GET" id="checkoutForm">
-                <a class="uk-modal-close uk-close"></a>
-                <!-- <b>Subtotal</b> $189 USD -->
-                <b>Your Cart</b>
-                <div class="cart-details">
-                    <div class="uk-grid" data-uk-grid>
-                        <div class="uk-width-small-1-5">
-                            <div class="cart-product-image"></div>
-                        </div>
-                        <div class="uk-width-small-3-5 uk-text-left">
-
-                            <p><%=product.name%></p>
-                            <p class="pink-color"><%=product.price%></p>
-                        </div>
-                        <div class="uk-width-small-1-5 uk-text-right">
-                            <span class="pink-color">1</span>
-                        </div>
-                    </div>
-                    <!-- <div class="uk-grid" data-uk-grid style="margin-top:12px;">
-                        <div class="uk-width-1-1 uk-text-center">
-                            <button class="uk-button" type="button">+ Add</button>
-                            <button class="uk-button" type="button">Cancel</button>
-                        </div>
-                    </div> -->
-                </div>
-                <div class="checkout-button">
-                    <input type="hidden" name="planId" id="planId" value="">
-                    <button class="uk-button uk-button-primary uk-width-1-1 uk-margin  uk-text-center">CHECKOUT</button>
-                </div>
-            </form>
-        </div>
-    </div>
+    
 
     
 
@@ -173,24 +138,35 @@
         }*/
     })
 
-    var cartModal = UIkit.modal("#cart");
-
     $(".usercart").submit(function(e){
+        cartModal.show();
         var self = $(this);
         $.ajax({
             url:"/shop/usercart",
             method:"POST",
             data:self.serialize(),
             success:function(data){
+
+                $(".cart-count").html(data.length);
                 $(".cart-details").html("");
-                cartModal.show();
                 data.forEach(function(cartItem){
-                    var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image"></div></div><div class="uk-width-small-3-5 uk-text-left"><p>Caribbean Cruise('+cartItem.planId+')</p><p class="pink-color">140</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+cartItem.quantity+'</span></div></div>'
+                    var amount=0;
+                    var amountPostfix="";
+                    if(cartItem.planType=="bracelet"){
+                        amount=cartItem.planDetails.devicePrice;
+                    }
+                    else if(cartItem.planType=="monthly"){
+                        amount=cartItem.planDetails.monthlyPrice;
+                        amountPostfix="/mo"
+                    }
+                    else if(cartItem.planType=="yearly"){
+                        amount=cartItem.planDetails.yearlyPrice;
+                        amountPostfix="/yr"
+                    }
+                    var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+'('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+amount+amountPostfix+'</p><p class="pink-color">Plan:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+cartItem.quantity+'</span></div></div>'
                     console.log(itemHtml);
                     $(".cart-details").append(itemHtml);
                 })
-                
-                console.log(data);
             },
             error:function(data){
                 console.log(err);

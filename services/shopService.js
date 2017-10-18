@@ -62,9 +62,34 @@ module.exports = app => {
         })
     }
 
+    function getPlanDetailsForEachCartItem(req){
+        var promises = [];
+        return new Promise((resolve,reject)=>{
+            var i = 0;
+            req.session.cart.forEach(cartItem=>{
+                var promisePlan = new Promise((resolve2,reject2)=>{
+                    Plan.getPlanById(cartItem.planId).then(data=>{
+                        cartItem.planDetails=data;
+                        return resolve2(cartItem);
+                    }).catch(err=>{
+                        return reject(err);
+                    })
+                })
+                promises.push(promisePlan);
+            });
+            
+            Promise.all(promises).then(data=>{
+                console.log("resolved all");
+                return resolve(data);
+            })
+            
+        })
+    }
+
     return {
         getAllDesigns,
         getProductsForDesignId,
-        getCartDetailsByPlanId
+        getCartDetailsByPlanId,
+        getPlanDetailsForEachCartItem
     }
 }

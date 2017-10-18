@@ -103,8 +103,7 @@ module.exports = app => {
                             email:email,
                             password:password,
                             firstName:req.body.firstName,
-                            lastName:req.body.lastName,
-                            planId:req.session.planId
+                            lastName:req.body.lastName
                         }).then(newUser=>{
                             return done(null,newUser);
                         }).catch(err=>{

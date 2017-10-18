@@ -28,7 +28,7 @@ module.exports = app => {
     })
     router.route("/cart").get(isLoggedIn, (req,res,next)=>{
         //todo by cart Id
-        shopController.getCartDetailsByPlanId(req,res,next)
+        shopController.getCartDetails(req,res,next)
         //res.render("cart");
     })
     router.route("/kwema-app").get((req,res,next)=>{
@@ -36,9 +36,8 @@ module.exports = app => {
     })
 
     router.route("/checkout").get(isLoggedIn,(req,res,next)=>{
-        shopController.getCartDetailsByPlanId(req,res,next)
+        res.redirect("/shop/cart");
     })
-
 
     router.route("/paynow").post((req,res,next)=>{
         res.redirect("/shop/kwema-app");
@@ -46,14 +45,20 @@ module.exports = app => {
 
     router.route("/usercart").post((req,res,next)=>{
         var usercartdetails = req.body;
-        console.log(usercartdetails);
-        console.log(req.session.cart);
         if(!req.session.cart){
             req.session.cart=[];
         }
         req.session.cart.push(usercartdetails);
-        console.log(req.session.cart);
-        res.send(req.session.cart);
+        shopController.getPlanDetailsForEachCartItem(req,res,next);
+        //res.send(req.session.cart);
+    })
+
+    router.route("/usercart").get((req,res,next)=>{
+        if(!req.session.cart){
+            req.session.cart=[];
+        }
+        shopController.getPlanDetailsForEachCartItem(req,res,next);
+        //res.send(req.session.cart);
     })
 
     router.route("/login").post(passport.authenticate('local-login',{

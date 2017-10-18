@@ -14,16 +14,19 @@
             
             <div class="cart-container">
                 <div class="uk-grid" data-uk-grid style="padding-top:30px;">
-                    <div class="uk-width-medium-1-2 uk-text-left">
-                        <div class="cart-product-image inline-block inline-block-top"></div>
-                        <div class="inline-block inline-block-top">
-                            <p><b><%=cartDetails.design.name%></b> Collection</p>
-                            <p><b><%=cartDetails.product.name%></b> (<%=cartDetails.product.details%>)</p>
-                            <p><b><%=cartDetails.name%></b> Plan</p>
-                            <p><b>Ship:</b> 12 Business Days - <b>Free</b> | <b><a href="/shop/delivery-address">Get Delivery Address</a></b></p>
+                    <%cartDetails.forEach(function(cart){%>
+                        <div class="uk-width-medium-1-2 uk-text-left main-cart-details-list">
+                            <div class="cart-product-image inline-block inline-block-top"></div>
+                            <div class="inline-block inline-block-top main-cart-details-list-details">
+                                <p><b><%=cart.planDetails.design.name%></b> Collection</p>
+                                <p><b><%=cart.planDetails.product.name%></b> (<%=cart.planDetails.product.details%>)</p>
+                                <p><b><%=cart.planDetails.name%></b> Plan</p>
+                                <p><b>Ship:</b> 12 Business Days - <b>Free</b> | <b><a href="/shop/delivery-address">Get Delivery Address</a></b></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="uk-width-medium-1-2 uk-text-right">$<%=cartDetails.devicePrice%></div>
+                        <div class="uk-width-medium-1-2 uk-text-right">$</div>
+                    <%})%>
+                    
                 </div>
             </div>
             <div class="cart-container uk-text-left">
@@ -102,10 +105,10 @@
                         <!-- <p class="pink-color"><b>Enter promo Code here</b></p> -->
                     </div>
                     <div class="uk-width-medium-1-2 uk-text-right">
-                        <p><b>Subtotal $<%=cartDetails.devicePrice%></b></p>
-                        <p><b>Plan $<%=cartDetails.monthlyPrice%></b></p>
+                        <p><b>Subtotal $</b></p>
+                        <p><b>Plan $</b></p>
                         <p class="grey"><b>Free Shipping</b></p>
-                        <p><b>Order Total $<%=cartDetails.devicePrice+cartDetails.monthlyPrice%></b></p>
+                        <p><b>Order Total $</b></p>
                         <div><button class="uk-button uk-button-primary">PROCEED</button></div>
                     </div>
                 </div>
