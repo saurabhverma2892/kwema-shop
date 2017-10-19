@@ -68,3 +68,32 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
+.uk-offcanvas-bar{
+    padding-top: 60px;
+    background-color:#DB0988; 
+}
+
+.uk-offcanvas-bar ul li{
+    display: block;
+    background-color: white;
+    color:#DB0988;
+    padding:10px;
+    border-bottom:1px solid #DB0988;
+}
+
+
+.uk-offcanvas-bar ul{
+    padding:0px;
+    margin:0px;
+}
+
+.uk-navbar-nav>li>a:active{
+    color:#a90066;
+    background-color: initial;
+}
+
+.uk-navbar-nav>li.uk-open>a, .uk-navbar-nav>li:hover>a, .uk-navbar-nav>li>a:focus{
+    color:#a90066;
+    background-color: initial;
+}

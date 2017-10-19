@@ -9,7 +9,7 @@
     <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
         <h1><%=product.design.name%></h1>
             <div class="uk-grid products product<%=product.id%>" data-uk-grid style="padding-top:30px;">
-                <div class="uk-width-medium-1-2 uk-flex uk-flex-middle">
+                <div class="uk-width-medium-1-2 uk-flex uk-flex-middle uk-flex-center">
                     <div class="product-colors-container">
                         <div class="uk-slidenav-position" data-uk-slideshow="{kenburns:true, autoplay:true}">
                             <ul class="uk-slideshow">
@@ -42,25 +42,25 @@
                 </div>
                 <div class="uk-width-medium-1-2">
                     <div class="product-features">
-                        <h4><%=product.name%></h4>
-                        <p><%=product.details%></p>
+                        <h4 style="margin-bottom:5px; margin-top:20px; font-size:30px;"><b><%=product.name%></b></h4>
+                        <p style="margin-top:0px; margin-bottom:10px;" class="pink-color"><b><%=product.details%></b></p>
                         <div class="uk-grid" data-uk-grid>
                             <div class="uk-width-small-1-2">
-                                <p>Coin cell battery</p>
-                                <p class="grey">CR1220</p>
+                                <p class="small-top-bottom-margin-p "><b>Coin cell battery</b></p>
+                                <p class="grey small-top-bottom-margin-p">CR1220</p>
                             </div>
                             <div class="uk-width-small-1-2">
-                                <p><img src="/images/bluetooth.png"></p>
-                                <p>Bluetooth 4.0</p>
-                                <p class="grey">Low Energy</p>
+                                <p class="small-top-bottom-margin-p"><img src="/images/bluetooth.png"></p>
+                                <p class="small-top-bottom-margin-p">Bluetooth 4.0</p>
+                                <p class="grey small-top-bottom-margin-p">Low Energy</p>
                             </div>
-                            <div class="uk-width-1-1 uk-text-left">
-                                <p>Choose a plan that fits you best:</p>
+                            <div class="uk-width-1-1" style="margin-top:20px;">
+                                <h4><b>Choose a plan that fits you best:</b></h4>
                                 <div class="uk-grid" data-uk-grid>
                                     <%
                                     product.plans.forEach(function(planDetails){
                                     %>
-                                        <div class="uk-width-small-1-3">
+                                        <div class="uk-width-small-1-3 plan-details-plans">
                                             <form action="/shop/usercart" method="POST" class="usercart">
                                                 <div class="uk-text-center">
                                                     <div><h2><%=planDetails.name%></h2></div>

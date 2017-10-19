@@ -75,7 +75,7 @@
                         amount=cartItem.planDetails.yearlyPrice;
                         amountPostfix="/yr"
                     }
-                    var itemHtml = '<div class="uk-grid cart-item-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+' ('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+amount+amountPostfix+'</p><p class="pink-color">Plan:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+cartItem.quantity+'</span></div></div>'
+                    var itemHtml = '<div class="uk-grid cart-item-grid" data-uk-grid=""><div class="uk-width-small-1-5 modal-cart-product-image"><div class="cart-product-image"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+' ('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+amount+amountPostfix+'</p><p class="pink-color">Plan:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+cartItem.quantity+'</span></div></div>'
                     $(".cart-details").append(itemHtml);
                 })
                 cartModal.show();

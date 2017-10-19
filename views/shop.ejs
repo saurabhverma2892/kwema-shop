@@ -10,17 +10,20 @@
 
     <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
         <h1>DISCOVER OUR COLLECTIONS</h1>
-        <div class="uk-grid" data-uk-grid style="padding-top:30px;">
+        <div class="uk-grid min-vh" data-uk-grid style="padding-top:30px;">
         <%designs.forEach(function(design){%>
-            <div class="uk-width-medium-1-2">
+            <div class="uk-width-medium-1-2 collections">
                 <div class="product-colors-container">
                     <div class="uk-slidenav-position" data-uk-slideshow="{kenburns:true, autoplay:true}">
                         <ul class="uk-slideshow" data-uk-slideshow>
+                            <%JSON.parse(design.images).forEach(function(image){%>
+                                <li>
+                                    <img src="<%=image%>" width="800" height="400">
+                                </li>
+                            <%})%>
+                            
                             <li>
-                                <img src="/images/bg1.png" width="800" height="400">
-                            </li>
-                            <li>
-                                <img src="/images/bg2.png" width="800" height="400">
+                                <img src="/images/pocollection.png" width="800" height="400">
                             </li>
                         </ul>
                         <!-- <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>

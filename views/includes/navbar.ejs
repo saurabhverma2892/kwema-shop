@@ -5,7 +5,7 @@
     </a>
     <div class="uk-navbar-flip">
         <ul class="uk-navbar-nav">
-            <li data-uk-dropdown="{mode:'click'}" class="language">
+            <!-- <li data-uk-dropdown="{mode:'click'}" class="language">
                     <button class="uk-button uk-button-default" type="button">EN</button>
                     <div class="uk-dropdown language-dropdown">
                         <ul class="uk-nav uk-dropdown-nav">
@@ -13,27 +13,31 @@
                             <li><a href="/">ES</a></li>
                         </ul>
                     </div>
-            </li>
+            </li> -->
             <li>
                 <button class="navbar-cart"><img src="/images/cart.png"><span class="cart-count">0</span></button>
             </li>
+            <li class="uk-visible-small">
+                <a href="#toggler" class="uk-navbar-nav uk-navbar-toggle" data-uk-offcanvas style="padding-left: 0px;"></a>
+            </li>
         </ul>
     </div>
+
     <div class="uk-navbar-flip uk-hidden-small">
             <ul class="uk-navbar-nav">
                 <li><a href="/shop">SHOP</a></li>
                 <li><a href="/explore">EXPLORE</a></li>
-                <li><a href="">BLOG</a></li>
+                <li><a href="https://kwema.co/es/blog/">BLOG</a></li>
             </ul>
     </div>
-    <a href="#toggler" class="uk-navbar-nav uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
 </nav>
 <div id="toggler" class="uk-offcanvas">
     <div class="uk-offcanvas-bar">
         <ul>
-            <li><a href="#Home" data-uk-smooth-scroll>SHOP</a></li>
-            <li><a href="#HotelAndCulture" data-uk-smooth-scroll>EXPLORE</a></li>
-            <li><a href="#RoomAndPrices" data-uk-smooth-scroll>BLOG</a></li>
+            <li><a href="/shop" >SHOP</a></li>
+            <li><a href="/explore" >EXPLORE</a></li>
+            <li><a href="https://kwema.co/es/blog/" >BLOG</a></li>
+
         </ul>
     </div>
 </div>

@@ -29,7 +29,7 @@
 
                         totalAmount = totalAmount+amount+cart.planDetails.product.price;
                         %>
-                        <div class="uk-width-medium-1-2 uk-text-left main-cart-details-list">
+                        <div class="uk-width-medium-1-2 uk-text-left main-cart-details-list uk-flex uk-flex-nowrap">
                             <div class="cart-product-image inline-block inline-block-top"></div>
                             <div class="inline-block inline-block-top main-cart-details-list-details">
                                 <p><b><%=cart.planDetails.design.name%></b> Collection</p>
@@ -38,7 +38,7 @@
                                 <p><b>Ship:</b> 12 Business Days - <b>Free</b> | <b><a href="/shop/delivery-address">Get Delivery Address</a></b></p>
                             </div>
                         </div>
-                        <div class="uk-width-medium-1-2 uk-text-right" style="font-size: 18px;">
+                        <div class="uk-width-medium-1-2 uk-text-right main-cart-right-details" style="font-size: 18px;">
                             <div style="margin-bottom: 8px;">
                                 <small> Bracelet: </small><b class="pink-color">$<%=cart.planDetails.product.price%></b>
                             </div>
@@ -94,7 +94,7 @@
                     <div class="uk-width-medium-1-2">
                         <!-- <p class="pink-color"><b>Enter promo Code here</b></p> -->
                     </div>
-                    <div class="uk-width-medium-1-2 uk-text-right">
+                    <div class="uk-width-medium-1-2 uk-text-right total-payment-page">
                         <p><b>Subtotal <%=totalAmount%>$</b></p>
                         <p class="grey"><b>Free Shipping</b></p>
                         <p><b>Order Total <%=totalAmount%>$</b></p>

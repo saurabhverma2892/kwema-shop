@@ -37,8 +37,8 @@ h1, h2, h3, h4{
 }
 
 .padding-sides{
-    padding-left: 4%;
-    padding-right: 4%;
+    padding-left: 7%;
+    padding-right: 7%;
 }
 
 .padding-top-bottom{
@@ -88,7 +88,12 @@ h1, h2, h3, h4{
 }
 
 .features .feature{
-    padding-bottom: 20px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+.features .feature p{
+    margin-bottom: 0px;
 }
 
 .app-buttons button .app-button-container,.app-buttons button .app-detail-container{
@@ -120,6 +125,7 @@ h1, h2, h3, h4{
 .contact-form{
     width:300px;
     display: inline-block;
+    max-width: 100%;
 }
 
 input,textarea{
@@ -168,12 +174,14 @@ textarea::placeholder{
 }
 
 .contact .sub-title{
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    font-weight: bolder;
 }
 
 .contact-text{
     width:300px;
     display: inline-block;
+    max-width: 100%;
 }
 
 footer{
@@ -323,6 +331,8 @@ footer p{
     background-image: url(/images/bg1.png);
     background-size: cover;
     background-position: center center;
+    margin-right: 8px;
+    margin-bottom: 5px;
 }
 
 .inline-inputs input{
@@ -465,6 +475,7 @@ footer p{
 }
 .product-colors-container{
     width:450px;
+    max-width: 100%;
     display: inline-block;
 }
 
@@ -531,7 +542,6 @@ footer p{
 
 .main-cart-details-list-details{
     margin-top: -5px;
-    margin-left: 8px;
 }
 
 .main-cart-details-list{
@@ -573,3 +583,82 @@ footer p{
 .card-element{
     margin-bottom: 10px;
 }
+
+.min-vh{
+    min-height: calc(100vh - 62px - 140px);
+}
+
+.app-buttons button{
+    margin-bottom: 20px;
+}
+
+.app-buttons {
+    padding-top: 5px;
+}
+
+.contact-form textarea{
+    margin-bottom: 40px !important;
+}
+
+.collections{
+    margin-bottom: 30px;
+}
+
+.inner-container-features{
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+
+.small-top-bottom-margin-p{
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.plan-details-plans{
+    margin-bottom: 40px;
+}
+
+.modal-cart-product-image{
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 480px) {
+    .uk-width-small-1-5.uk-text-right {
+        text-align: left !important;
+    }
+    .loginscreen{
+        flex-wrap: wrap;
+    }
+
+    .uk-text-right{
+        text-align: left !important;
+    }
+}
+
+@media only screen and (max-width: 762px) {
+    .loginscreen{
+        flex-wrap: wrap;
+    }
+
+    .main-cart-right-details{
+        text-align: left!important;
+        margin-bottom: 20px !important;
+    }
+
+    .main-cart-right-details div{
+        margin-bottom: 0px !important;
+    }
+
+    .main-cart-details-list{
+        margin-bottom: 0px;
+        display:block !important;
+    }
+    .cart-product-image{
+        display: block;
+    }
+
+    .total-payment-page{
+        text-align: left !important;
+    }
+}
+.main-cart-details-list-details
