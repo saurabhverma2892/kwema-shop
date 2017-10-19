@@ -6,6 +6,7 @@ module.exports = app => {
 
     function getDesignsAndRenderShop(req,res,next){
         shopService.getAllDesigns().then(data=>{
+            console.log(data);
             res.render("shop", {designs:data});
         }).catch(err=>{
             console.log(err);
