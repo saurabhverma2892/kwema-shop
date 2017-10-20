@@ -663,11 +663,11 @@ footer p{
     .main-page-slider .uk-animation-middle-left{
         -webkit-transform-origin:95% 50% !important;
         transform-origin:80% 50% !important;
-        background-position-x:-400px;
+        background-position-x:-450px;
     }
 
     .main-page-slider .uk-animation-scale{
-        /*animation-name:uk-scale-1;*/
+        animation-name:uk-scale-1;
     }
 }
 
