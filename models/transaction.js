@@ -149,10 +149,20 @@ module.exports = app => {
         })
     }
 
+    function addTransactionForCompro(amount,user,cartId){
+        Transaction.create({
+            userId:user.id,
+            amount:amount,
+            status:"pending",
+            cartId:cartId
+        })
+    }
+
 
     return {
         Transaction,
         initialize,
-        addTransaction
+        addTransaction,
+        addTransactionForCompro
     };
 };

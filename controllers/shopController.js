@@ -110,6 +110,37 @@ module.exports = app => {
         
     }
 
+    function getPaymentByCashPage(req,res,next){
+        if(!req.session.cart){
+            req.flash("message","Please add items to cart first");
+            res.redirect("/shop");
+        }
+        else if(req.session.cart.length<1){
+            req.flash("message","Please add items to cart first");
+            res.redirect("/shop");
+        }
+        else
+        {
+            shopService.getPlanDetailsForEachCartItem(req).then(data=>{
+                res.render("paybycompropago", {cartDetails:data, user:req.user,language:req.userlanguage});
+            });
+        }
+    }
+
+    function successComroPayment(req,res,next){
+        shopService.getPlanDetailsForEachCartItem(req).then(cartItems=>{
+            shopService.saveComproTransaction(cartItems,req.user).then(data=>{
+                res.redirect("/shop/kwema-app");
+            })
+        }).catch(err=>{
+            console.log(err);
+            next(err);
+        })
+        
+    }
+
+    
+
     return {
         getDesignsAndRenderShop,
         getProductsForDesignId,
@@ -118,6 +149,8 @@ module.exports = app => {
         getCartDetails,
         addShippingInfoToUser,
         getPaymentPage,
-        saveUserCardInfoAndMakeCharge
+        saveUserCardInfoAndMakeCharge,
+        getPaymentByCashPage,
+        successComroPayment
     }
 }

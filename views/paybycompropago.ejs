@@ -8,7 +8,7 @@
 <body>
     <%include includes/navbar.ejs %>
 
-    <form action="/shop/pay/card/charge" method="POST" id="payment-form">
+    <form action="https://compropago.com/comprobante" method="POST" id="payment-form">
         <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
             <h1><%=language.yourshop%></h1>
             
@@ -16,6 +16,7 @@
                 <div class="uk-grid" data-uk-grid style="padding-top:30px;">
                     <%
                     var totalAmount = 0;
+                    var id="";
                     cartDetails.forEach(function(cart){%>
                         <%
                         if(cart.planType=="monthly"){
@@ -26,6 +27,7 @@
                             var amount=cart.planDetails.yearlyPrice;
                             var amountPostFix = "/yr";
                         }
+                        id = id+String(cart.planDetails.product.id);
                         var individualAmount = amount+cart.planDetails.devicePrice;
                         totalAmount = totalAmount+amount+cart.planDetails.devicePrice;
                         %>
@@ -56,27 +58,27 @@
                             <div>
                                 <div class="uk-width-1-1">
                                     <div style="margin-bottom:10px;">
-                                            <button type="button" class="uk-button choose-payment-type-button active"><%=language.card%></button>
-                                            <a href="/shop/pay/cash">
-                                                <button type="button" class="uk-button choose-payment-type-button">In Cash</button>
+                                            <a href="/shop/paybycard">
+                                                <button type="button" class="uk-button choose-payment-type-button"><%=language.card%></button>
                                             </a>
-                                        
+                                                <button type="button" class="uk-button choose-payment-type-button active">In Cash</button>
                                         <!-- <a href="/shop/pay/other">
                                             <button class="uk-button choose-payment-type-button">Paypal</button>
                                         </a> -->
                                     </div>
                                 </div>
-                                <div class="form-row">
-                                    <label for="card-element">
-                                      <!-- Credit or debit card -->
-                                    </label>
-                                    <div id="card-element">
-                                      <!-- a Stripe Element will be inserted here. -->
-                                    </div>
 
-                                    <!-- Used to display form errors -->
-                                    <div id="card-errors" role="alert"></div>
-                                </div>
+                                    <input type="hidden" name="public_key" value="pk_live_7104bd6351394a4141">
+                                    <input type="hidden" name="product_price" value="<%=totalAmount%>">
+                                    <input type="hidden" name="product_name" value="payment">
+                                    <input type="hidden" name="product_id" value="<%=id%>">
+                                    <input type="hidden" name="customer_name" value="<%=user.firstName%>">
+                                    <input type="hidden" name="customer_email" value="<%=user.email%>">
+                                    <input type="hidden" name="customer_phone" value="<%=user.phone%>">
+                                    <input type="hidden" name="success_url" value="http://localhost:9000/shop/pay/cash/success">
+                                    <input type="hidden" name="failed_url" value="http://localhost:9000/shop/pay/cash/faliure">
+                                    <!-- <button class="uk-button uk-button-"></button>
+                                    <input type="image"  border="0" name="submit" alt="Pagar con ComproPago"> -->
                                 
                             </div>
                     </div>
@@ -114,69 +116,14 @@
             $(".logo-black").show("slow");
     }
 
-    $(".choose-payment-type-button").click(function(){
+
+    /*$(".choose-payment-type-button").click(function(){
         var self = $(this);
         $(".choose-payment-type-button").removeClass("active");
         self.addClass("active");
-    })
+    })*/
 
-    var stripe = Stripe('pk_test_NIKTL7hszpiJW4UvnGcieO2g');
-    var elements = stripe.elements();
-    var style = {
-      base: {
-        color: '#32325d',
-        lineHeight: '24px',
-        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-        fontSmoothing: 'antialiased',
-        fontSize: '16px',
-        '::placeholder': {
-          color: '#aab7c4'
-        }
-      },
-      invalid: {
-        color: '#fa755a',
-        iconColor: '#fa755a'
-      }
-    };
-    var card = elements.create('card', {style: style});
-    card.mount('#card-element');
-    card.addEventListener('change', function(event) {
-      var displayError = document.getElementById('card-errors');
-      if (event.error) {
-        displayError.textContent = event.error.message;
-      } else {
-        displayError.textContent = '';
-      }
-    });
-
-    function stripeTokenHandler(token) {
-      // Insert the token ID into the form so it gets submitted to the server
-      var form = document.getElementById('payment-form');
-      var hiddenInput = document.createElement('input');
-      hiddenInput.setAttribute('type', 'hidden');
-      hiddenInput.setAttribute('name', 'stripeToken');
-      hiddenInput.setAttribute('value', token.id);
-      form.appendChild(hiddenInput);
-      // Submit the form
-      console.log("workignignignigng");
-      form.submit();
-    }
-
-    var form = document.getElementById('payment-form');
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      stripe.createToken(card).then(function(result) {
-        if (result.error) {
-          // Inform the user if there was an error
-          var errorElement = document.getElementById('card-errors');
-          errorElement.textContent = result.error.message;
-        } else {
-          // Send the token to your server
-          stripeTokenHandler(result.token);
-        }
-      });
-    });
+    
 </script>
 </body>
 </html>

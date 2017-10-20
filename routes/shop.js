@@ -36,6 +36,9 @@ module.exports = app => {
     router.route("/pay/card").get(isLoggedIn, (req,res,next)=>{
         shopController.getPaymentPage(req,res,next)
     })
+    router.route("/pay/cash").get(isLoggedIn, (req,res,next)=>{
+        shopController.getPaymentByCashPage(req,res,next)
+    })
     router.route("/kwema-app").get((req,res,next)=>{
         res.render("getapp",{language:req.userlanguage});
     })
@@ -46,6 +49,20 @@ module.exports = app => {
 
     router.route("/paynow").post((req,res,next)=>{
         res.redirect("/shop/kwema-app");
+    })
+
+    router.route("/pay/cash/faliure").get((req,res,next)=>{
+        console.log(req.query);
+        console.log(req.body);
+        console.log(req.params);
+    })
+    router.route("/pay/cash/success").get((req,res,next)=>{
+        console.log(req.query);
+        console.log(req.body);
+        console.log(req.params);
+        console.log(req);
+        shopController.successComroPayment(req,res,next);
+        
     })
 
     router.route("/shipping").post(isLoggedIn,(req,res,next)=>{

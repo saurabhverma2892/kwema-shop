@@ -128,8 +128,11 @@ module.exports = app => {
                         User.savePaymentInfo(paymentInfo.id,user).then(response=>{
                             stripeService.chargeUser(amount,paymentInfo.id).then(transactionInfo=>{
                                 console.log(transactionInfo);
-                                Transaction.addTransaction(transactionInfo,user,cartCreated.id);
-                                return resolve(transactionInfo);
+                                Transaction.addTransaction(transactionInfo,user,cartCreated.id).then(data=>{
+                                    return resolve(transactionInfo);
+                                }).catch(err=>{
+                                    return reject(err);
+                                })
                             }).catch(err=>{
                                 return reject(err);
                             })
@@ -144,12 +147,46 @@ module.exports = app => {
         })
     }
 
+    function saveComproTransaction(cartItems,user){
+        var promises = [];
+        var amount = 0;
+        return new Promise((resolve,reject)=>{
+            Cart.addNewCart(user).then(cartCreated=>{
+                cartItems.forEach(cartItemDetails=>{
+                    var planAmount = 0;
+                    if(cartItemDetails.planType=="monthly"){
+                        planAmount = cartItemDetails.planDetails.monthlyPrice;
+                    }
+                    else if(cartItemDetails.planType=="yearly"){
+                        planAmount = cartItemDetails.planDetails.yearlyPrice;
+                    }
+                    amount = amount+planAmount+cartItemDetails.planDetails.devicePrice;
+                    var cartPromise = CartItem.addCartItem(user,cartCreated.id,cartItemDetails);
+                    promises.push(cartPromise);
+                });
+                Promise.all(promises).then(cartItemsData=>{
+                    console.log("resolved all in compro pago");
+                    Transaction.addTransactionForCompro(amount,user,cartCreated.id).then(data=>{
+                        return resolve(data);
+                    }).catch(err=>{
+                        return reject(err);
+                    })
+                }).then(err=>{
+                    return reject(err);
+                })
+            }).catch(err=>{
+                return reject(err);
+            })
+        })
+    }
+
     return {
         getAllDesigns,
         getProductsForDesignId,
         getCartDetailsByPlanId,
         getPlanDetailsForEachCartItem,
         addShippingInfo,
-        saveUserCardInfoAndMakeCharge
+        saveUserCardInfoAndMakeCharge,
+        saveComproTransaction
     }
 }
