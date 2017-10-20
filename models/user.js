@@ -31,7 +31,7 @@ module.exports = app => {
             type: Sequelize.STRING
         },
         phone: {
-            type: Sequelize.INTEGER
+            type: Sequelize.STRING
         },
         state: {
             type: Sequelize.STRING
