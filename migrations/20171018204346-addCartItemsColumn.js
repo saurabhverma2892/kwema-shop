@@ -2,28 +2,30 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    queryInterface.renameTable('cart', 'cartitem')
+    queryInterface.renameTable('cart', 'cartitem').then(data=>{
+      queryInterface.addColumn({
+          tableName: 'cartitem'
+        },
+        'planId',
+        Sequelize.INTEGER
+      );
 
-    queryInterface.addColumn({
-        tableName: 'cartitem'
-      },
-      'planId',
-      Sequelize.INTEGER
-    );
+      queryInterface.addColumn({
+          tableName: 'cartitem'
+        },
+        'cartId',
+        Sequelize.INTEGER
+      );
 
-    queryInterface.addColumn({
-        tableName: 'cartitem'
-      },
-      'cartId',
-      Sequelize.INTEGER
-    );
+      queryInterface.addColumn({
+          tableName: 'cartitem'
+        },
+        'planType',
+        Sequelize.INTEGER
+      );
+    })
 
-    queryInterface.addColumn({
-        tableName: 'cartitem'
-      },
-      'planType',
-      Sequelize.INTEGER
-    );
+    
 
 
 

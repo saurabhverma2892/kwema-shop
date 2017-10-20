@@ -444,25 +444,8 @@ footer p{
     margin:0px 2px;
 }
 
-.products .select-product.All.Black{
-    background-color: black;
-    border-color:black;
-}
-.products .select-product.Life.is{
-    background-color: red;
-    border-color:red;
-}
-.products .select-product.Caribbean.Cruise{
-    background-color: blue;
-    border-color:blue;
-}
-.products .select-product.Amore{
-    background-color: black;
-    border-color:black;
-}
-.products .select-product.Timeless{
-    background-color: black;
-    border-color:black;
+.select-product.active{
+    border:2px solid #DB0988;
 }
 
 .products .product-selector{

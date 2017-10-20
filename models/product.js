@@ -50,6 +50,9 @@ module.exports = app => {
         },
         color: {
             type: Sequelize.STRING
+        },
+        primaryImage:{
+            type: Sequelize.STRING
         }
     },
     {

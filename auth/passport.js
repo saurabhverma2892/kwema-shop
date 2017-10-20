@@ -88,7 +88,7 @@ module.exports = app => {
             // asynchronous
             // User.findOne wont fire unless data is sent back
             process.nextTick(function() {
-
+                console.log(req.body);
                 // find a user whose email is the same as the forms email
                 // we are checking to see if the user trying to login already exists
                 User.findOne({where:{email:email}}).then(user=>{

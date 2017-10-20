@@ -71,6 +71,8 @@
                     <div>
                         <input type="password" name="repeatPassword" placeholder="<%=language.login.repeatPassword%>" required>
                     </div>
+                    <div class="g-recaptcha inline-block" data-sitekey="6LcILDUUAAAAAAd6zGXB1m8HHl9fThnb2eJo7GZt"></div>
+
                     <div class="padding-top-bottom">
                         <button class="uk-button uk-button-primary"><%=language.login.register%></button>
                     </div>
@@ -96,7 +98,7 @@
         var self = $(this);
         self.validate();
         console.log(self.serialize());
-        $.ajax({
+        /*$.ajax({
             url:"/shop/register",
             method:"POST",
             data:self.serialize(),
@@ -106,9 +108,10 @@
             error:function(err){
 
             }
-        })
-        return false;
+        })*/
+        //return false;
     })
 </script>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 </html>

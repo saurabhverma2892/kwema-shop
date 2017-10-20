@@ -16,7 +16,7 @@
                                 <%if(product.images){%>
                                     <%JSON.parse(product.images).forEach(function(image){%>
                                         <li>
-                                            <img src="<%=image%>" width="800" height="400">
+                                            <img src="<%=image%>" width="200" height="200px">
                                         </li>
                                     <%})%>
                                 <%}%>
@@ -24,13 +24,18 @@
                             <!-- <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
                             <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a> -->
                              <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
-                                <li data-uk-slideshow-item="0"><a href=""></a></li>
-                                <li data-uk-slideshow-item="1"><a href=""></a></li>
+                                <%if(product.images){var i=0%>
+                                    <%JSON.parse(product.images).forEach(function(image){%>
+                                        <li>
+                                            <li data-uk-slideshow-item="<%=i%>"><a href=""></a></li>
+                                        </li>
+                                    <% i++ })%>
+                                <%}%>
                             </ul> 
                         </div>
                     </div> 
                 </div>
-                <div class="uk-width-medium-1-2">
+                <div class="uk-width-medium-1-2 uk-flex yk-flex-middle">
                     <div class="product-features">
                         <h4 style="margin-bottom:5px; margin-top:20px; font-size:30px;"><b><%=product.name%></b></h4>
                         <p style="margin-top:0px; margin-bottom:10px;" class="pink-color"><b><%=product.details%></b></p>
@@ -82,7 +87,7 @@
                                                 <div class="product-selector uk-width-1-1 uk-text-center" >
                                                     <%products.forEach(function(productdetails){%>
                                                         <a href="/shop/plans?id=<%=product.design.id%>&&productId=<%=productdetails.id%>">
-                                                    <button type="button" style="background-color: <%=product.color%>" class="select-product <%=productdetails.name%> 
+                                                    <button type="button" style="background-color: <%=productdetails.color%>;" class="select-product <%=productdetails.name%> 
                                                     <%
                                                     if(productdetails.id == product.id){
                                                         %>active<%

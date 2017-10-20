@@ -19,7 +19,7 @@
                         <%if(design.images){%>
                             <%JSON.parse(design.images).forEach(function(image){%>
                                 <li>
-                                    <img src="<%=image%>" width="800" height="400">
+                                    <img src="<%=image%>" width="800" height="500">
                                 </li>
                             <%})%>
                         <%}%>
@@ -27,8 +27,11 @@
                         <!-- <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
                         <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a> -->
                         <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
-                            <li data-uk-slideshow-item="0"><a href=""></a></li>
-                            <li data-uk-slideshow-item="1"><a href=""></a></li>
+                        <%if(design.images){var i=0%>
+                            <%JSON.parse(design.images).forEach(function(image){%>
+                                <li data-uk-slideshow-item="<%=i%>"><a href=""></a></li>
+                            <%i++})%>
+                        <%}%>
                         </ul>
                     </div>
                 </div>

@@ -81,6 +81,12 @@ module.exports = {
         },
         price: {
           type: Sequelize.INTEGER
+        },
+        primaryImage:{
+            type:Sequelize.STRING
+        },
+        color:{
+            type:Sequelize.STRING
         }
     },
     {
