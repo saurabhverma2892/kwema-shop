@@ -84,6 +84,7 @@
                 data.forEach(function(cartItem){
                     var amount=0;
                     var amountPostfix="";
+                    var devicePrice=cartItem.planDetails.devicePrice;
                     if(cartItem.planType=="bracelet"){
                         amount=cartItem.planDetails.devicePrice;
                     }
@@ -95,8 +96,9 @@
                         amount=cartItem.planDetails.yearlyPrice;
                         amountPostfix="/yr"
                     }
-                    totalAmount=totalAmount+amount+cartItem.planDetails.product.price;
-                    var itemHtml = '<div class="uk-grid cart-item-grid" data-uk-grid=""><div class="uk-width-small-1-5 modal-cart-product-image"><div class="cart-product-image"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+' ('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+amount+amountPostfix+'</p><p class="pink-color"><%=language.Plan%>:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+cartItem.quantity+'</span></div></div>'
+                    totalAmount=totalAmount+amount+devicePrice;
+                    var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+'('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+devicePrice+'</p><p class="pink-color">$'+amount+amountPostfix+'</p><p class="pink-color"><%=language.Plan%>:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+'<div class="uk-width-small-1-1 uk-text-center uk-flex uk-flex-nowrap quantityselector"><span class="pink-color minus"><i class="fa fa-minus"></i></span><input readonly class="quantity" type="text" style="display:inline; width:25px !important; padding:2px!important; text-align:center; margin:0px 5px;" value="'+cartItem.quantity+'" name="quantity"/><input type="hidden" name="planType" value="'+cartItem.planType+'"/><input type="hidden" name="planId" value="'+cartItem.planId+'"/><span class="pink-color plus"><i class="fa fa-plus"></i></span></div>'+'</span></div></div>'
+                    
                     $(".cart-details").append(itemHtml);
                 })
                 $(".subtotal").html(totalAmount);

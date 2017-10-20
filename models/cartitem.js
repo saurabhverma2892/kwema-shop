@@ -26,7 +26,7 @@ module.exports = app => {
             type: Sequelize.INTEGER
         },
         planType: {
-            type: Sequelize.INTEGER
+            type: Sequelize.STRING
         },
         cartId: {
             type: Sequelize.INTEGER

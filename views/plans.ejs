@@ -55,7 +55,7 @@
 
                             <div class="uk-width-1-1 uk-text-left" style="margin-top:20px;">
                                 <div style="margin-bottom: 0px;"><%=language.choosePlanTitle%></div>
-                                <div class="pink-color" style="margin-bottom: 10px;"><%=language.oneTimePayment%></div>
+                                <div class="pink-color" style="margin-bottom: 10px;">$<span class="deviceBasePrice"><%=product.price%></span>/<%=language.oneTimePayment%></div>
                                 <form action="/shop/usercart" method="POST" class="usercart">
                                     <div class="uk-grid" data-uk-grid>
                                         
@@ -65,7 +65,7 @@
                                                 <div class="uk-width-small-1-3 plan-details-plans">
                                                     
                                                         <div class="uk-text-center">
-                                                            <div class="uk-button uk-form-select select-plan-cover" data-uk-form-select style="width:100%;">
+                                                            <div class="uk-button uk-form-select select-plan-cover" value="<%=planDetails.devicePrice%>" data-uk-form-select style="width:100%;">
                                                                 <span class="plans-text <%=planDetails.name%>"></span>
                                                                 <i class="uk-icon-caret-down"></i>
                                                                 <input type="hidden" name="planId" value="<%=planDetails.id%>">
@@ -195,6 +195,9 @@
 
     $(".selectPlan").change(function(e){
         var self = $(this);
+        var devicePrice = self.parent().attr("value");
+        $(".deviceBasePrice").html(devicePrice);
+        console.log(devicePrice);
         console.log(self.val());
         $(".plan-type-hidden").val("");
         self.prev().val(self.val());
@@ -222,7 +225,7 @@
                 data.forEach(function(cartItem){
                     var amount=0;
                     var amountPostfix="";
-                    
+                    var devicePrice=cartItem.planDetails.devicePrice;
                     if(cartItem.planType=="bracelet"){
                         amount=cartItem.planDetails.devicePrice;
                     }
@@ -234,8 +237,8 @@
                         amount=cartItem.planDetails.yearlyPrice;
                         amountPostfix="/yr"
                     }
-                    totalAmount=totalAmount+amount+cartItem.planDetails.product.price;
-                    var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+'('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+cartItem.planDetails.product.price+'</p><p class="pink-color">$'+amount+amountPostfix+'</p><p class="pink-color"><%=language.Plan%>:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+'<div class="uk-width-small-1-1 uk-text-center uk-flex uk-flex-nowrap quantityselector"><span class="pink-color minus"><i class="fa fa-minus"></i></span><input readonly class="quantity" type="text" style="display:inline; width:25px !important; padding:2px!important; text-align:center; margin:0px 5px;" value="'+cartItem.quantity+'" name="quantity"/><input type="hidden" name="planType" value="'+cartItem.planType+'"/><input type="hidden" name="planId" value="'+cartItem.planId+'"/><span class="pink-color plus"><i class="fa fa-plus"></i></span></div>'+'</span></div></div>'
+                    totalAmount=totalAmount+amount+devicePrice;
+                    var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+'('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+devicePrice+'</p><p class="pink-color">$'+amount+amountPostfix+'</p><p class="pink-color"><%=language.Plan%>:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+'<div class="uk-width-small-1-1 uk-text-center uk-flex uk-flex-nowrap quantityselector"><span class="pink-color minus"><i class="fa fa-minus"></i></span><input readonly class="quantity" type="text" style="display:inline; width:25px !important; padding:2px!important; text-align:center; margin:0px 5px;" value="'+cartItem.quantity+'" name="quantity"/><input type="hidden" name="planType" value="'+cartItem.planType+'"/><input type="hidden" name="planId" value="'+cartItem.planId+'"/><span class="pink-color plus"><i class="fa fa-plus"></i></span></div>'+'</span></div></div>'
                     console.log(itemHtml);
                     $(".cart-details").append(itemHtml);
                     $(".subtotal").html(totalAmount);

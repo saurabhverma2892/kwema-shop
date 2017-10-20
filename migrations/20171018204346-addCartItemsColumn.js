@@ -21,7 +21,7 @@ module.exports = {
           tableName: 'cartitem'
         },
         'planType',
-        Sequelize.INTEGER
+        Sequelize.STRING
       );
     })
 

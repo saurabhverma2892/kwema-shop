@@ -115,7 +115,7 @@ module.exports = app => {
                     else if(cartItemDetails.planType=="yearly"){
                         planAmount = cartItemDetails.planDetails.yearlyPrice;
                     }
-                    amount = amount+planAmount+cartItemDetails.planDetails.product.price;
+                    amount = amount+planAmount+cartItemDetails.planDetails.devicePrice;
                     console.log("total amount is");
                     console.log(amount);
                     var cartPromise = CartItem.addCartItem(user,cartCreated.id,cartItemDetails);
