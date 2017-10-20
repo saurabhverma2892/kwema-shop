@@ -4,7 +4,7 @@ module.exports = app => {
 
     function chooseLanguage(req,res,next){
         if(!req.session.language){
-            req.session.language="english";
+            req.session.language="spanish";
         }
         if(req.session.language == "english"){
             var json = require('../public/languages/english.json');
@@ -12,7 +12,7 @@ module.exports = app => {
             next();
         }
         else if(req.session.language == "spanish"){
-            var json = require('../public/languages/english.json');
+            var json = require('../public/languages/spanish.json');
             req.userlanguage=json;
             next();
         }

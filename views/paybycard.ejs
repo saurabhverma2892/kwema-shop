@@ -38,7 +38,10 @@
                         </div>
                         <div class="uk-width-medium-2-5 uk-text-right main-cart-right-details" style="font-size: 18px;">
                             <div style="margin-bottom: 8px;">
-                                <b class="pink-color">$<%=individualAmount%></b>
+                                <small> Bracelet: </small><b class="pink-color">$<%=cart.planDetails.devicePrice%></b>
+                            </div>
+                            <div>
+                                <small> Plan: </small><b class="pink-color">$<%=amount%></b><%=amountPostFix%>
                             </div>
                         </div>
                     <%})%>
