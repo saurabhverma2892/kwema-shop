@@ -38,7 +38,7 @@ module.exports = app => {
             type: Sequelize.STRING
         },
         stripeId: {
-            type: Sequelize.INTEGER
+            type: Sequelize.STRING
         },
 
         stripeBalanceTransactionId: {
