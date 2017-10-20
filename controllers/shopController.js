@@ -6,8 +6,7 @@ module.exports = app => {
 
     function getDesignsAndRenderShop(req,res,next){
         shopService.getAllDesigns().then(data=>{
-            console.log(data);
-            res.render("shop", {designs:data});
+            res.render("shop", {designs:data, language:req.userlanguage});
         }).catch(err=>{
             console.log(err);
             next(err);
@@ -19,7 +18,7 @@ module.exports = app => {
         console.log(req.query);
         shopService.getProductsForDesignId(req.query).then(data=>{
             console.log(data);
-            res.render("plans",{products:data, product:data.productData});
+            res.render("plans",{products:data, product:data.productData,language:req.userlanguage});
         }).catch(err=>{
             console.log(err);
             next(err);
@@ -31,7 +30,7 @@ module.exports = app => {
         shopService.getCartDetailsByPlanId(req.user.planId).then(data=>{
             console.log("detailsss");
             console.log(data);
-            res.render("cart", {cartDetails:data});
+            res.render("cart", {cartDetails:data,language:req.userlanguage});
         }).catch(err=>{
             console.log(err);
             next(err);
@@ -62,7 +61,7 @@ module.exports = app => {
         else
         {
             shopService.getPlanDetailsForEachCartItem(req).then(data=>{
-                res.render("cart", {cartDetails:data, user:req.user});
+                res.render("cart", {cartDetails:data, user:req.user,language:req.userlanguage});
             })
         }
         
@@ -89,7 +88,7 @@ module.exports = app => {
         else
         {
             shopService.getPlanDetailsForEachCartItem(req).then(data=>{
-                res.render("paybycard", {cartDetails:data, user:req.user});
+                res.render("paybycard", {cartDetails:data, user:req.user,language:req.userlanguage});
             });
         }
     }
@@ -99,7 +98,7 @@ module.exports = app => {
             shopService.saveUserCardInfoAndMakeCharge(cartItems,req.body,req.user).then(data=>{
                 console.log(data);
                 req.session.cart=[];
-                res.redirect("/explore");
+                res.redirect("/shop/kwema-app");
             }).catch(err=>{
                 console.log(err);
                 next(err);

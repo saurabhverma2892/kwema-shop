@@ -9,31 +9,28 @@
     <%include includes/navbar.ejs %>
 
     <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
-        <h1>GET KWEMA APP TO SETUP YOUR DEVICE</h1>
+        <h1><%=language.success%></h1>
+        <h2><b><%=language.getKwemaApp%></b></h2>
         <div style="padding-top:30px;">
             <div class="uk-width-1-1 uk-text-center" style="max-width:600px; display:inline-block;">
-                <div class="uk-slidenav-position" data-uk-slideshow="{kenburns:true, autoplay:true}">
+                <div class="uk-slidenav-position product-colors-container" data-uk-slideshow="{ autoplay:true}" style="max-width:150px;">
                     <ul class="uk-slideshow" data-uk-slideshow>
                         <li>
-                            <img src="/images/bg1.png" width="600" height="400">
-                        </li>
-                        <li>
-                            <img src="/images/bg2.png" width="600" height="400">
+                            <img src="/images/screen1.png" height="200">
                         </li>
                     </ul>
                     <!-- <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
                     <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a> -->
                     <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
                         <li data-uk-slideshow-item="0"><a href=""></a></li>
-                        <li data-uk-slideshow-item="1"><a href=""></a></li>
                     </ul>
                 </div>
-                <div class="uk-text-center app-buttons" style="margin-top:30px;">
+                <div class="uk-text-center app-buttons" style="margin-top:60px;">
                         <button class="uk-button uk-button-primary">
                             <div class="app-button-container">
                                 <img src="/images/googleplaystore.png">
                             </div><div class="app-detail-container">
-                                <p><small>Get it on</small></p>
+                                <p><small><%=language.getiton%></small></p>
                                 <p>Google Play</p>
                             </div>
                         </button>
@@ -41,7 +38,7 @@
                             <div class="app-button-container">
                                 <img src="/images/appstore.png">
                             </div><div class="app-detail-container">
-                                <p><small>Get it on</small></p>
+                                <p><small><%=language.getiton%></small></p>
                                 <p>Apple Store</p>
                             </div>
                         </button>

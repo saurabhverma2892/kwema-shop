@@ -7,36 +7,26 @@
 <body>
     <%include includes/navbar.ejs %>
     <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
-        <h1><%=product.design.name%></h1>
+        <h1><%=product.design.name%> <%=language.collection%></h1>
             <div class="uk-grid products product<%=product.id%>" data-uk-grid style="padding-top:30px;">
-                <div class="uk-width-medium-1-2 uk-flex uk-flex-middle uk-flex-center">
+                <div class="uk-width-medium-1-2 uk-flex uk-flex-middle uk-flex-center" style="margin-bottom:40px;">
                     <div class="product-colors-container">
-                        <div class="uk-slidenav-position" data-uk-slideshow="{kenburns:true, autoplay:true}">
+                        <div class="uk-slidenav-position" data-uk-slideshow="{autoplay:true}">
                             <ul class="uk-slideshow">
-                                <li>
-                                    <img src="/images/bg1.png" width="800" height="400">
-                                </li>
-                                <li>
-                                    <img src="/images/bg2.png" width="800" height="400">
-                                </li>
+                                <%if(product.images){%>
+                                    <%JSON.parse(product.images).forEach(function(image){%>
+                                        <li>
+                                            <img src="<%=image%>" width="800" height="400">
+                                        </li>
+                                    <%})%>
+                                <%}%>
                             </ul>
-                            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
-                            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
-                            <!-- <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
+                            <!-- <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+                            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a> -->
+                             <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
                                 <li data-uk-slideshow-item="0"><a href=""></a></li>
                                 <li data-uk-slideshow-item="1"><a href=""></a></li>
-                            </ul> -->
-                        </div>
-                        <div class="product-selector" >
-                            <%products.forEach(function(productdetails){%>
-                            <a href="/shop/plans?id=<%=product.design.id%>&&productId=<%=productdetails.id%>">
-                            <button class="select-product <%=productdetails.name%> 
-                            <%
-                            if(productdetails.id == product.id){
-                                %>active<%
-                            }
-                            %>" value="<%=productdetails.id%>"></button></a>
-                            <%})%>
+                            </ul> 
                         </div>
                     </div> 
                 </div>
@@ -45,58 +35,66 @@
                         <h4 style="margin-bottom:5px; margin-top:20px; font-size:30px;"><b><%=product.name%></b></h4>
                         <p style="margin-top:0px; margin-bottom:10px;" class="pink-color"><b><%=product.details%></b></p>
                         <div class="uk-grid" data-uk-grid>
-                            <div class="uk-width-small-1-2">
-                                <p class="small-top-bottom-margin-p "><b>Coin cell battery</b></p>
+                            <div class="uk-width-small-1-3">
+                                <p class="small-top-bottom-margin-p"><img src="/images/cell.png"></p>
                                 <p class="grey small-top-bottom-margin-p">CR1220</p>
                             </div>
-                            <div class="uk-width-small-1-2">
-                                <p class="small-top-bottom-margin-p"><img src="/images/bluetooth.png"></p>
-                                <p class="small-top-bottom-margin-p">Bluetooth 4.0</p>
-                                <p class="grey small-top-bottom-margin-p">Low Energy</p>
+                            <div class="uk-width-small-1-3">
+                                <p class="small-top-bottom-margin-p"><img src="/images/chip.png"></p>
+                                <p class="small-top-bottom-margin-p grey"><%=language.madeInUs%></p>
                             </div>
-                            <div class="uk-width-1-1" style="margin-top:20px;">
-                                <h4><b>Choose a plan that fits you best:</b></h4>
-                                <div class="uk-grid" data-uk-grid>
-                                    <%
-                                    product.plans.forEach(function(planDetails){
-                                    %>
-                                        <div class="uk-width-small-1-3 plan-details-plans">
-                                            <form action="/shop/usercart" method="POST" class="usercart">
-                                                <div class="uk-text-center">
-                                                    <div><h2><%=planDetails.name%></h2></div>
-                                                    <!-- <ul class="features">
-                                                        <li>Bracelet: $<%=planDetails.devicePrice%></li>
-                                                        <li>Monthly: $<%=planDetails.monthlyPrice%></li>
-                                                        <li>Yearly: $<%=planDetails.yearlyPrice%></li>
-                                                    </ul> -->
-                                                    <div class="uk-button uk-form-select" data-uk-form-select>
-                                                        <span></span>
-                                                        <i class="uk-icon-caret-down"></i>
-                                                        <select name="planType">
-                                                            <option value="monthly">Monthly: $<%=planDetails.monthlyPrice%></option>
-                                                            <option value="yearly">Yearly: $<%=planDetails.yearlyPrice%></option>
-                                                        </select>
-                                                    </div>
-                                                    <input type="hidden" name="planId" value="<%=planDetails.id%>">
-                                                    <div class="uk-width-small-1-1 uk-text-center">
-                                                        <span class="pink-color minus">
-                                                            <i class="fa fa-minus"></i>
-                                                        </span> 
-                                                        <input class="quantity" type="text" style="display:inline; width:25px !important; padding:2px!important; text-align:center; margin:10px;" value="1" name="quantity"/>
-                                                        <span class="pink-color plus">
-                                                            <i class="fa fa-plus"></i>
-                                                        </span>
-                                                    </div>
-                                                    <button class="uk-button uk-button-primary" id="addToCart">+ CART</button>
+                            <div class="uk-width-small-1-3">
+                                <p class="small-top-bottom-margin-p"><img src="/images/bluetooth.png"></p>
+                                <p class="grey small-top-bottom-margin-p"><%=language.lowEnergy%> (4.0)</p>
+                            </div>
+
+                            <div class="uk-width-1-1 uk-text-left" style="margin-top:20px;">
+                                <div style="margin-bottom: 0px;"><%=language.choosePlanTitle%></div>
+                                <div class="pink-color" style="margin-bottom: 10px;"><%=language.oneTimePayment%></div>
+                                <form action="/shop/usercart" method="POST" class="usercart">
+                                    <div class="uk-grid" data-uk-grid>
+                                        
+                                            <%
+                                            product.plans.forEach(function(planDetails){
+                                            %>
+                                                <div class="uk-width-small-1-3 plan-details-plans">
+                                                    
+                                                        <div class="uk-text-center">
+                                                            <div class="uk-button uk-form-select select-plan-cover" data-uk-form-select style="width:100%;">
+                                                                <span class="plans-text <%=planDetails.name%>"></span>
+                                                                <i class="uk-icon-caret-down"></i>
+                                                                <input type="hidden" name="planId" value="<%=planDetails.id%>">
+                                                                <input type="hidden" name="planType" value="" class="plan-type-hidden">
+                                                                <select value="" class="selectPlan">
+                                                                    <option selected="true" disabled="disabled" value=""><%=planDetails.name%></option>
+                                                                    <option value="monthly">$<%=planDetails.monthlyPrice%><%=language.monthlypostFix%></option>
+                                                                    <option value="yearly">$<%=planDetails.yearlyPrice%><%=language.yearlypostFix%></option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
                                                 </div>
-                                            </form>
-                                        </div>
-                                    <%
-                                    })
-                                    %>
-                                </div>
-                                <div class="uk-text-right" style="margin:5px;"><p><a href="">Already have a plan?</a></p></div>
-                                
+                                            <%
+                                            })
+                                            %>
+                                                <div class="uk-width-1-1 uk-text-right"> 
+                                                    <div class="uk-text-right"><p><a href="#"><%=language.alreadyHavePlan%></a></p></div>
+                                                </div>
+                                                <div class="product-selector uk-width-1-1 uk-text-center" >
+                                                    <%products.forEach(function(productdetails){%>
+                                                        <a href="/shop/plans?id=<%=product.design.id%>&&productId=<%=productdetails.id%>">
+                                                    <button type="button" style="background-color: <%=product.color%>" class="select-product <%=productdetails.name%> 
+                                                    <%
+                                                    if(productdetails.id == product.id){
+                                                        %>active<%
+                                                    }
+                                                    %>" value="<%=productdetails.id%>"></button></a>
+                                                    <%})%>
+                                                </div>
+                                                <div class="uk-width-1-1 uk-text-center">
+                                                    <button class="uk-button uk-button-primary" id="addToCart"><%=language.addToCart%></button>
+                                                </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div> 
@@ -120,25 +118,25 @@
             $(".logo-black").show("slow");
     }
 
-    $(".choose-plan-button").click(function(){
+    /*$(".choose-plan-button").click(function(){
         $(".choose-plan-button").removeClass("active");
         var self = $(this);
         self.addClass("active");
         var planId = self.val();
         $("#planId").val(planId);
-    })
+    })*/
 
-    $("#checkoutForm").submit(function(){
-        /*var self = $(this);
+    /*$("#checkoutForm").submit(function(){
+        var self = $(this);
         if($("#planId").val().trim()==""){
             return false;
         }
         else{
             return true;
-        }*/
-    })
+        }
+    })*/
 
-    $(".usercart").submit(function(e){
+    /*$(".usercart").submit(function(e){
         cartModal.show();
         var self = $(this);
         $.ajax({
@@ -173,22 +171,78 @@
             }
         })
         return false;
-    })
+    })*/
 
-    $(".fa-plus").click(function(){
+    $(document).on("click",".fa-plus",function(){
         var self = $(this);
-        var inputfield = self.parent().prev();
-        console.log(inputfield.val());
+        var inputfield = self.parent().prev().prev().prev();
         inputfield.val(parseInt(inputfield.val())+1);
     })
-    $(".fa-minus").click(function(){
+
+    $(document).on("click",".fa-minus",function(){
         var self = $(this);
         var inputfield = self.parent().next();
         if(parseInt(inputfield.val())>1){
             inputfield.val(parseInt(inputfield.val())-1);
         }
-        
     })
+
+
+    $(".selectPlan").change(function(e){
+        var self = $(this);
+        console.log(self.val());
+        $(".plan-type-hidden").val("");
+        self.prev().val(self.val());
+    });
+
+    $(".uk-button.select-plan-cover").click(function(e){
+        var self = $(this);
+        $(".uk-button.select-plan-cover").removeClass("active");
+        self.addClass("active");
+
+    })
+
+    $(".usercart").submit(function(e){
+        var self = $(this);
+        console.log(self.serialize());
+        $.ajax({
+            url:"/shop/usercart",
+            method:"POST",
+            data:self.serialize(),
+            success:function(data){
+                console.log(data);
+                $(".cart-count").html(data.length);
+                $(".cart-details").html("");
+                var totalAmount=0;
+                data.forEach(function(cartItem){
+                    var amount=0;
+                    var amountPostfix="";
+                    
+                    if(cartItem.planType=="bracelet"){
+                        amount=cartItem.planDetails.devicePrice;
+                    }
+                    else if(cartItem.planType=="monthly"){
+                        amount=cartItem.planDetails.monthlyPrice;
+                        amountPostfix="/mo"
+                    }
+                    else if(cartItem.planType=="yearly"){
+                        amount=cartItem.planDetails.yearlyPrice;
+                        amountPostfix="/yr"
+                    }
+                    totalAmount=totalAmount+amount+cartItem.planDetails.product.price;
+                    var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+'('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+cartItem.planDetails.product.price+'</p><p class="pink-color">$'+amount+amountPostfix+'</p><p class="pink-color"><%=language.Plan%>:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+'<div class="uk-width-small-1-1 uk-text-center uk-flex uk-flex-nowrap quantityselector"><span class="pink-color minus"><i class="fa fa-minus"></i></span><input readonly class="quantity" type="text" style="display:inline; width:25px !important; padding:2px!important; text-align:center; margin:0px 5px;" value="'+cartItem.quantity+'" name="quantity"/><input type="hidden" name="planType" value="'+cartItem.planType+'"/><input type="hidden" name="planId" value="'+cartItem.planId+'"/><span class="pink-color plus"><i class="fa fa-plus"></i></span></div>'+'</span></div></div>'
+                    console.log(itemHtml);
+                    $(".cart-details").append(itemHtml);
+                    $(".subtotal").html(totalAmount);
+                    cartModal.show();
+                })
+            },
+            error:function(err){
+                console.log(err);
+            }
+        })
+        return false;
+    });
 
 </script>
 </body>

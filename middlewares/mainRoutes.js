@@ -2,15 +2,31 @@
 
 module.exports = app => {
 
-    app.get("/", (req, res, next) => {
-        res.render("main");
+    function chooseLanguage(req,res,next){
+        if(!req.session.language){
+            req.session.language="english";
+        }
+        if(req.session.language == "english"){
+            var json = require('../public/languages/english.json');
+            req.userlanguage=json;
+            next();
+        }
+        else if(req.session.language == "spanish"){
+            var json = require('../public/languages/english.json');
+            req.userlanguage=json;
+            next();
+        }
+    }
+
+    app.get("/", chooseLanguage, (req, res, next) => {
+        res.render("main", {language:req.userlanguage});
     });
 
-    app.get("/explore", (req, res, next) => {
-        res.render("explore");
+    app.get("/explore",chooseLanguage, (req, res, next) => {
+        res.render("explore",{language:req.userlanguage});
     });
 
-    app.use("/shop", app.routes.shop);
+    app.use("/shop",chooseLanguage, app.routes.shop);
 
     app.get("/*", (req,res,next)=>{
         res.redirect("/");

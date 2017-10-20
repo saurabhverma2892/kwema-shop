@@ -17,6 +17,7 @@ module.exports = app => {
         res.redirect('/shop/login');
     }
 
+    
     router.route("/").get((req,res,next)=>{
         shopController.getDesignsAndRenderShop(req,res,next);
     })
@@ -24,7 +25,7 @@ module.exports = app => {
         shopController.getProductsForDesignId(req,res,next);
     })
     router.route("/login").get((req,res,next)=>{
-        res.render("login");
+        res.render("login", {language:req.userlanguage});
     })
     router.route("/cart").get(isLoggedIn, (req,res,next)=>{
         //todo by cart Id
@@ -36,7 +37,7 @@ module.exports = app => {
         shopController.getPaymentPage(req,res,next)
     })
     router.route("/kwema-app").get((req,res,next)=>{
-        res.render("getapp");
+        res.render("getapp",{language:req.userlanguage});
     })
 
     router.route("/checkout").get(isLoggedIn,(req,res,next)=>{
@@ -55,12 +56,79 @@ module.exports = app => {
         shopController.saveUserCardInfoAndMakeCharge(req,res,next);
     })
 
+    router.route("/checkout").post((req,res,next)=>{
+        console.log(req.body);
+        if(!req.session.cart){
+            req.session.cart=[];
+        }
+        var carToAdd=[];
+
+        var planIds = [];
+        var planTypes = [];
+        var quantities = [];
+
+        console.log(typeof req.body.planId);
+        if(Object.prototype.toString.call( req.body.planId )  == '[object Array]'){
+            planIds = req.body.planId;
+            planTypes = req.body.planType;
+            quantities = req.body.quantity;
+        }
+        else{
+            planIds.push(req.body.planId);
+            planTypes.push(req.body.planType);
+            quantities.push(req.body.quantity);
+        }
+
+        var i = 0;
+        var error = false;
+        
+        planIds.forEach(planId=>{
+
+            if(((planTypes[i] == "monthly" || planTypes[i] == "yearly") && (typeof planId=="string") && (quantities[i]>0))){
+                carToAdd.push({planId:planId,planType:planTypes[i],quantity:quantities[i]})
+            }
+            else
+            {
+                console.log("ajsdhfkjsahdf");
+                error = true;
+            }
+
+            i++;
+        })
+
+        if(!error){
+            req.session.cart=carToAdd;
+            res.redirect("/shop/cart");
+        }
+        else{
+            console.log("ehhehehehajsdfaskhdfjkasdfhsadf");
+            req.flash("message","Error in form data");
+            res.redirect("/shop");
+        }
+        
+    })
+
     router.route("/usercart").post((req,res,next)=>{
         var usercartdetails = req.body;
         if(!req.session.cart){
             req.session.cart=[];
         }
-        req.session.cart.push(usercartdetails);
+        var i = 0;
+        console.log(usercartdetails);
+        usercartdetails.planType.forEach(type=>{
+            console.log(type);
+            console.log("hehre is the type");
+            if(type == "monthly" || type =="yearly"){
+                req.session.cart.push({planType:type, planId:usercartdetails.planId[i],quantity:1})
+            }
+            else{
+                console.log("no");
+            }
+            i++
+        })
+        console.log("all good");
+        console.log(req.session.cart);
+        //req.session.cart.push(usercartdetails);
         shopController.getPlanDetailsForEachCartItem(req,res,next);
         //res.send(req.session.cart);
     })

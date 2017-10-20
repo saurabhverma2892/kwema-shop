@@ -10,7 +10,7 @@
 
     <form action="/shop/shipping" method="POST">
         <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
-            <h1>YOUR SHOPPING CART</h1>
+            <h1><%=language.yourShoppingCart%></h1>
             
             <div class="cart-container">
                 <div class="uk-grid" data-uk-grid style="padding-top:30px;">
@@ -26,24 +26,19 @@
                             var amount=cart.planDetails.yearlyPrice;
                             var amountPostFix = "/yr";
                         }
-
+                        var individualAmount = amount+cart.planDetails.product.price;
                         totalAmount = totalAmount+amount+cart.planDetails.product.price;
                         %>
-                        <div class="uk-width-medium-1-2 uk-text-left main-cart-details-list uk-flex uk-flex-nowrap">
+                        <div class="uk-width-medium-3-5 uk-text-left main-cart-details-list uk-flex uk-flex-nowrap">
                             <div class="cart-product-image inline-block inline-block-top"></div>
                             <div class="inline-block inline-block-top main-cart-details-list-details">
-                                <p><b><%=cart.planDetails.design.name%></b> Collection</p>
-                                <p><b><%=cart.planDetails.product.name%></b> (<%=cart.planDetails.product.details%>)</p>
-                                <p><b><%=cart.planDetails.name%></b> Plan</p>
-                                <p><b>Ship:</b> 12 Business Days - <b>Free</b> | <b><a href="/shop/delivery-address">Get Delivery Address</a></b></p>
+                                <p><b><%=cart.planDetails.product.name%> <%=cart.planDetails.product.details%></b></p>
+                                <p><b><%=language.Ship%>:</b> <%language.tenDays%> | <%-language.freeShippingText%> | <a href="/shop/delivery-address"><%-language.getDeliveryAddress%></a></p>
                             </div>
                         </div>
-                        <div class="uk-width-medium-1-2 uk-text-right main-cart-right-details" style="font-size: 18px;">
+                        <div class="uk-width-medium-2-5 uk-text-right main-cart-right-details" style="font-size: 18px;">
                             <div style="margin-bottom: 8px;">
-                                <small> Bracelet: </small><b class="pink-color">$<%=cart.planDetails.product.price%></b>
-                            </div>
-                            <div>
-                                <small> Plan: </small><b class="pink-color">$<%=amount%></b><%=amountPostFix%>
+                                <b class="pink-color">$<%=individualAmount%></b>
                             </div>
                         </div>
                     <%})%>
@@ -51,54 +46,54 @@
                 </div>
             </div>
             <div class="cart-container uk-text-left">
-                <h2>SHIPPING</h2>
+                <h2><%=language.SHIPPING%></h2>
                 <div class="uk-grid" data-uk-grid>
                     
                     <div class="uk-width-medium-1-2 uk-grid" data-uk-grid>
 
                         <div class="uk-width-small-1-1">
-                            <input type="text" name="addressedToName" placeholder="Addressed To Name" class="uk-input" value="<%=user.addressedToName || user.firstName +" "+ user.lastName%>" required>  
+                            <input type="text" name="addressedToName" placeholder="<%=language.addressedToName%>" class="uk-input" value="<%=user.addressedToName || user.firstName +" "+ user.lastName%>" required>  
                         </div>
                         <div class="uk-width-small-1-2">
-                            <input type="text" name="areaCode" placeholder="Area Code" class="uk-input" value="<%=user.areaCode%>" required> 
+                            <input type="text" name="areaCode" placeholder="<%=language.areaCode%>" class="uk-input" value="<%=user.areaCode%>" required> 
                         </div>
                         <div class="uk-width-small-1-2">
-                            <input type="number" name="phone" placeholder="Phone" class="uk-input" value="<%=user.phone%>" required> 
+                            <input type="number" name="phone" placeholder="<%=language.Phone%>" class="uk-input" value="<%=user.phone%>" required> 
                         </div>
                         <div class="uk-width-small-1-1">
-                            <input type="text" name="address" placeholder="Address" class="uk-input" value="<%=user.address%>" required> 
+                            <input type="text" name="address" placeholder="<%=language.Address%>" class="uk-input" value="<%=user.address%>" required> 
                         </div>
                         <div class="uk-width-small-1-2">
-                            <input type="text" name="city" placeholder="City" class="uk-input" value="<%=user.city%>" required> 
+                            <input type="text" name="city" placeholder="<%=language.City%>" class="uk-input" value="<%=user.city%>" required> 
                         </div>
                         <div class="uk-width-small-1-2">
-                            <input type="text" name="state" placeholder="State" class="uk-input" value="<%=user.state%>" required> 
+                            <input type="text" name="state" placeholder="<%=language.State%>" class="uk-input" value="<%=user.state%>" required> 
                         </div>
                         <div class="uk-width-small-1-2">
-                            <input type="text" name="zipCode" placeholder="Zip Code" class="uk-input" value="<%=user.zipCode%>" required> 
+                            <input type="text" name="zipCode" placeholder="<%=language.zipCode%>" class="uk-input" value="<%=user.zipCode%>" required> 
                         </div>
                     </div>
                     <div class="uk-width-medium-1-2 uk-text-left">
-                        <p><b>Shipping Notifications</b></p>
-                        <p>Shipment notification emails are sent to the billing contact.</p>
-                        <p>Another recipient email adress may be added below</p>
+                        <p style="margin-bottom: 2px;"><b><%=language.shippingNotification%></b></p>
+                        <p style="margin:0px; margin-bottom: 2px;"><%=language.shippingNotp1%></p>
+                        <p style="margin:0px; margin-bottom: 4px;"><%=language.shippingNotp2%></p>
                         <div>
-                        <input type="text" name="otherEmail" class="uk-input" value="<%=user.optionalEmail%>"placeholder="Email (optional)"> 
+                            <input type="text" name="otherEmail" class="uk-input" value="<%=user.optionalEmail%>" placeholder="<%=language.optionalEmail%>"> 
                         </div>
                     </div> 
                 </div>
             </div>
             <div class="cart-container uk-text-left" style="border-bottom:none;">
-                <h2>TOTAL</h2>
+                <h2><%=language.TOTAL%></h2>
                 <div class="uk-grid uk-text-left" data-uk-grid>
                     <div class="uk-width-medium-1-2">
                         <!-- <p class="pink-color"><b>Enter promo Code here</b></p> -->
                     </div>
                     <div class="uk-width-medium-1-2 uk-text-right total-payment-page">
-                        <p><b>Subtotal <%=totalAmount%>$</b></p>
-                        <p class="grey"><b>Free Shipping</b></p>
-                        <p><b>Order Total <%=totalAmount%>$</b></p>
-                        <div><button class="uk-button uk-button-primary">PROCEED TO PAYMENT  <i class="fa fa-caret-right"></i></button></div>
+                        <p style="margin-bottom: 0px;"><b><%=language.Subtotal%> $<%=totalAmount%></b></p>
+                        <p style="margin-top: 2px;" class="grey"><b><%=language.FreeShipping%> $00.00</b></p>
+                        <p class="order-main-total"><b><%=language.orderTotal%> $<%=totalAmount%></b></p>
+                        <div><button class="uk-button uk-button-primary"><%=language.proceedToPay%>  <i class="fa fa-caret-right"></i></button></div>
                     </div>
                 </div>
             </div>

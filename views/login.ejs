@@ -9,21 +9,21 @@
     <%include includes/navbar.ejs %>
 
     <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
-        <h1>PLEASE LOGIN</h1>
+        <h1><%=language.login.pleaseLogin%></h1>
         <div class="uk-grid uk-flex uk-flex-nowrap loginscreen" data-uk-grid style="padding-top:30px; margin:0px;">
             <div class="uk-width-medium-1-2 register-login-container">
                 <div class="login-container">
-                    <h4>LOGIN TO ACCOUNT</h4>
+                    <h4><%=language.login.loginToAccount%></h4>
                     <form action="/shop/login" method="POST">
                         <div>
-                            <input type="text" name="email" placeholder="Email Address*" class="uk-input" required>
+                            <input type="text" name="email" placeholder="<%=language.login.emailAddress%>*" class="uk-input" required>
                         </div>
                         <div>
-                            <input type="password" name="password" placeholder="password" class="uk-input" required>
+                            <input type="password" name="password" placeholder="<%=language.login.password%>*" class="uk-input" required>
                         </div>
                         <div class="uk-text-left">
                             <p class="pink-color">
-                            <a href="/forgot-password">Forgot your Password?</a>
+                            <a href="/forgot-password"><%=language.login.forgotPassword%></a>
                             </p>
                         </div>
 
@@ -31,7 +31,7 @@
                             <input type="checkbox" name="terms" style="display:inline; width:initial !important" required>I Agree to the terms and conditions
                             <div>
                                 <button class="uk-button uk-button-primary" style="margin-top:10px;">
-                                    SIGN IN
+                                    <%=language.login.signIn%>
                                 </button>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
             <div class="uk-width-medium-1-2 register-login-container">
                 <div class=" uk-flex uk-flex-center uk-flex-middle" style="height:100%">
                     <div class="inline-block">
-                        <h2>JOIN THE COMMUNITY</h2>
+                        <h2><%=language.login.joinTheCommunity%></h2>
                         <button class="uk-button uk-button-primary uk-width-1-1" data-uk-modal="{target:'#register'}">JOIN THE COMMUNITY</button>
                     </div>
                 </div>
@@ -55,24 +55,24 @@
             
             <form action="/shop/register" method="POST" id="registerBuyer">
                 <div class="uk-text-center">
-                    <h2 style="margin-bottom:30px;">Register</h2> 
+                    <h2 style="margin-bottom:30px;"><%=language.login.register%></h2> 
                     <div>
-                        <input type="text" name="firstName" placeholder="First Name" required>
+                        <input type="text" name="firstName" placeholder="<%=language.login.firstName%>" required>
                     </div>
                     <div>     
-                        <input type="text" name="lastName" placeholder="Last Name">
+                        <input type="text" name="lastName" placeholder="<%=language.login.lastName%>">
                     </div> 
                     <div>
-                        <input type="text" name="email" placeholder="Email" required>
+                        <input type="text" name="email" placeholder="<%=language.login.emailAddress%>" required>
                     </div>
                     <div>
-                        <input type="password" name="password" placeholder="Password" required>
+                        <input type="password" name="password" placeholder="<%=language.login.password%>" required>
                     </div>
                     <div>
-                        <input type="password" name="repeatPassword" placeholder="Repeat Password" required>
+                        <input type="password" name="repeatPassword" placeholder="<%=language.login.repeatPassword%>" required>
                     </div>
                     <div class="padding-top-bottom">
-                        <button class="uk-button uk-button-primary">Register</button>
+                        <button class="uk-button uk-button-primary"><%=language.login.register%></button>
                     </div>
                 </div>
             </form>

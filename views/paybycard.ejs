@@ -10,7 +10,7 @@
 
     <form action="/shop/pay/card/charge" method="POST" id="payment-form">
         <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
-            <h1>YOUR SHOPPING CART</h1>
+            <h1><%=language.yourshop%></h1>
             
             <div class="cart-container">
                 <div class="uk-grid" data-uk-grid style="padding-top:30px;">
@@ -26,24 +26,19 @@
                             var amount=cart.planDetails.yearlyPrice;
                             var amountPostFix = "/yr";
                         }
-
+                        var individualAmount = amount+cart.planDetails.product.price;
                         totalAmount = totalAmount+amount+cart.planDetails.product.price;
                         %>
-                        <div class="uk-width-medium-1-2 uk-text-left main-cart-details-list uk-flex uk-flex-nowrap">
+                        <div class="uk-width-medium-3-5 uk-text-left main-cart-details-list uk-flex uk-flex-nowrap">
                             <div class="cart-product-image inline-block inline-block-top"></div>
                             <div class="inline-block inline-block-top main-cart-details-list-details">
-                                <p><b><%=cart.planDetails.design.name%></b> Collection</p>
-                                <p><b><%=cart.planDetails.product.name%></b> (<%=cart.planDetails.product.details%>)</p>
-                                <p><b><%=cart.planDetails.name%></b> Plan</p>
-                                <p><b>Ship:</b> 12 Business Days - <b>Free</b> | <b><a href="/shop/delivery-address">Get Delivery Address</a></b></p>
+                                <p><b><%=cart.planDetails.product.name%> <%=cart.planDetails.product.details%></b></p>
+                                <p><b><%=language.Ship%>:</b> <%language.tenDays%> | <%-language.freeShippingText%> | <a href="/shop/delivery-address"><%-language.getDeliveryAddress%></a></p>
                             </div>
                         </div>
-                        <div class="uk-width-medium-1-2 uk-text-right main-cart-right-details" style="font-size: 18px;">
+                        <div class="uk-width-medium-2-5 uk-text-right main-cart-right-details" style="font-size: 18px;">
                             <div style="margin-bottom: 8px;">
-                                <small> Bracelet: </small><b class="pink-color">$<%=cart.planDetails.product.price%></b>
-                            </div>
-                            <div>
-                                <small> Plan: </small><b class="pink-color">$<%=amount%></b><%=amountPostFix%>
+                                <b class="pink-color">$<%=individualAmount%></b>
                             </div>
                         </div>
                     <%})%>
@@ -54,11 +49,11 @@
             <div class="cart-container uk-text-left" style="border-bottom:none;">
                 <div class="uk-grid uk-text-left" data-uk-grid>
                     <div class="uk-width-medium-1-2" style="margin-bottom:20px;">
-                            <h2>PAYMENT</h2>
+                            <h2><%=language.PAYMENT%></h2>
                             <div>
                                 <div class="uk-width-1-1">
                                     <div style="margin-bottom:10px;">
-                                            <button type="button" class="uk-button choose-payment-type-button active">Credit/Debit Card</button>
+                                            <button type="button" class="uk-button choose-payment-type-button active"><%=language.card%></button>
                                         
                                         <!-- <a href="/shop/pay/other">
                                             <button class="uk-button choose-payment-type-button">Paypal</button>
@@ -79,14 +74,20 @@
                                 
                             </div>
                     </div>
-
                     <div class="uk-width-medium-1-2 uk-text-right total-payment-page">
-                        <h2>TOTAL</h2>
+                        <h2><%=language.TOTAL%></h2>
+                        <p style="margin-bottom: 0px;"><b><%=language.Subtotal%> $<%=totalAmount%></b></p>
+                        <p style="margin-top: 2px;" class="grey"><b><%=language.FreeShipping%> $00.00</b></p>
+                        <p class="order-main-total"><b><%=language.orderTotal%> $<%=totalAmount%></b></p>
+                        <div><button class="uk-button uk-button-primary"><%=language.payNow%>  <i class="fa fa-caret-right"></i></button></div>
+                    </div>
+                    <!-- <div class="uk-width-medium-1-2 uk-text-right total-payment-page">
+                        
                         <p><b>Subtotal <%=totalAmount%>$</b></p>
                         <p class="grey"><b>Free Shipping</b></p>
                         <p><b>Order Total <%=totalAmount%>$</b></p>
                         <div><button class="uk-button uk-button-primary">PAY NOW <i class="fa fa-caret-right"></i></button></div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

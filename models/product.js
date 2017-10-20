@@ -47,6 +47,9 @@ module.exports = app => {
         },
         price: {
           type: Sequelize.INTEGER
+        },
+        color: {
+            type: Sequelize.STRING
         }
     },
     {

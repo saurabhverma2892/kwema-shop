@@ -13,8 +13,8 @@
                     <img src="/images/bg1.png" width="800" height="400">
                     <div class="uk-overlay-panel uk-overlay-background uk-overlay-fade overlay-inside-content uk-flex uk-flex-center uk-flex-middle uk-text-center">
                         <div class="overlay-inside-content">
-                            <h1>SMART BRACELET WITH A PANIC BUTTON</h1>
-                            <p><a href="/shop"><button class="uk-button uk-button-primary">BUY NOW</button></a></p>
+                            <h1><%=language.mainSlider.heading%></h1>
+                            <p><a href="/shop"><button class="uk-button uk-button-primary"><%=language.mainSlider.buttonText%></button></a></p>
                         </div>
                     </div>
                 </li>
@@ -38,19 +38,19 @@
             <div class="uk-width-medium-1-2 uk-text-center uk-flex uk-flex-middle">
                 <div>
                     <div>
-                        <h1>KWEMA BRACELET</h1>
-                        <p>Kwema is the smart jewelry that keeps you safe and sound.</p>
-                        <p>It’s a bracelet with a hidden panic button, when the alarm is triggered, the bracelet syncs with the mobile app and sends an alert with your GPS location to friends, family and other people nearby.</p>
+                        <h1><%=language.bracelet.heading%></h1>
+                        <p><%=language.bracelet.p1%></p>
+                        <p><%=language.bracelet.p2%></p>
                     </div>
                     <div class="reviews uk-text-center">
                         <div class="profile-picture" style="background-image: url(/images/person.png);">
                             
                         </div>
                         <p class="reviewer-name">
-                            KIM ROBIN, USA
+                            <%=language.testimonial.source%>
                         </p>
                         <p>
-                            Women on the go can now feel safe, confident and stay connected anywhere and anytime to get the help they need in times of potential danger.
+                            <%=language.testimonial.text%>
                         </p>
                     </div>
                 </div>
@@ -64,8 +64,8 @@
                     <img src="/images/bg2.png" width="800" height="400">
                     <div class="uk-overlay-panel uk-overlay-background uk-overlay-fade overlay-inside-content uk-flex uk-flex-center uk-flex-middle uk-text-center">
                         <div class="overlay-inside-content">
-                            <h1>THE BRACELET DESIGNED TO KEEP YOU SAFE AND SOUND!</h1>
-                            <p><button class="uk-button uk-button-primary"><i class="fa fa-youtube" style="margin-right: 10px; font-size: 20px;"></i>WATCH VIDEO</button></p>
+                            <h1><%=language.slider2.heading%></h1>
+                            <p><button class="uk-button uk-button-primary"><i class="fa fa-youtube" style="margin-right: 10px; font-size: 20px;"></i><%=language.slider2.button%></button></p>
                         </div>
                     </div>
                 </li>
@@ -81,7 +81,7 @@
                     <div class="feature">
                         <img src="/images/caution.png">
                         <div>
-                            <p>Stay Safe By Alerting Your Personal Contacts</p>
+                            <p><%=language.mainFeatures.alert%></p>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                     <div class="feature">
                         <img src="/images/share.png">
                         <div>
-                            <p>Stay connected through Kwema's Community wherever you go.</p>
+                            <p><%=language.mainFeatures.connect%></p>
                         </div>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                     <div class="feature">
                         <img src="/images/location.png">
                         <div>
-                            <p>Share your exact location in real time.</p>
+                            <p><%=language.mainFeatures.location%></p>
                         </div>
                     </div>
                 </div>
@@ -121,9 +121,9 @@
             <div class="uk-width-medium-1-2 uk-text-center uk-flex uk-flex-center uk-flex-middle">
                 <div>
                     <div>
-                        <h1>KWEMA APP</h1>
-                        <p>We’re building the biggest network of first responders in the world.</p>
-                        <p>Join the app and invite your friends! Be there for your beloved ones when they need you. In an emergency ask for help to all your friends and family with just one click!</p>
+                        <h1><%=language.kwemaApp.heading%></h1>
+                        <p><%=language.kwemaApp.p1%></p>
+                        <p><%=language.kwemaApp.p2%></p>
                     </div>
                     <div class="uk-text-center app-buttons">
                         <div>
@@ -131,7 +131,7 @@
                                 <div class="app-button-container">
                                     <img src="/images/googleplaystore.png">
                                 </div><div class="app-detail-container">
-                                    <p><small>Get it on</small></p>
+                                    <p><small><%=language.getAppButton%></small></p>
                                     <p>Google Play</p>
                                 </div>
                             </button>
@@ -158,31 +158,35 @@
     </div>
     <div class="uk-grid uk-text-center padding-sides padding-top-bottom contact min-vh uk-flex-middle" data-uk-grid>
         <div class="uk-width-1-1">
-            <h1>HOW TO BECOME OUR PARTNER</h1>
-            <p class="sub-title">Interested in becoming a partner of KWEMA? Good! You can benefit in many ways!</p>
+            <h1><%=language.partner.heading%></h1>
+            <p class="sub-title" style="margin-bottom: 0px;"><%=language.partner.h2%></p>
+            <p class="sub-title" style="margin-top: 0px; margin-bottom: 50px;"><%=language.partner.h3%></p>
         </div>
         <div class="uk-width-medium-1-2">
             <div>
-                <p class="contact-text">Are you interested in improving the safety in your community? We are too! Join our network of partners where security companies, governments and organizations that represent women are joining efforts to build safer communities together.</p>
+                <p class="contact-text"><%-language.partner.p1%></p>
             </div>
             <div class="contact-text">
-                <p>You can reach out to us sending an email to <span class="pink-color">partners@kwema.co</span> or simply by filling out this form and we’ll get in touch with you!</p>
+                <p><%-language.partner.p2%></p>
+            </div>
+            <div class="contact-text">
+                <p><b><%-language.partner.p3%></b></p>
             </div>
         </div>
         <div class="uk-width-medium-1-2">
             <form class="uk-form">
                 <div class="contact-form">
                     <div>
-                        <input class="uk-input" name="name" type="text" placeholder="Full Name" required>
+                        <input class="uk-input" name="name" type="text" placeholder="<%-language.partner.fullName%>" required>
                     </div>
                     <div>
-                        <input class="uk-input" name="email" type="email" placeholder="Email" required>
+                        <input class="uk-input" name="email" type="email" placeholder="<%-language.partner.email%>" required>
                     </div>
                     <div>
-                        <textarea class="uk-input" name="message" placeholder="Your Message" required></textarea>
+                        <textarea class="uk-input" name="message" placeholder="<%-language.partner.message%>" required></textarea>
                     </div>
                     <div>
-                        <button class="uk-button uk-button-primary">SEND MESSAGE</button>
+                        <button class="uk-button uk-button-primary"><%-language.partner.submitButton%></button>
                     </div>
                 </div>
             </form>

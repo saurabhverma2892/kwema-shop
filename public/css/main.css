@@ -10,11 +10,7 @@
     font-weight: bold;
 }
 
-@font-face{
-    font-family: Roboto;
-    src:url(/fonts/Roboto-Italic.ttf);
-    font-style: italic;
-}
+
 
 @font-face{
     font-family: Roboto;
@@ -191,7 +187,7 @@ footer{
 
 footer ul li {
     display: inline-block;
-    padding:10px;
+    padding:5px;
     color:white;
 }
 
@@ -243,7 +239,7 @@ footer p{
 }
 
 .product-description{
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 #shop{
@@ -479,6 +475,20 @@ footer p{
     display: inline-block;
 }
 
+.product-colors-container .uk-dotnav{
+    margin-bottom: -30px;
+}
+
+.product-colors-container .uk-dotnav li a{
+    border: 2px solid #DB0988;
+    width:10px;
+    height:10px;
+}
+
+.product-colors-container .uk-dotnav li.uk-active a{
+    background-color: #DB0988;
+}
+
 .product-features ul.features li{
     display: block;
 }
@@ -488,14 +498,21 @@ footer p{
     padding-bottom: 20px;
 }
 
-.uk-form-select.uk-button{
+.uk-form-select.uk-button.select-plan-cover{
     padding-left: 8px;
     padding-right: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     background-color: white;
+    color:#666666;
+    border-color: #666666;
+    
+}
+
+.uk-form-select.uk-button.select-plan-cover.active{
     color:#DB0988;
     border-color: #DB0988;
 }
+
 
 .fa-plus, .fa-minus{
     cursor: pointer;
@@ -615,7 +632,7 @@ footer p{
 }
 
 .plan-details-plans{
-    margin-bottom: 40px;
+    margin-bottom:0px;
 }
 
 .modal-cart-product-image{
@@ -661,4 +678,54 @@ footer p{
         text-align: left !important;
     }
 }
-.main-cart-details-list-details
+
+.contact1{
+    border-right: 1px solid white;
+}
+
+@media only screen and (max-width: 587px) {
+    .contact1{
+        border-right: none;
+    }
+}
+
+.footer-contacts{
+    font-size: 11px;
+}
+
+.footer-contacts{
+    position: absolute;
+    bottom:0px;
+    left:15px;
+}
+
+footer{
+    color:white;
+}
+
+.selectPlan{
+    font-size: 16px;
+}
+.quantityselector{
+    display: none;
+}
+
+.gery-light{
+    color:#999999;
+}
+
+.lightgrey{
+    color:#999999;
+}
+
+.order-main-total{
+    font-size: 17px;
+}
+
+.inner-container-plans h3{
+    margin-top: 0px;
+}
+
+.inner-container-plans h4{
+    margin-bottom: 2px;
+}

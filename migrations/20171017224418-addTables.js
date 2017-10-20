@@ -237,11 +237,13 @@ module.exports = {
     queryInterface.bulkInsert('design', [
       {
         name: 'Pacific Ocean',
-        price: 100
+        price: 69,
+        images: '["/images/pacificcollation.png"]'
       },
       {
         name: 'Eve',
-        price: 100
+        price: 140,
+        images: '["/images/evecollection.png"]'
       }
     ]);  
   },
