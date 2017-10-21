@@ -20,32 +20,19 @@
                     cartDetails.forEach(function(cart){%>
                         <%
                         if(cart.planType=="monthly"){
-                            var amount=cart.planDetails.monthlyPrice;
+                            var amount=cart.planDetails.monthlyPrice*18;
                             var amountPostFix = "/mo";
                         }
                         else if(cart.planType=="yearly"){
-                            var amount=cart.planDetails.yearlyPrice;
+                            var amount=cart.planDetails.yearlyPrice*18;
                             var amountPostFix = "/yr";
                         }
-                        id = id+String(cart.planDetails.product.id);
-                        var individualAmount = amount+cart.planDetails.devicePrice;
-                        totalAmount = totalAmount+amount+cart.planDetails.devicePrice;
+                        var braceletPrice=cart.planDetails.devicePrice*18;
+                        var planPrice=amount;
+                        var individualAmount = amount+(cart.planDetails.devicePrice*18);
+                        totalAmount = totalAmount+individualAmount;
                         %>
-                        <div class="uk-width-medium-3-5 uk-text-left main-cart-details-list uk-flex uk-flex-nowrap">
-                            <div class="cart-product-image inline-block inline-block-top"></div>
-                            <div class="inline-block inline-block-top main-cart-details-list-details">
-                                <p><b><%=cart.planDetails.product.name%> <%=cart.planDetails.product.details%></b></p>
-                                <p><b><%=language.Ship%>:</b> <%language.tenDays%> | <%-language.freeShippingText%> | <a href="/shop/delivery-address"><%-language.getDeliveryAddress%></a></p>
-                            </div>
-                        </div>
-                        <div class="uk-width-medium-2-5 uk-text-right main-cart-right-details" style="font-size: 18px;">
-                            <div style="margin-bottom: 8px;">
-                                <small> Bracelet: </small><b class="pink-color">$<%=cart.planDetails.devicePrice%></b>
-                            </div>
-                            <div>
-                                <small> Plan: </small><b class="pink-color">$<%=amount%></b><%=amountPostFix%>
-                            </div>
-                        </div>
+                        <%include shared/carttop.ejs%>
                     <%})%>
                     
                 </div>
@@ -58,10 +45,10 @@
                             <div>
                                 <div class="uk-width-1-1">
                                     <div style="margin-bottom:10px;">
-                                            <a href="/shop/paybycard">
+                                            <a href="/shop/pay/card">
                                                 <button type="button" class="uk-button choose-payment-type-button"><%=language.card%></button>
                                             </a>
-                                                <button type="button" class="uk-button choose-payment-type-button active">In Cash</button>
+                                                <button type="button" class="uk-button choose-payment-type-button active"><%=language.inCash%></button>
                                         <!-- <a href="/shop/pay/other">
                                             <button class="uk-button choose-payment-type-button">Paypal</button>
                                         </a> -->
@@ -83,11 +70,10 @@
                             </div>
                     </div>
                     <div class="uk-width-medium-1-2 uk-text-right total-payment-page">
-                        <h2><%=language.TOTAL%></h2>
-                        <p style="margin-bottom: 0px;"><b><%=language.Subtotal%> $<%=totalAmount%></b></p>
-                        <p style="margin-top: 2px;" class="grey"><b><%=language.FreeShipping%> $00.00</b></p>
-                        <p class="order-main-total"><b><%=language.orderTotal%> $<%=totalAmount%></b></p>
-                        <div><button class="uk-button uk-button-primary"><%=language.payNow%>  <i class="fa fa-caret-right"></i></button></div>
+                        <%include shared/carttotal.ejs%>
+                            <div>
+                                <button class="uk-button uk-button-primary"><%=language.payNow%>  <i class="fa fa-caret-right"></i></button>
+                            </div>
                     </div>
                     <!-- <div class="uk-width-medium-1-2 uk-text-right total-payment-page">
                         

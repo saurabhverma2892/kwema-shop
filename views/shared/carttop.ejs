@@ -1,0 +1,18 @@
+<div class="uk-width-medium-3-5 uk-text-left main-cart-details-list uk-flex uk-flex-nowrap">
+    <div class="cart-product-image inline-block inline-block-top" style="background-image: url('<%=cart.planDetails.product.primaryImage%>');"></div>
+    <div class="inline-block inline-block-top main-cart-details-list-details">
+        <p><b><%=cart.planDetails.product.name%> <%=cart.planDetails.product.details%></b></p>
+        <p><b><%=language.Ship%>:</b> <%language.tenDays%> | <%-language.freeShippingText%> | <a href="/shop/delivery-address"><%-language.getDeliveryAddress%></a></p>
+    </div>
+</div>
+<div class="uk-width-medium-2-5 uk-text-right main-cart-right-details" style="font-size: 18px;">
+    <!-- <div style="margin-bottom: 8px;">
+        <b class="pink-color">$<%=individualAmount%></b>
+    </div> -->
+    <div style="margin-bottom: 8px;">
+        <small> Bracelet: </small><b class="pink-color">$<%=braceletPrice%> MXN</b>
+    </div>
+    <div>
+        <small> Plan: </small><b class="pink-color">$<%=amount%> MXN</b><%=amountPostFix%>
+    </div>
+</div>
