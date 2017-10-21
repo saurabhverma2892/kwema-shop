@@ -155,7 +155,7 @@ module.exports = app => {
             amount:amount,
             status:"pending",
             cartId:cartId
-        })
+        });
     }
 
 
