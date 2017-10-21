@@ -81,7 +81,7 @@
                                             <%
                                             })
                                             %>
-                                                <div class="uk-width-1-2 uk-text-left"><a href="" uk-toggle="target: #planDetails"><%=language.planDetails%></a></div>
+                                                <div class="uk-width-1-2 uk-text-left"><a data-uk-modal="{target:'#planDetails'}" type="button"><%=language.planDetails%></a></div>
                                                 <div class="uk-width-1-2 uk-text-right"> 
                                                     <div class="uk-text-right"><p><a href="#"><%=language.alreadyHavePlan%></a></p></div>
                                                 </div>
@@ -109,11 +109,10 @@
     </div>
     <%include includes/footer.ejs%>
 
-    <div id="planDetails" uk-modal>
-        <div class="uk-modal-dialog uk-modal-body">
-            <h2 class="uk-modal-title"></h2>
-            <button class="uk-modal-close" type="button"></button>
-            <div class="uk-width-1-1 uk-text-center plans-about-us padding-top-bottom padding-sides">
+    <div id="planDetails" class="uk-modal">
+        <div class="uk-modal-dialog" style="width:90%;">
+            <a class="uk-modal-close uk-close"></a>
+            <div class="uk-width-1-1 uk-text-center plans-about-us " >
                 <h2><%=language.explore.chooseplan%></h2>
                 <h4><%=language.explore.checkoutPlans%></h4>
                 <div class="uk-grid" data-uk-grid style="margin-left:0px;">
