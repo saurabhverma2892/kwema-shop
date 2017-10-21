@@ -129,6 +129,7 @@ module.exports = app => {
                             stripeService.chargeUser(amount,paymentInfo.id).then(transactionInfo=>{
                                 console.log(transactionInfo);
                                 Transaction.addTransaction(transactionInfo,user,cartCreated.id).then(data=>{
+                                    console.log("transaction added");
                                     return resolve(transactionInfo);
                                 }).catch(err=>{
                                     return reject(err);

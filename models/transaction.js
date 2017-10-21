@@ -118,7 +118,7 @@ module.exports = app => {
     }
 
     function addTransaction(transactionInfo,user,cartId){
-        Transaction.create({
+        return Transaction.create({
             userId:user.id,
             amount:transactionInfo.amount,
             status:transactionInfo.outcome.seller_message,
