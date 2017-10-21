@@ -171,7 +171,7 @@ module.exports = app => {
                     }).catch(err=>{
                         return reject(err);
                     })
-                }).then(err=>{
+                }).catch(err=>{
                     return reject(err);
                 })
             }).catch(err=>{
