@@ -51,7 +51,7 @@ module.exports = app => {
         res.redirect("/shop/kwema-app");
     })
 
-    router.route("/pay/cash/faliure").get((req,res,next)=>{
+    router.route("/pay/cash/failure").get((req,res,next)=>{
         console.log(req.query);
         console.log(req.body);
         console.log(req.params);

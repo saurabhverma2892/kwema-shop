@@ -130,6 +130,7 @@ module.exports = app => {
     function successComroPayment(req,res,next){
         shopService.getPlanDetailsForEachCartItem(req).then(cartItems=>{
             shopService.saveComproTransaction(cartItems,req.user).then(data=>{
+                console.log("transacted well");
                 res.redirect("/shop/kwema-app");
             })
         }).catch(err=>{
