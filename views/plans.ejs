@@ -269,6 +269,16 @@
         self.prev().val(self.val());
     });
 
+    $(".selectPlan").click(function(e){
+        var self = $(this);
+        var devicePrice = self.parent().attr("value");
+        $(".deviceBasePrice").html(devicePrice);
+        console.log(devicePrice);
+        console.log(self.val());
+        $(".plan-type-hidden").val("");
+        self.prev().val(self.val());
+    });
+
     $(".uk-button.select-plan-cover").click(function(e){
         var self = $(this);
         $(".uk-button.select-plan-cover").removeClass("active");
