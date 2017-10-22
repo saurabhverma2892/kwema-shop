@@ -173,5 +173,8 @@
   },
   "startingAt":"A partir de ",
   "inCash":"En efectivo",
-  "planDetails":"Revisa los planes"
+  "planDetails":"Revisa los planes",
+  "chooseYourBracelet":"Escoge tu brazalete",
+  "chooseYourPlan":"Escoge tu plan",
+  "subscriptionMonthly":"Subscripcion mensual + Precio de Dispositivo"
 }

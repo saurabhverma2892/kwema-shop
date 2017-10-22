@@ -52,10 +52,12 @@
                                 <p class="small-top-bottom-margin-p"><img src="/images/bluetooth.png"></p>
                                 <p class="grey small-top-bottom-margin-p"><%=language.lowEnergy%> (4.0)</p>
                             </div>
-
+                            <div class="uk-width-1-1 uk-text-left">
+                                <div>1. <%=language.chooseYourBracelet%></div>
+                                <div>2. <%=language.choseYourPLan%></div>
+                                <div><small>(Subscripcion mensual + Precio de Dispositivo)</small></div>
+                            </div>
                             <div class="uk-width-1-1 uk-text-left" style="margin-top:20px;">
-                                <div style="margin-bottom: 0px;"><%=language.choosePlanTitle%></div>
-                                <div class="pink-color" style="margin-bottom: 10px;">$<span class="deviceBasePrice"><%=product.price*18%>MXN</span>/<%=language.oneTimePayment%></div>
                                 <form action="/shop/usercart" method="POST" class="usercart">
                                     <div class="uk-grid" data-uk-grid>
                                         
@@ -81,6 +83,9 @@
                                             <%
                                             })
                                             %>
+                                            <!-- <div style="margin-bottom: 0px;"><%=language.choosePlanTitle%></div> -->
+                                            <div class="pink-color" style="margin-bottom: 10px; margin-top: 10px;"><span style="font-size: 30px;">$</span><span class="deviceBasePrice"><%=product.price*18%></span> MXN/<%=language.oneTimePayment%></div>
+
                                                 <div class="uk-width-1-2 uk-text-left"><a data-uk-modal="{target:'#planDetails'}" type="button"><%=language.planDetails%></a></div>
                                                 <div class="uk-width-1-2 uk-text-right"> 
                                                     <div class="uk-text-right"><p><a href="#"><%=language.alreadyHavePlan%></a></p></div>

@@ -731,3 +731,7 @@ footer{
 .choose-payment-type-button{
     margin-bottom: 10px;
 }
+
+.deviceBasePrice{
+    font-size: 30px;
+}
