@@ -7,7 +7,7 @@ let https = require('https');
 let app = express();
 let fs = require("fs");
 
-let sslKey = fs.readFileSync("certificates/securitykey.key");
+let sslKey = fs.readFileSync("certificates/securitykey.pem");
 let sslCertificate = fs.readFileSync("certificates/certificate.pem");
 
 let options = {
