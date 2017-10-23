@@ -178,6 +178,7 @@
     "chooseYourPlan":"Choose Your Plan",
     "subscriptionMonthly":"Subscripcion mensual + Precio de Dispositivo",
     "submittedSuccessfully":"We have recieved your query",
-    "iagreetermsandconditions":"I agree to the <a href = '' data-uk-modal='{target:#tandc'}'>Terms and Conditions</a>"
+    "iagreetermsandconditions":"I agree to the ",
+    "termsAndConditions":"Terms And Conditions"
 }
 
