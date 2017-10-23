@@ -1,4 +1,4 @@
-{
+﻿{
     "SHOP":"SHOP",
     "EXPLORE":"EXPLORE",
     "BLOG":"BLOG",
@@ -15,12 +15,12 @@
     },
     "bracelet":{
         "heading":"KWEMA BRACELET",
-        "p1":"Kwema developed the immediate Response Network for women in compromised situations. The system is activated using Kwema’s smart bracelets that calls for help in only 3 seconds.",
+        "p1":"Kwema developed the immediate Response Network for women in a compromised situation. The system is activated using Kwema’s smart bracelets that calls for help in only 3 seconds.",
         "p2":"Once activated, the bracelet syncs with your phone and it will send an alert with your GPS location to friends and family as well as other users nearby."
     },
     "testimonial":{
         "source":"HUFFINGTON POST, MEXICO",
-        "text":"The bracelet that would prevent crimes against Mexican women"
+        "text":"The bracelet that will prevent crimes against Mexican women"
     },
     "slider2":{
         "heading":"THE BRACELET DESIGNED TO KEEP YOU SAFE AND SOUND!",
@@ -34,15 +34,15 @@
     "kwemaApp":{
         "heading":"KWEMA APP",
         "p1":"We’re building the biggest network of first responders in the world.",
-        "p2":"Join the community and invite your friends! Be there for your beloved ones when they need you the most. In an emergency ask for help to all your friends, family and other users nearby who are part of the Kwema’s community with just one click!"
+        "p2":"Join the community and invite your friends! Be there for your beloved ones when they need you the most. In an emergency call for help to all your friends, family and other users nearby who are part of the Kwema’s community with just one click!"
     },
-    "getAppButton":"Get in on",
+    "getAppButton":"Get it on",
     "partner":{
         "heading":"HOW TO BECOME OUR PARTNER?",
         "h2":"Interested in becoming a partner of KWEMA?",
         "h3":"Awesome! Your business and your community can benefit in many ways!",
         "p1":"Are you interested in improving the safety in your community? We are too! <b>Join our network of partners</b> where security companies, governments and organizations that represent women are joining efforts to build safer communities together.",
-        "p2":"You can reach out to us sending an email to <span class='pink-color'>partners@kwema.co</span> or simply by filling out this form and we’ll get in touch with you!",
+        "p2":"You can reach out to us by sending an email to <span class='pink-color'>partners@kwema.co</span> or simply by filling out this form and we’ll get in touch with you!",
         "p3":"We'd love to hear from you. Let’s talk!",
         "fullName":"YOUR FULL NAME",
         "email":"YOUR EMAIL",
@@ -85,7 +85,7 @@
     "yourShoppingCart":"YOUR SHOPPING CART",
     "Ship":"Ship",
     "tenDays":"10 - 15 Days",
-    "freeShippingText":"Check if you apply for <a href='/free-ship'>free shipping</a>",
+    "freeShippingText":"Flat shipping rate Mexico $95 MXN <a href='/free-ship'>Rest Of World once purchase finalized we will follow up with you for details.</a>",
     "getDeliveryAddress":"Get Delivery Address",
     "SHIPPING":"SHIPPING",
     "addressedToName":"Addressed To Name",
@@ -152,30 +152,30 @@
         "Day":"Day",
         "Evening":"Evening",
         "Night":"Night",
-        "plan1":"$ 90,00/mensual",
-        "plan2":"$165,00 /mensual",
-        "plan3":"$215,00 /mensual",
-        "plan1y":"1 usuario",
-        "plan2y":"2 usuario",
-        "plan3y":"3 usuario",
-        "plan1f":"Get 2 months for free paying yearly",
-        "plan1f1":"Notifica a amigos y familiares usando datos móviles o a través de SMS",
-        "plan1f2":"Agrega hasta 10 contactos de seguridad",
-        "plan1f3":"Acceso a la comunidad de Kwema",
-        "plan1f4":"Obtén el botón de pánico en la aplicación",
+        "plan1":"$ 90,00/mo",
+        "plan2":"$165,00 /mo",
+        "plan3":"$215,00 /mo",
+        "plan1y":"1 user",
+        "plan2y":"2 users",
+        "plan3y":"3 users",
+        "plan1f":",
+        "plan1f1":"Notify Friends & Family using mobile data or Text",
+        "plan1f2":"Add up to 10 contacts to your safety network",
+        "plan1f3":"Access to Kwema's community",
+        "plan1f4":"Get Panic button on App",
         "plan1d1":"",
-        "plan2d1":"Ahorra hasta 30% en tu pulsera",
-        "plan3d1":"Ahorra hasta 50% en tu pulsera",
+        "plan2d1":"Save up to 30% in your bracelet",
+        "plan3d1":"Save up to 50% in your bracelet",
         "Premium":"Premium",
         "comingUp":"Coming Up",
         "comingupf1":"Acces to your personal security service.",
-        "comingupf2":"Security professionals will follow protocol in order to deliverhelp as soon as possible. This service will be available in <span class='pink-color'>Mexico City</span> only."
+        "comingupf2":"This service may be subject to availability in your city/area.<span class='pink-color'></span> only."
     },
     "startingAt": "Starting at",
     "inCash":"In Cash",
     "planDetails":"Plan Details",
     "chooseYourBracelet":"Choose Your Bracelet",
     "chooseYourPlan":"Choose Your Plan",
-    "subscriptionMonthly":"Subscripcion mensual + Precio de Dispositivo"
+    "subscriptionMonthly":"Monthly Subscription + Bracelet Price"
 }
 
