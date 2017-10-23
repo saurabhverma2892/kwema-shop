@@ -32,6 +32,8 @@ module.exports = app => {
         res.redirect("/");
     });
 
+    
+
 
     /*app.get("/shop/plans", (req, res, next) => {
         res.render("plans");
