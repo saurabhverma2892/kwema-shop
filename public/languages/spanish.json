@@ -177,5 +177,7 @@
   "chooseYourBracelet":"Escoge tu brazalete",
   "chooseYourPlan":"Escoge tu plan",
   "subscriptionMonthly":"Subscripción mensual + Precio de Dispositivo",
-  "submittedSuccessfully":"We have recieved your query"
+  "submittedSuccessfully":"We have recieved your query",
+  "iagreetermsandconditions":"I agree to the <a href = '' data-uk-modal='{target:#tandc'}'>Terms and Conditions</a>"
+
 }
