@@ -145,6 +145,12 @@ module.exports = app => {
               "reference": data.id
             }
             console.log(resJson);
+            console.log("===============")
+            console.log(req);
+            console.log("===========")
+            console.log("===============")
+            console.log(res);
+            console.log("===========")
             res.send(resJson);
 
             //res.json(resJson);
