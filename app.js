@@ -15,6 +15,10 @@ let options = {
     cert: sslCertificate
 };
 
+let path = require("path");
+let dotenv = require("dotenv");
+dotenv.load({ path: ".env" });
+
 let appPort = process.env.PORT || "443";
 consign()
     .include("./helpers")

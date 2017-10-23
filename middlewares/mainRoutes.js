@@ -32,7 +32,7 @@ module.exports = app => {
         res.redirect("/");
     });
 
-    
+    app.use("/contact",chooseLanguage, app.routes.contact);
 
 
     /*app.get("/shop/plans", (req, res, next) => {

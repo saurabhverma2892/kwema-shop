@@ -176,7 +176,7 @@
             </div>
         </div>
         <div class="uk-width-medium-1-2">
-            <form class="uk-form">
+            <form class="uk-form" action="/contact/partner" method="POST" id="contactForm">
                 <div class="contact-form">
                     <div>
                         <input class="uk-input" name="name" type="text" placeholder="<%-language.partner.fullName%>" required>
@@ -189,6 +189,9 @@
                     </div>
                     <div>
                         <button class="uk-button uk-button-primary"><%-language.partner.submitButton%></button>
+                    </div>
+                    <div class="contact-submit-reply" style="padding-top: 20px; padding-bottom: 20px; display: none;" >
+                        <%=language.submittedSuccessfully%>
                     </div>
                 </div>
             </form>
@@ -221,6 +224,22 @@
         new WOW().init({
             
         });
+    })
+</script>
+<script type="text/javascript">
+    
+    $("#contactForm").submit(function(){
+        var self = $(this);
+        var data = self.serialize();
+        $.ajax({
+            url:"/contact/partner",
+            method:"POST",
+            data:data,
+            success:function(){
+                $(".contact-submit-reply").show();
+            }
+        })
+        return false;
     })
 </script>
 

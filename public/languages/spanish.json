@@ -39,7 +39,7 @@
   "getAppButton":"Bájala en",
   "partner":{
     "heading":"¿CÓMO SER SOCIO?",
-    "h2":"¿Interesad@ en convertirte en socio de KWEMA?",
+    "h2":"¿Interesad en convertirte en socio de KWEMA?",
     "h3":"Genial! Tu negocio y tu comunidad se pueden beneficiar de muchas maneras!",
     "p1":"¿Estás interesada/o en mejorar la seguridad en tu comunidad? ¡Nosotros también lo estamos! <b> Únete a nuestra red de alianzas </b> donde empresas de seguridad, gobiernos y organizaciones que representan grupos de mujeres unen esfuerzos para construir comunidades más seguras juntos.",
     "p2":"Puedes comunicarte con nosotros enviando un email a <span class='pink-color'>partners@kwema.co</span> o simplemente llenando este formulario y nosotros te contactaremos!",
@@ -176,5 +176,6 @@
   "planDetails":"Revisa los planes",
   "chooseYourBracelet":"Escoge tu brazalete",
   "chooseYourPlan":"Escoge tu plan",
-  "subscriptionMonthly":"Subscripción mensual + Precio de Dispositivo"
+  "subscriptionMonthly":"Subscripción mensual + Precio de Dispositivo",
+  "submittedSuccessfully":"We have recieved your query"
 }
