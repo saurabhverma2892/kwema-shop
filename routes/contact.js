@@ -6,7 +6,7 @@ module.exports = app => {
 
     let contactController = app.controllers.contactController;
     
-    router.route("/").post((req,res,next)=>{
+    router.route("/partner").post((req,res,next)=>{
         contactController.sendQuery(req,res,next);
     })
     
