@@ -1,10 +1,10 @@
 {
   "SHOP":"TIENDA",
-  "EXPLORE":"EXPLORAR",
+  "EXPLORE":"EXPLORA",
   "BLOG":"BLOG",
   "footer":{
     "contact":"CONTACTO",
-    "contact1":"Springfield - MA, U.S.A.",
+    "contact1":"Springfield, MA",
     "contact2":"Ciudad de México, MX",
     "terms":"TÉRMINOS DE SERVICIO",
     "copyright":"© 2017 KWEMA. Todos los derechos reservados."
@@ -32,16 +32,16 @@
     "location":"Comparte tu ubicación exacta en tiempo real"
   },
   "kwemaApp":{
-    "heading":"App de KWEMA",
+    "heading":"Aplicativo de KWEMA",
     "p1":"Estamos construyendo la red de primer auxilio para mujeres más grande del mundo.",
     "p2":"¡Únete a la comunidad e invita a tus amigos! Está ahí para tus seres amados cuando te necesitan. En una emergencia pide ayuda a tus amigos, familia y a otros usuarios en tu proximidad que son parte de la comunidad de Kwema con un solo click!"
   },
   "getAppButton":"Bájala en",
   "partner":{
     "heading":"¿CÓMO SER SOCIO?",
-    "h2":"¿Interesad@ en convertirte en socio de KWEMA?",
+    "h2":"¿Interesado en convertirse en un socio de KWEMA?",
     "h3":"Genial! Tu negocio y tu comunidad se pueden beneficiar de muchas maneras!",
-    "p1":"¿Estás interesada/o en mejorar la seguridad en tu comunidad? ¡Nosotros también lo estamos! <b> Únete a nuestra red de alianzas </b> donde empresas de seguridad, gobiernos y organizaciones que representan grupos de mujeres unen esfuerzos para construir comunidades más seguras juntos.",
+    "p1":"¿Estás interesada/o en mejorar la seguridad en tu comunidad? ¡Nosotros también lo estamos! <b> Únete a nuestra red de socios </b> donde empresas de seguridad, gobiernos y organizaciones que representan grupos de mujeres unen esfuerzos para construir comunidades más seguras juntos.",
     "p2":"Puedes comunicarte con nosotros enviando un email a <span class='pink-color'>partners@kwema.co</span> o simplemente llenando este formulario y nosotros te contactaremos!",
     "p3":"¡Nos encantaría saber de ti. Hablemos!",
     "fullName":"TU NOMBRE COMPLETO",
@@ -50,14 +50,14 @@
     "submitButton":"ENVIAR MENSAJE"
   },
   "collections":"DESCUBRE NUESTRAS COLECCIONES",
-  "collection":"Collection",
+  "collection":"Colección",
   "buyNowButton":"COMPRAR AHORA",
   "madeInUs":"Dispositivo fabricado en Estados Unidos",
   "lowEnergy":"Baja Energía",
   "choosePlanTitle":"Escoge el plan que más te acomode:",
-  "dayPlan:":"Plan Día",
-  "eveningPlan":"Plan Tarde",
-  "nightPlan":"Plan Noche",
+  "dayPlan:":"Day Plan",
+  "eveningPlan":"Evening Plan",
+  "nightPlan":"Night Plan",
   "oneTimePayment":"Brazalete - Pago único",
   "addToCart":"AGREGAR AL CARRITO",
   "alreadyHavePlan":"Ya tienes un plan?",
@@ -86,7 +86,7 @@
   "Ship":"Envío",
   "tenDays":"10 - 15 días",
   "freeShippingText":"Costo de Envío para México 95MXN",
-  "getDeliveryAddress":"Resto del Mundo, te contactaremos una vez finalizada la compra.",
+  "getDeliveryAddress":"Resto del Mundo te contactaremos una vez finalizada la compra.",
   "SHIPPING":"ENVÍO",
   "addressedToName":"Dirigido a nombre de",
   "areaCode":"Código de área",
@@ -109,13 +109,13 @@
   "card":"Tarjeta de Crédito/Débito",
   "yourshop":"TU CARRITO DE COMPRAS",
   "success":"¡Tu compra fue realizada!",
-  "getKwemaApp":"BAJA LA APP DE KWEMA PARA CONFIGURAR TU DISPOSITIVO",
+  "getKwemaApp":"BAJA LA APLICACIÓN DE KWEMA PARA CONFIGURAR TU DISPOSITIVO",
   "getiton":"Bájala en",
   "yourCartIsEmpty":"Tu Carrito está Vacío",
   "explore":{
     "title":"EMPIEZA ACTIVANDO TU BRAZALETE",
-    "p1h":"BAJA LA APP",
-    "p1":"Para empezar a usar tu dispositivo Kwema, deberás bajar e instalar la aplicación de Kwema.",
+    "p1h":"BAJA LA APLICACIÓN",
+    "p1":"Para empezar a usar tu dispositivo Kwema, deberás bajar e instalar la aplicación Kwema.",
     "p2h":"CREA UNA CUENTA",
     "p2":"Para activar tu brazalete crea una cuenta. Una vez que tengas creado el perfil, recuerda verificar tu email antes de continuar.",
     "p3h":"SINCRONIZA TU PULSERA CON TU TELÉFONO",
@@ -143,7 +143,7 @@
     "feature3p":"La aplicación también enviará un mensaje a otros usuarios en tu proximidad",
     "feature4":"RED DE RESPUESTA INMEDIATA",
     "feature4p":"Amigos, familia, la comunidad de Kwema y profesionales de seguridad unidos para ayudarte",
-    "stats1":"de las mujeres no se siente segura caminando sola en la noche (Gallup, 2014)",
+    "stats1":"de mujeres no se siente segura caminando sola en la noche (Gallup, 2014)",
     "stats2":"de las víctimas de tráfico sexual son mujeres y niñas",
     "oneOutOfThree":"1 de 3",
     "stats3":"mujeres sufre violencia física o sexual",
@@ -156,8 +156,8 @@
     "plan2":"$165,00 /mensual",
     "plan3":"$215,00 /mensual",
     "plan1y":"1 usuario",
-    "plan2y":"2 usuarios",
-    "plan3y":"3 usuarios",
+    "plan2y":"2 usuario",
+    "plan3y":"3 usuario",
     "plan1f":"Get 2 months for free paying yearly",
     "plan1f1":"Notifica a amigos y familiares usando datos móviles o a través de SMS",
     "plan1f2":"Agrega hasta 10 contactos de seguridad",
@@ -169,12 +169,12 @@
     "Premium":"Premium",
     "comingUp":"Próximamente",
     "comingupf1":"Acceso a tu servicio de seguridad privado.",
-    "comingupf2”:”Este servicio está sujeto a disponibilidad en tu ciudad o área."
+    "comingupf2":"Security professionals will follow protocol in order to deliverhelp as soon as possible. This service will be available in <span class='pink-color'>Mexico City</span> only."
   },
   "startingAt":"A partir de ",
   "inCash":"En efectivo",
   "planDetails":"Revisa los planes",
   "chooseYourBracelet":"Escoge tu brazalete",
   "chooseYourPlan":"Escoge tu plan",
-  "subscriptionMonthly":"Subscripción mensual + Precio de Dispositivo"
+  "subscriptionMonthly":"Subscripcion mensual + Precio de Dispositivo"
 }
