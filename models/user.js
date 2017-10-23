@@ -106,7 +106,6 @@ module.exports = app => {
             },
 
             validPassword: function(password){
-                console.log(bcrypt);
                 return bcrypt.compareSync(password, this.password);
             },
             toJSON: function () {

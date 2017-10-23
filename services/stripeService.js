@@ -11,7 +11,6 @@ module.exports = app => {
               source: token,
             }).then((customer)=>{
               // YOUR CODE: Save the customer ID and other info in a database for later.
-              console.log(customer);
               return resolve(customer);
             }).catch(err=>{
                 return reject(err);

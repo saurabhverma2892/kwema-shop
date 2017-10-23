@@ -58,7 +58,6 @@ module.exports = app => {
         return new Promise((resolve,reject)=>{
             Plan.getCartDetailsByPlanId(planId).then(data=>{
                 console.log("yay data")
-                console.log(data);
                 return resolve(data)
             }).catch(err=>{
                 console.log("error coming");
@@ -124,10 +123,8 @@ module.exports = app => {
                 Promise.all(promises).then(cartItemsData=>{
                     console.log("resolved all");
                     stripeService.getUserDetails(params.stripeToken,user).then(paymentInfo=>{
-                        console.log(paymentInfo);
                         User.savePaymentInfo(paymentInfo.id,user).then(response=>{
                             stripeService.chargeUser(amount,paymentInfo.id).then(transactionInfo=>{
-                                console.log(transactionInfo);
                                 Transaction.addTransaction(transactionInfo,user,cartCreated.id).then(data=>{
                                     console.log("transaction added");
                                     return resolve(transactionInfo);
