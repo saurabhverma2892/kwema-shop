@@ -144,8 +144,10 @@ module.exports = app => {
               "message": "OK",
               "reference": data.id
             }
+            console.log(resJson);
+            res.send(resJson);
 
-            res.json(resJson);
+            //res.json(resJson);
         }).catch(err=>{
             console.log(err);
 
@@ -155,7 +157,7 @@ module.exports = app => {
               "message": err,
               "reference": null
             }
-            res.json(resJson);
+            res.send(resJson);
         })
     }
 
