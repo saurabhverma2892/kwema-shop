@@ -17,10 +17,10 @@ module.exports = {
             type: Sequelize.DATE
         },
         name: {
-            type: Sequelize.TEXT
+            type: Sequelize.STRING
         },
         email: {
-            type: Sequelize.TEXT
+            type: Sequelize.STRING
         },
         message: {
           type: Sequelize.STRING
