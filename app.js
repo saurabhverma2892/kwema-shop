@@ -10,24 +10,12 @@ let fs = require("fs");
 let sslKey = fs.readFileSync("certificates/securitykey.key");
 let sslCertificate = fs.readFileSync("certificates/certificate.pem");
 
-console.log(sslKey);
-
 let options = {
     key: sslKey,
     cert: sslCertificate
 };
 
-let httpPort = process.env.PORT || "80";
-let httpsPort = process.env.PORT || "443";
-
-app.all("*", function(req, res, next){
-    console.log("workingining");
-  if (req.secure) {
-    return next();
-  };
- res.redirect("https://"+req.hostname+":"+app.get("port_https")+req.url);
-});
-
+let appPort = process.env.PORT || "443";
 consign()
     .include("./helpers")
     .then("./middlewares/basicSettings.js")
@@ -44,7 +32,6 @@ consign()
     .then("./middlewares/errorHandler.js")
     .into(app);
 
-
 app.models.cart.initialize();
 app.models.design.initialize();
 app.models.product.initialize();
@@ -52,14 +39,15 @@ app.models.transaction.initialize();
 app.models.user.initialize();
 app.models.plan.initialize();
 
-var secureServer = https.createServer(options, app)
-  .listen(httpsPort, function () {
-    console.log('Secure Server listening on port ' + httpsPort);
-});
+if (process.env.NODE_ENV !== "test") {
 
-var insecureServer = http.createServer(app).listen(httpPort, function() {
-  console.log('Insecure Server listening on port ' + httpPort);
-})
+    https.createServer(options, app).listen(appPort, function(){
+      console.log("Express server listening on port " + appPort);
+    });
+    /*app.listen(appPort, () => {
+        logger.info(`Server started on port ${appPort}`);
+    });*/
+}
 
 
 module.exports = app;
