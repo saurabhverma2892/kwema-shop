@@ -9,10 +9,12 @@ let fs = require("fs");
 
 let sslKey = fs.readFileSync("certificates/securitykey.pem");
 let sslCertificate = fs.readFileSync("certificates/certificate.pem");
+let ca = fs.readFileSync("certificates/bundle.pem");
 
 let options = {
     key: sslKey,
-    cert: sslCertificate
+    cert: sslCertificate,
+    ca:ca
 };
 
 let path = require("path");
