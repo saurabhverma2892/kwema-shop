@@ -20,7 +20,7 @@ module.exports = app => {
             type: Sequelize.STRING
         },
         message: {
-            type: Sequelize.STRING
+            type: Sequelize.TEXT
         },
         status: {
             type: Sequelize.STRING
