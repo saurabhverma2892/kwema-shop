@@ -140,6 +140,31 @@ module.exports = app => {
         
     }
 
+    function addWebHookNotification(req,res,next){
+        shopService.addWebHookNotification(req.body).then(data=>{
+            console.log("everthing worked well");
+            console.log(data);
+            var resJson = {
+              "status": "success",  
+              "short_id": req.body.short_id,
+              "message": "OK",
+              "reference": data.id
+            }
+
+            res.json(resJson);
+        }).catch(err=>{
+            console.log(err);
+
+            var resJson = {
+              "status": "error",  
+              "short_id": req.body.short_id,
+              "message": err,
+              "reference": null
+            }
+            res.json(resJson);
+        })
+    }
+
     
 
     return {
@@ -152,6 +177,7 @@ module.exports = app => {
         getPaymentPage,
         saveUserCardInfoAndMakeCharge,
         getPaymentByCashPage,
-        successComroPayment
+        successComroPayment,
+        addWebHookNotification
     }
 }

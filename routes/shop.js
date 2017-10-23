@@ -170,6 +170,11 @@ module.exports = app => {
         failureFlash : true 
     }))
 
+    router.route("/pay/cash/listener").post((req,res,next)=>{
+        console.log(req.body);
+        shopController.addWebHookNotification(req,res,next);
+    })
+
     return router;
 }
 

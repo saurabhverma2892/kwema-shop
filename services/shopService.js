@@ -181,6 +181,16 @@ module.exports = app => {
         })
     }
 
+    function addWebHookNotification(params){
+        return new Promise((resolve,reject)=>{
+            Transaction.updateTransactionForCompro(params).then(data=>{
+                return resolve(data);
+            }).catch(err=>{
+                return reject(err);
+            })
+        })
+    }
+
     return {
         getAllDesigns,
         getProductsForDesignId,
@@ -188,6 +198,7 @@ module.exports = app => {
         getPlanDetailsForEachCartItem,
         addShippingInfo,
         saveUserCardInfoAndMakeCharge,
-        saveComproTransaction
+        saveComproTransaction,
+        addWebHookNotification
     }
 }
