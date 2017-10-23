@@ -21,6 +21,7 @@ let httpPort = process.env.PORT || "80";
 let httpsPort = process.env.PORT || "443";
 
 app.all("*", function(req, res, next){
+    console.log("workingining");
   if (req.secure) {
     return next();
   };
