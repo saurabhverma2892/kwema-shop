@@ -124,6 +124,7 @@ module.exports = app => {
         shopService.getPlanDetailsForEachCartItem(req).then(cartItems=>{
             shopService.saveComproTransaction(cartItems,req.user).then(data=>{
                 console.log("transacted well");
+                req.session.cart=[];
                 res.redirect("/shop/kwema-app");
             })
         }).catch(err=>{

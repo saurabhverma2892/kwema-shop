@@ -55,14 +55,11 @@ module.exports = app => {
         console.log(req.query);
         console.log(req.body);
         console.log(req.params);
+        next("something went wrong");
     })
+
     router.route("/pay/cash/success").get((req,res,next)=>{
-        console.log(req.query);
-        console.log(req.body);
-        console.log(req.params);
-        console.log(req);
         shopController.successComroPayment(req,res,next);
-        
     })
 
     router.route("/shipping").post(isLoggedIn,(req,res,next)=>{
@@ -74,7 +71,6 @@ module.exports = app => {
     })
 
     router.route("/checkout").post((req,res,next)=>{
-        console.log(req.body);
         if(!req.session.cart){
             req.session.cart=[];
         }
@@ -84,7 +80,6 @@ module.exports = app => {
         var planTypes = [];
         var quantities = [];
 
-        console.log(typeof req.body.planId);
         if(Object.prototype.toString.call( req.body.planId )  == '[object Array]'){
             planIds = req.body.planId;
             planTypes = req.body.planType;
@@ -106,7 +101,6 @@ module.exports = app => {
             }
             else
             {
-                console.log("ajsdhfkjsahdf");
                 error = true;
             }
 
@@ -118,7 +112,6 @@ module.exports = app => {
             res.redirect("/shop/cart");
         }
         else{
-            console.log("ehhehehehajsdfaskhdfjkasdfhsadf");
             req.flash("message","Error in form data");
             res.redirect("/shop");
         }
@@ -131,20 +124,14 @@ module.exports = app => {
             req.session.cart=[];
         }
         var i = 0;
-        console.log(usercartdetails);
         usercartdetails.planType.forEach(type=>{
-            console.log(type);
-            console.log("hehre is the type");
             if(type == "monthly" || type =="yearly"){
                 req.session.cart.push({planType:type, planId:usercartdetails.planId[i],quantity:1})
             }
             else{
-                console.log("no");
             }
             i++
         })
-        console.log("all good");
-        console.log(req.session.cart);
         //req.session.cart.push(usercartdetails);
         shopController.getPlanDetailsForEachCartItem(req,res,next);
         //res.send(req.session.cart);
