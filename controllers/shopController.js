@@ -115,7 +115,10 @@ module.exports = app => {
         else
         {
             shopService.getPlanDetailsForEachCartItem(req).then(data=>{
-                res.render("paybycompropago", {cartDetails:data, user:req.user,language:req.userlanguage});
+                req.session.save(function(err) {
+                  // session saved
+                    res.render("paybycompropago", {cartDetails:data, user:req.user,language:req.userlanguage});
+                })
             });
         }
     }
