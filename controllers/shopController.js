@@ -125,17 +125,20 @@ module.exports = app => {
 
     function successComroPayment(req,res,next){
         console.log(req.session.cart);
-        shopService.getPlanDetailsForEachCartItem(req).then(cartItems=>{
-            shopService.saveComproTransaction(cartItems,req.user).then(data=>{
-                console.log("transacted well");
-                req.session.cart=[];
-                res.redirect("/shop/kwema-app");
-            })
-        }).catch(err=>{
-            console.log(err);
-            next(err);
+        req.session.reload(function(err) {
+        console.log(req.session.cart);
+            
+          shopService.getPlanDetailsForEachCartItem(req).then(cartItems=>{
+              shopService.saveComproTransaction(cartItems,req.user).then(data=>{
+                  console.log("transacted well");
+                  req.session.cart=[];
+                  res.redirect("/shop/kwema-app");
+              })
+          }).catch(err=>{
+              console.log(err);
+              next(err);
+          })
         })
-        
     }
 
     function addWebHookNotification(req,res,next){
