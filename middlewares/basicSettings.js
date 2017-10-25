@@ -33,6 +33,8 @@ module.exports = app => {
     }))
 
     app.use(passport.initialize());
-    app.use(passport.session());
+    app.use(passport.session({
+        cookie: { secure: true }
+    }));
     app.use(flash());
 };
