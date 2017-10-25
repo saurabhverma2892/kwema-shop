@@ -29,12 +29,10 @@ module.exports = app => {
     app.use(session({
         secret:'kwemashop',
         saveUninitialized: true,
-        resave: false
+        resave: false,
+        cookie: { secure: true }
     }))
 
-    app.use(passport.initialize());
-    app.use(passport.session({
-        cookie: { secure: true }
-    }));
+    app.use(passport.initialize());\
     app.use(flash());
 };
