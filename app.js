@@ -47,12 +47,13 @@ app.models.plan.initialize();
 
 if (process.env.NODE_ENV !== "test") {
 
-    https.createServer(options, app).listen(appPort, function(){
+    /*https.createServer(options, app).listen(appPort, function(){
       console.log("Express server listening on port " + appPort);
-    });
-    /*app.listen(appPort, () => {
-        logger.info(`Server started on port ${appPort}`);
     });*/
+    
+    app.listen(appPort, () => {
+        logger.info(`Server started on port ${appPort}`);
+    });
 }
 
 
