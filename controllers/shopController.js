@@ -125,9 +125,11 @@ module.exports = app => {
 
     function successComroPayment(req,res,next){
         console.log(req.session.cart);
+        console.log(req.session);
         req.session.reload(function(err) {
+        console.log(req.session);
         console.log(req.session.cart);
-            
+
           shopService.getPlanDetailsForEachCartItem(req).then(cartItems=>{
               shopService.saveComproTransaction(cartItems,req.user).then(data=>{
                   console.log("transacted well");
