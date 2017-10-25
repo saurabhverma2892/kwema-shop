@@ -33,6 +33,6 @@ module.exports = app => {
         cookie: { secure: true }
     }))
 
-    app.use(passport.initialize());\
+    app.use(passport.initialize());
     app.use(flash());
 };
