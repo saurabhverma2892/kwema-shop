@@ -8,7 +8,7 @@
 <body>
     <%include includes/navbar.ejs %>
 
-    <form action="/shop/shipping" method="POST">
+    <form action="/shop/checkout-login" method="POST">
         <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
             <h1><%=language.yourShoppingCart%></h1>
             
@@ -45,7 +45,7 @@
                     <div class="uk-width-medium-1-2 uk-grid" data-uk-grid>
 
                         <div class="uk-width-small-1-1">
-                            <input type="text" name="addressedToName" placeholder="<%=language.addressedToName%>" class="uk-input" value="<%=user.addressedToName || user.firstName +" "+ user.lastName%>" required>  
+                            <input type="text" name="firstName" placeholder="<%=language.addressedToName%>" class="uk-input" value="<%=user.firstName %>" required>  
                         </div>
                         <div class="uk-width-small-1-2">
                             <input type="text" name="areaCode" placeholder="<%=language.areaCode%>" class="uk-input" value="<%=user.areaCode%>" required> 
@@ -55,6 +55,9 @@
                         </div>
                         <div class="uk-width-small-1-1">
                             <input type="text" name="address" placeholder="<%=language.Address%>" class="uk-input" value="<%=user.address%>" required> 
+                        </div>
+                        <div class="uk-width-1-2">
+                            <input type="text" name="country" placeholder="<%language.country%>" class="uk-input" value="<%user.country%>" required>
                         </div>
                         <div class="uk-width-small-1-2">
                             <input type="text" name="city" placeholder="<%=language.City%>" class="uk-input" value="<%=user.city%>" required> 
@@ -71,7 +74,7 @@
                         <p style="margin:0px; margin-bottom: 2px;"><%=language.shippingNotp1%></p>
                         <p style="margin:0px; margin-bottom: 4px;"><%=language.shippingNotp2%></p>
                         <div>
-                            <input type="text" name="otherEmail" class="uk-input" value="<%=user.optionalEmail%>" placeholder="<%=language.optionalEmail%>"> 
+                            <input type="text" name="email" class="uk-input" value="<%=user.email%>" placeholder="<%=language.login.emailAddress%>*" required> 
                         </div>
                     </div> 
                 </div>

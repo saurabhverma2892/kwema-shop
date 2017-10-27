@@ -112,6 +112,7 @@ module.exports = app => {
                 console.log("tojson");
               var values = Object.assign({}, this.get());
               delete values.password;
+              delete values.stripeId;
               return values;
             }
         }

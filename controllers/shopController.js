@@ -54,8 +54,12 @@ module.exports = app => {
         }
         else
         {
+            var user={};
+            if(req.user){
+                user=req.user;
+            }
             shopService.getPlanDetailsForEachCartItem(req).then(data=>{
-                res.render("cart", {cartDetails:data, user:req.user,language:req.userlanguage});
+                res.render("cart", {cartDetails:data, user:user,language:req.userlanguage});
             })
         }
         

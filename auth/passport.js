@@ -146,6 +146,50 @@ module.exports = app => {
 
     }));
 
+
+
+    passport.use('local-checkout-login', new LocalStrategy({
+            // by default, local strategy uses username and password, we will override with email
+            usernameField : 'email',
+            passwordField : 'firstName',
+            passReqToCallback : true // allows us to pass back the entire request to the callback
+        },
+        function(req, email, password, done) { // callback with email and password from our form
+            console.log("herhehehehr");
+            console.log("workignnnn");
+            // find a user whose email is the same as the forms email
+            // we are checking to see if the user trying to login already exists
+            User.findOne({where:{email:email}}).then(user=>{
+                if(!user){
+                    User.create({
+                        email:email,
+                        firstName:req.body.firstName,
+                        address:req.body.address,
+                        city:req.body.city,
+                        phone:req.body.phone,
+                        state:req.body.state,
+                        zipCode:req.body.zipCode,
+                        role:"buyer",
+                        verified:false,
+                        registered:false,
+                        country:req.body.country,
+                        areaCode:areaCode
+                    }).then(userData=>{
+                        return done(null, userData);
+                    }).catch(err=>{
+                        console.log(err);
+                        return done(null,false, req.flash('signupMessage','error creating user'));
+                    })
+                }
+                else
+                {
+                    return done(null, user);
+                }
+            }).catch(err=>{
+                return done(null, false, req.flash('signupMessage', 'Error in finding user '+err));
+            });
+    }));
+
     return passport;
 
 }

@@ -27,7 +27,7 @@ module.exports = app => {
     router.route("/login").get((req,res,next)=>{
         res.render("login", {language:req.userlanguage});
     })
-    router.route("/cart").get(isLoggedIn, (req,res,next)=>{
+    router.route("/cart").get((req,res,next)=>{
         //todo by cart Id
         shopController.getCartDetails(req,res,next)
         //res.render("cart");
@@ -43,7 +43,7 @@ module.exports = app => {
         res.render("getapp",{language:req.userlanguage});
     })
 
-    router.route("/checkout").get(isLoggedIn,(req,res,next)=>{
+    router.route("/checkout").get((req,res,next)=>{
         res.redirect("/shop/cart");
     })
 
@@ -161,6 +161,12 @@ module.exports = app => {
         console.log(req.body);
         shopController.addWebHookNotification(req,res,next);
     })
+
+    router.route("/checkout-login").post(passport.authenticate('local-checkout-login',{
+        successRedirect : '/shop/pay/card', // redirect to the secure profile section
+        failureRedirect : '/shop/cart', // redirect back to the signup page if there is an error
+        failureFlash : true 
+    }))
 
     return router;
 }
