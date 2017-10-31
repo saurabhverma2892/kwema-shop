@@ -32,6 +32,11 @@ module.exports = app => {
         res.redirect("/");
     });
 
+    app.post("/language",(req,res,next)=>{
+        req.session.language=req.body.language;
+        res.send(true);
+    })
+
     app.use("/contact",chooseLanguage, app.routes.contact);
 
 

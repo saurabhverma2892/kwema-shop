@@ -229,12 +229,41 @@ footer p{
 .language-dropdown li a{
     padding: 8px;
     padding-top: 6px;
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     border-radius: 100%;
     background-color: white;
     box-sizing: border-box;
     margin-bottom: 5px;
+    border:none;
+}
+
+.language-dropdown li a.english-flag{
+    background: url("/images/USA.png");
+    background-size: cover;
+    background-position: center center;
+}
+
+.language-dropdown li a.spanish-flag{
+    background: url("/images/MX.png");
+    background-size: cover;
+    background-position: center center;
+}
+
+.language-main{
+    border:none;
+}
+
+.language-main.spanish-flag{
+    background: url("/images/MX.png");
+    background-size: cover;
+    background-position: center center;
+}
+
+.language-main.english-flag{
+    background: url("/images/USA.png");
+    background-size: cover;
+    background-position: center center;
 }
 
 .product-description{
