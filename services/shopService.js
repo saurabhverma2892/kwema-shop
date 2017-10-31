@@ -151,6 +151,7 @@ module.exports = app => {
         return new Promise((resolve,reject)=>{
             Cart.addNewCart(user).then(cartCreated=>{
                 cartItems.forEach(cartItemDetails=>{
+                    console.log("all good here too");
                     var planAmount = 0;
                     if(cartItemDetails.planType=="monthly"){
                         planAmount = cartItemDetails.planDetails.monthlyPrice;
@@ -161,6 +162,7 @@ module.exports = app => {
                     amount = amount+planAmount+cartItemDetails.planDetails.devicePrice;
                     var cartPromise = CartItem.addCartItem(user,cartCreated.id,cartItemDetails);
                     promises.push(cartPromise);
+                    console.log("all pushed");
                 });
                 Promise.all(promises).then(cartItemsData=>{
                     console.log("resolved all in compro pago");

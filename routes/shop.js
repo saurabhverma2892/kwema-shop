@@ -248,6 +248,10 @@ module.exports = app => {
         failureFlash : true 
     }))
 
+    router.route("/paybycash/save").get((req,res,next)=>{
+        shopController.saveCashPaymentCart(req,res,next);
+    })
+
 
     return router;
 }

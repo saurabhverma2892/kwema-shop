@@ -127,24 +127,27 @@ module.exports = app => {
         }
     }
 
-    function successComroPayment(req,res,next){
+    function saveCashPaymentCart(req,res,next){
+        console.log("wokring in here");
         console.log(req.session.cart);
         console.log(req.session);
-        req.session.reload(function(err) {
-        console.log(req.session);
-        console.log(req.session.cart);
-
-          shopService.getPlanDetailsForEachCartItem(req).then(cartItems=>{
-              shopService.saveComproTransaction(cartItems,req.user).then(data=>{
-                  console.log("transacted well");
-                  req.session.cart=[];
-                  res.redirect("/shop/kwema-app");
-              })
-          }).catch(err=>{
-              console.log(err);
-              next(err);
-          })
+        shopService.getPlanDetailsForEachCartItem(req).then(cartItems=>{
+            shopService.saveComproTransaction(cartItems,req.user).then(data=>{
+                console.log("transacted well");
+                res.send(true);
+            }).catch(err=>{
+                console.log(err);
+                next(err);
+            })
+        }).catch(err=>{
+            console.log(err);
+            next(err);
         })
+    }
+
+    function successComroPayment(req,res,next){
+        req.session.cart=[];
+        res.redirect("/shop/kwema-app");
     }
 
     function addWebHookNotification(req,res,next){
@@ -187,6 +190,7 @@ module.exports = app => {
         saveUserCardInfoAndMakeCharge,
         getPaymentByCashPage,
         successComroPayment,
-        addWebHookNotification
+        addWebHookNotification,
+        saveCashPaymentCart
     }
 }

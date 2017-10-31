@@ -29,6 +29,7 @@
                         }
                         var braceletPrice=cart.planDetails.devicePrice*18;
                         var planPrice=amount;
+                        var quantity = cart.quantity;
                         var individualAmount = amount+(cart.planDetails.devicePrice*18);
                         totalAmount = totalAmount+individualAmount;
                         %>
@@ -93,8 +94,9 @@
 <%include includes/scripts.ejs%>
 <script src="https://js.stripe.com/v3/"></script>
 <script type="text/javascript">
-    $("#successUrl").val(document.location);
-    $("#failureUrl").val(document.location);
+console.log(window.location.origin+"/shop/pay/cash/failure");
+    $("#successUrl").val(window.location.origin+"/shop/pay/cash/success");
+    $("#failureUrl").val(window.location.origin+"/shop/pay/cash/failure");
 </script>
 <script type="text/javascript">
 
@@ -106,6 +108,22 @@
             $(".logo-white").hide();
             $(".logo-black").show("slow");
     }
+
+    $("#payment-form").submit(function(e){
+
+        $.ajax({
+            url:"/shop/paybycash/save",
+            method:"GET",
+            success:function(data){
+                return true;
+            },
+            error:function(err){
+                return false;
+            }
+        })
+
+        return false;
+    })
 
 
     /*$(".choose-payment-type-button").click(function(){

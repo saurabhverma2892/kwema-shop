@@ -9,50 +9,46 @@ module.exports = {
         'planId',
         Sequelize.INTEGER
       );
-
       queryInterface.addColumn({
           tableName: 'cartitem'
         },
         'cartId',
         Sequelize.INTEGER
       );
-
       queryInterface.addColumn({
           tableName: 'cartitem'
         },
         'planType',
         Sequelize.STRING
       );
+      
+      queryInterface.createTable('cart', {
+          id: {
+                allowNull: false,
+                autoIncrement: true,
+                primaryKey: true,
+                type: Sequelize.INTEGER
+          },
+          userId: {
+              type: Sequelize.INTEGER
+          },
+          transactionId: {
+              type: Sequelize.INTEGER
+          },
+          createdAt: {
+              type: Sequelize.DATE
+          },
+          updatedAt: {
+              type: Sequelize.DATE
+          }
+      },
+      {
+          tableName: "cart",
+          timestamps: true
+      });
+
     })
 
-    
-
-
-
-    queryInterface.createTable('cart', {
-        id: {
-              allowNull: false,
-              autoIncrement: true,
-              primaryKey: true,
-              type: Sequelize.INTEGER
-        },
-        userId: {
-            type: Sequelize.INTEGER
-        },
-        transactionId: {
-            type: Sequelize.INTEGER
-        },
-        createdAt: {
-            type: Sequelize.DATE
-        },
-        updatedAt: {
-            type: Sequelize.DATE
-        }
-    },
-    {
-        tableName: "cart",
-        timestamps: true
-    });
 
   },
 
