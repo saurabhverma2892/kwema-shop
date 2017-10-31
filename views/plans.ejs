@@ -244,19 +244,9 @@
         return false;
     })*/
 
-    $(document).on("click",".fa-plus",function(){
-        var self = $(this);
-        var inputfield = self.parent().prev().prev().prev();
-        inputfield.val(parseInt(inputfield.val())+1);
-    })
+    
 
-    $(document).on("click",".fa-minus",function(){
-        var self = $(this);
-        var inputfield = self.parent().next();
-        if(parseInt(inputfield.val())>1){
-            inputfield.val(parseInt(inputfield.val())-1);
-        }
-    })
+    
 
 
     $(".selectPlan").change(function(e){
@@ -294,34 +284,10 @@
             method:"POST",
             data:self.serialize(),
             success:function(data){
-                console.log(data);
-                $(".cart-count").html(data.length);
-                $(".cart-details").html("");
-                var totalAmount=0;
-                data.forEach(function(cartItem){
-                    var amount=0;
-                    var amountPostfix="";
-                    var devicePrice=cartItem.planDetails.devicePrice;
-                    if(cartItem.planType=="bracelet"){
-                        amount=cartItem.planDetails.devicePrice;
-                    }
-                    else if(cartItem.planType=="monthly"){
-                        amount=cartItem.planDetails.monthlyPrice;
-                        amountPostfix="/mo"
-                    }
-                    else if(cartItem.planType=="yearly"){
-                        amount=cartItem.planDetails.yearlyPrice;
-                        amountPostfix="/yr"
-                    }
-                    totalAmount=totalAmount+amount+devicePrice;
-                    var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image" style="background-image:url('+cartItem.planDetails.product.primaryImage+'); height:100%;"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+'('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+devicePrice*18+'</p><p class="pink-color">$'+amount*18+amountPostfix+'</p><p class="pink-color"><%=language.Plan%>:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+'<div class="uk-width-small-1-1 uk-text-center uk-flex uk-flex-nowrap quantityselector"><span class="pink-color minus"><i class="fa fa-minus"></i></span><input readonly class="quantity" type="text" style="display:inline; width:25px !important; padding:2px!important; text-align:center; margin:0px 5px;" value="'+cartItem.quantity+'" name="quantity"/><input type="hidden" name="planType" value="'+cartItem.planType+'"/><input type="hidden" name="planId" value="'+cartItem.planId+'"/><span class="pink-color plus"><i class="fa fa-plus"></i></span></div>'+'</span></div></div>'
-                    console.log(itemHtml);
-                    $(".cart-details").append(itemHtml);
-                    $(".subtotal").html(totalAmount*18);
-                    cartModal.show();
-                })
+                updateSideCart(data)
             },
             error:function(err){
+                $.notify("Item already exists in cart", {position:"top center", className:"error"});
                 console.log(err);
             }
         })

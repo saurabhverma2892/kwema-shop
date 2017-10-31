@@ -3,11 +3,14 @@
 let passport = require("passport");
 let LocalStrategy = require('passport-local').Strategy;
 let sequelize = require('sequelize');
+var generator = require('generate-password');
+
 
 
 module.exports = app => {
 
     let User = app.models.user.User;
+    let mailService = app.services.mailService;
 
     app.use(passport.initialize());
     app.use(passport.session());
@@ -159,6 +162,12 @@ module.exports = app => {
             console.log("workignnnn");
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
+            var password = generator.generate({
+                length: 10,
+                numbers: true
+            });
+
+
             User.findOne({where:{email:email}}).then(user=>{
                 if(!user){
                     User.create({
@@ -173,8 +182,10 @@ module.exports = app => {
                         verified:false,
                         registered:false,
                         country:req.body.country,
-                        areaCode:areaCode
+                        areaCode:req.body.areaCode,
+                        password:password
                     }).then(userData=>{
+                        mailService.sendRegistrationMail(userData,password);
                         return done(null, userData);
                     }).catch(err=>{
                         console.log(err);
@@ -183,7 +194,7 @@ module.exports = app => {
                 }
                 else
                 {
-                    return done(null, user);
+                    return done(null, false,req.flash('signupMessage', 'User already exists. Please login to continue'));
                 }
             }).catch(err=>{
                 return done(null, false, req.flash('signupMessage', 'Error in finding user '+err));

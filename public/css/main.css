@@ -698,9 +698,7 @@ footer{
 .selectPlan{
     font-size: 16px;
 }
-.quantityselector{
-    display: none;
-}
+
 
 .gery-light{
     color:#999999;
@@ -734,4 +732,14 @@ footer{
 
 .deviceBasePrice{
     font-size: 30px;
+}
+
+.delete-button{
+    position:absolute;
+    bottom:0px;
+    right:0px;
+    background-color: transparent;
+    border:none;
+    color:red;
+    cursor: pointer;
 }

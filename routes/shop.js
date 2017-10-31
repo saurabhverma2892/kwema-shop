@@ -25,7 +25,7 @@ module.exports = app => {
         shopController.getProductsForDesignId(req,res,next);
     })
     router.route("/login").get((req,res,next)=>{
-        res.render("login", {language:req.userlanguage});
+        res.render("login", {language:req.userlanguage, message:req.flash("signupMessage")});
     })
     router.route("/cart").get((req,res,next)=>{
         //todo by cart Id
@@ -126,6 +126,13 @@ module.exports = app => {
         var i = 0;
         usercartdetails.planType.forEach(type=>{
             if(type == "monthly" || type =="yearly"){
+                req.session.cart.forEach(exisitingCartData=>{
+                    if(exisitingCartData.planId==usercartdetails.planId[i] && exisitingCartData.planType==type){
+                        res.status(500);
+                        res.send(false)
+                        return;
+                    }
+                })
                 req.session.cart.push({planType:type, planId:usercartdetails.planId[i],quantity:1})
             }
             else{
@@ -145,6 +152,79 @@ module.exports = app => {
         //res.send(req.session.cart);
     })
 
+    router.route("/usercart/delete").post((req,res,next)=>{
+        console.log("workignignignignignignig in here");
+        console.log(req.session.cart);
+        console.log(req.body);
+        req.session.cart.forEach(cartDetails=>{
+            if(cartDetails.planType==req.body.planType && cartDetails.planId == req.body.planId){
+                console.log("splicing");
+                req.session.cart.splice(req.session.cart.indexOf(cartDetails),1);
+                res.send(req.session.cart);
+                return;
+            }
+        })
+    })
+
+    router.route("/usercart/updatequantities").post((req,res,next)=>{
+        if(!req.session.cart){
+            req.session.cart=[];
+        }
+        var carToAdd=[];
+
+        var planIds = [];
+        var planTypes = [];
+        var quantities = [];
+
+        if(Object.prototype.toString.call( req.body.planId )  == '[object Array]'){
+            planIds = req.body.planId;
+            planTypes = req.body.planType;
+            quantities = req.body.quantity;
+        }
+        else{
+            planIds.push(req.body.planId);
+            planTypes.push(req.body.planType);
+            quantities.push(req.body.quantity);
+        }
+
+        var i = 0;
+        var error = false;
+        
+        planIds.forEach(planId=>{
+
+            if(((planTypes[i] == "monthly" || planTypes[i] == "yearly") && (typeof planId=="string") && (quantities[i]>0))){
+                carToAdd.push({planId:planId,planType:planTypes[i],quantity:quantities[i]})
+            }
+            else
+            {
+                error = true;
+            }
+
+            i++;
+        })
+
+        if(!error){
+            req.session.cart=carToAdd;
+            res.send(true);
+        }
+        else{
+            req.flash("message","Error in form data");
+            res.send(false);
+        }
+    })
+
+    function checkUserLoggedInAndRedirect(req,res,next){
+        if(req.user){
+            shopController.addShippingInfoToUser(req,res,next);
+            //res.redirect("/shop/pay/card");
+        }
+        else
+        {
+            next();
+        }
+    }
+
+
     router.route("/login").post(passport.authenticate('local-login',{
         successRedirect : '/shop/cart', // redirect to the secure profile section
         failureRedirect : '/shop/login', // redirect back to the signup page if there is an error
@@ -162,11 +242,12 @@ module.exports = app => {
         shopController.addWebHookNotification(req,res,next);
     })
 
-    router.route("/checkout-login").post(passport.authenticate('local-checkout-login',{
+    router.route("/checkout-login").post(checkUserLoggedInAndRedirect, passport.authenticate('local-checkout-login',{
         successRedirect : '/shop/pay/card', // redirect to the secure profile section
-        failureRedirect : '/shop/cart', // redirect back to the signup page if there is an error
+        failureRedirect : '/shop/login', // redirect back to the signup page if there is an error
         failureFlash : true 
     }))
+
 
     return router;
 }

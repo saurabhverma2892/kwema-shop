@@ -8,6 +8,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/core/dropdown.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/components/form-select.min.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/notify.min.js"></script>
 
 
 <!-- This is the modal -->
@@ -64,6 +65,45 @@
         }
     });
 
+    function updateSideCart(cartdetails){
+        $(".cart-count").html(cartdetails.length);
+        $(".cart-details").html("");
+        var totalAmount=0;
+        console.log(cartdetails);
+        console.log(cartdetails.length);
+        if(cartdetails.length>0){
+            cartdetails.forEach(function(cartItem){
+                console.log(cartItem);
+                if(cartItem.planType=="bracelet"){
+                    amount=cartItem.planDetails.devicePrice;
+                }
+                else if(cartItem.planType=="monthly"){
+                    amount=cartItem.planDetails.monthlyPrice;
+                    amountPostfix="/mo"
+                }
+                else if(cartItem.planType=="yearly"){
+                    amount=cartItem.planDetails.yearlyPrice;
+                    amountPostfix="/yr"
+                }
+                var devicePrice = cartItem.planDetails.devicePrice;
+                var quantity=cartItem.quantity
+                totalAmount=totalAmount+amount+devicePrice;
+                var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image" style="background-image:url('+cartItem.planDetails.product.primaryImage+'); height:100%;"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+'('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+devicePrice*18+'</p><p class="pink-color">$'+amount*18+amountPostfix+'</p><p class="pink-color"><%=language.Plan%>:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right" style="position:relative;"><button class="delete-button" type="button" value="'+cartItem.planId+'" itemtype="'+cartItem.planType+'"><i class="fa fa-trash"></i></button><span class="pink-color">'+'<div class="uk-width-small-1-1 uk-text-center uk-flex uk-flex-nowrap quantityselector"><span class="pink-color minus"><i class="fa fa-minus" value="'+cartItem.planId+'" itemtype="'+cartItem.planType+'"></i></span><input readonly class="quantity" type="text" style="display:inline; width:25px !important; padding:2px!important; text-align:center; margin:0px 5px;" value="'+cartItem.quantity+'" name="quantity"/><input type="hidden" name="planType" value="'+cartItem.planType+'"/><input type="hidden" name="planId" value="'+cartItem.planId+'"/><span class="pink-color plus"><i class="fa fa-plus" value="'+cartItem.planId+'" itemtype="'+cartItem.planType+'"></i></span></div>'+'</span></div></div>'
+                $(".cart-details").append(itemHtml);
+                console.log()
+                $(".subtotal").html(totalAmount*18);
+            })
+        }
+        else
+        {
+            $(".subtotal").html(0);
+            var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="widht-1-1"><%=language.yourCartIsEmpty%></div></div>';
+            $(".cart-details").append(itemHtml);
+        }
+        
+        cartModal.show();
+    }
+
     $(".navbar-cart").click(function(e){
         cartModal.show();
         $.ajax({
@@ -73,37 +113,7 @@
 
             },
             success:function(data){
-                console.log(data);
-                $(".cart-count").html(data.length);
-                $(".cart-details").html("");
-                if(data.length<1){
-                    var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="widht-1-1"><%=language.yourCartIsEmpty%></div></div>';
-                    $(".cart-details").append(itemHtml);
-                }
-                var totalAmount=0;
-                data.forEach(function(cartItem){
-                    var amount=0;
-                    var amountPostfix="";
-                    var devicePrice=cartItem.planDetails.devicePrice;
-                    if(cartItem.planType=="bracelet"){
-                        amount=cartItem.planDetails.devicePrice;
-                    }
-                    else if(cartItem.planType=="monthly"){
-                        amount=cartItem.planDetails.monthlyPrice;
-                        amountPostfix="/mo"
-                    }
-                    else if(cartItem.planType=="yearly"){
-                        amount=cartItem.planDetails.yearlyPrice;
-                        amountPostfix="/yr"
-                    }
-                    totalAmount=totalAmount+amount+devicePrice;
-                    var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image" style="height:100%; background-image:url('+cartItem.planDetails.product.primaryImage+')"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+'('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+devicePrice+'</p><p class="pink-color">$'+amount+amountPostfix+'</p><p class="pink-color"><%=language.Plan%>:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+'<div class="uk-width-small-1-1 uk-text-center uk-flex uk-flex-nowrap quantityselector"><span class="pink-color minus"><i class="fa fa-minus"></i></span><input readonly class="quantity" type="text" style="display:inline; width:25px !important; padding:2px!important; text-align:center; margin:0px 5px;" value="'+cartItem.quantity+'" name="quantity"/><input type="hidden" name="planType" value="'+cartItem.planType+'"/><input type="hidden" name="planId" value="'+cartItem.planId+'"/><span class="pink-color plus"><i class="fa fa-plus"></i></span></div>'+'</span></div></div>'
-
-                    $(".cart-details").append(itemHtml);
-                })
-                $(".subtotal").html(totalAmount);
-                cartModal.show();
-                console.log(data);
+                updateSideCart(data);
             },
             error:function(err){
                 console.log(err);
@@ -111,7 +121,65 @@
         })
     })
 
+    $(document).on("click",".fa-plus",function(){
+        var self = $(this);
+        var inputfield = self.parent().prev().prev().prev();
+        inputfield.val(parseInt(inputfield.val())+1);
 
+
+        updateQuantities();
+        
+    })
+
+    $(document).on("click",".fa-minus",function(){
+        var self = $(this);
+        var inputfield = self.parent().next();
+        if(parseInt(inputfield.val())>1){
+            inputfield.val(parseInt(inputfield.val())-1);
+        }
+    })
+
+    $(document).on("click",".delete-button",function(){
+        var self = $(this);
+        var planId = self.val();
+        var planType = self.attr("itemtype");
+
+        console.log(planId);
+        console.log(planType);
+
+        $.ajax({
+            url:"/shop/usercart/delete",
+            method:"POST",
+            data:{
+                planId:planId,
+                planType:planType
+            },
+            success:function(data){
+                updateSideCart(data);
+            },
+            error:function(err){
+
+            }
+        })
+    })
+
+
+    function updateQuantities(){
+        var data = $("#checkoutForm").serialize();
+        console.log(data);
+        $.ajax({
+            url:"/shop/usercart/updatequantities",
+            method:"POST",
+            data:data,
+            success:function(data){
+                console.log(data);
+            },
+            error:function(err){
+                console.log(err);
+            }
+        })
+    }
+    
 
     setTimeout(function() { initializeChat(); }, 5000);
 

@@ -10,6 +10,9 @@
 
     <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
         <h1><%=language.login.pleaseLogin%></h1>
+        <%if(message){%>
+            <h4 style="color:red"><%=message%></h4>
+        <%}%>
         <div class="uk-grid uk-flex uk-flex-nowrap loginscreen" data-uk-grid style="padding-top:30px; margin:0px;">
             <div class="uk-width-medium-1-2 register-login-container">
                 <div class="login-container">
