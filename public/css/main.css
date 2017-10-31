@@ -772,3 +772,7 @@ footer{
     color:red;
     cursor: pointer;
 }
+
+.quantityselector{
+    display: none;
+}

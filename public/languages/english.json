@@ -181,6 +181,10 @@
     "iagreetermsandconditions":"I agree to the ",
     "termsAndConditions":"Terms And Conditions",
     "country":"country",
-    "languageClass":"english-flag"
+    "languageClass":"english-flag",
+    "currencyNumber":1,
+    "currencyCode":"USD",
+    "taxAmount":5,
+    "selectedCountry":"USA"
 }
 

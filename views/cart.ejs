@@ -20,18 +20,18 @@
                     cartDetails.forEach(function(cart){%>
                         <%
                         if(cart.planType=="monthly"){
-                            var amount=cart.planDetails.monthlyPrice*18;
+                            var amount=cart.planDetails.monthlyPrice*language.currencyNumber;
                             var amountPostFix = "/mo";
                         }
                         else if(cart.planType=="yearly"){
-                            var amount=cart.planDetails.yearlyPrice*18;
+                            var amount=cart.planDetails.yearlyPrice*language.currencyNumber;
                             var amountPostFix = "/yr";
                         }
-                        var braceletPrice=cart.planDetails.devicePrice*18;
+                        var braceletPrice=cart.planDetails.devicePrice*language.currencyNumber;
                         var planPrice=amount;
-                        var individualAmount = amount+(cart.planDetails.devicePrice*18);
+                        var individualAmount = amount+(cart.planDetails.devicePrice*language.currencyNumber);
                         var quantity = cart.quantity;
-                        totalAmount = totalAmount+individualAmount;
+                        totalAmount = totalAmount+individualAmount+language.taxAmount;
                         %>
                         <%include shared/carttop.ejs%>
                     <%})%>

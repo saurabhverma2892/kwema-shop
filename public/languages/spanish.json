@@ -181,6 +181,10 @@
   "iagreetermsandconditions":"I agree to the ",
   "termsAndConditions":"Terms And Conditions",
   "country":"country",
-  "languageClass":"spanish-flag"
+  "languageClass":"spanish-flag",
+  "currencyNumber":18,
+  "currencyCode":"MXN",
+  "taxAmount":95,
+  "selectedCountry":"Mexico"
 
 }

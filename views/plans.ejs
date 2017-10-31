@@ -67,14 +67,14 @@
                                                 <div class="uk-width-small-1-3 plan-details-plans">
                                                     
                                                         <div class="uk-text-center">
-                                                            <div class="uk-button uk-form-select select-plan-cover" value="<%=planDetails.devicePrice*18%>" data-uk-form-select style="width:100%;">
+                                                            <div class="uk-button uk-form-select select-plan-cover" value="<%=planDetails.devicePrice*language.currencyNumber%>" data-uk-form-select style="width:100%;">
                                                                 <span class="plans-text <%=planDetails.name%>"></span>
                                                                 <i class="uk-icon-caret-down"></i>
                                                                 <input type="hidden" name="planId" value="<%=planDetails.id%>">
                                                                 <input type="hidden" name="planType" value="" class="plan-type-hidden">
                                                                 <select value="" class="selectPlan">
                                                                     <option selected="true" disabled="disabled" value=""><%=planDetails.name%></option>
-                                                                    <option value="monthly">$<%=planDetails.monthlyPrice*18%> MXN<%=language.monthlypostFix%></option>
+                                                                    <option value="monthly">$<%=planDetails.monthlyPrice*language.currencyNumber%> <%=language.currencyCode%><%=language.monthlypostFix%></option>
                                                                     <!-- <option value="yearly">$<%=planDetails.yearlyPrice%><%=language.yearlypostFix%></option> -->
                                                                 </select>
                                                             </div>
@@ -84,7 +84,7 @@
                                             })
                                             %>
                                             <!-- <div style="margin-bottom: 0px;"><%=language.choosePlanTitle%></div> -->
-                                            <div class="pink-color" style="margin-bottom: 10px; margin-top: 10px;"><span class="plus" style="position: relative; top:-6px; margin-right: 4px;">+</span><span style="font-size: 30px;">$</span><span class="deviceBasePrice"><%=product.price*18%></span> MXN/<%=language.oneTimePayment%></div>
+                                            <div class="pink-color" style="margin-bottom: 10px; margin-top: 10px;"><span class="plus" style="position: relative; top:-6px; margin-right: 4px;">+</span><span style="font-size: 30px;">$</span><span class="deviceBasePrice"><%=product.price*language.currencyNumber%></span> <%=language.currencyCode%>/<%=language.oneTimePayment%></div>
 
                                                 <div class="uk-width-1-2 uk-text-left"><a data-uk-modal="{target:'#planDetails'}"><%=language.planDetails%></a></div>
                                                 <div class="uk-width-1-2 uk-text-right"> 
