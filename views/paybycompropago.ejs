@@ -62,11 +62,11 @@
                                     <input type="hidden" name="customer_name" value="<%=user.firstName%>">
                                     <input type="hidden" name="customer_email" value="<%=user.email%>">
                                     <input type="hidden" name="customer_phone" value="<%=user.phone%>">
-                                    <input type="hidden" name="success_url" value="https://kwema.com.mx/shop/pay/cash/success">
-                                    <input type="hidden" name="failed_url" value="https://kwema.com.mx/shop/pay/cash/failure">
+                                    <input type="hidden" name="success_url" id="successUrl" value="">
+                                    <input type="hidden" name="failed_url" id="failureUrl" value="https://kwema.com.mx/shop/pay/cash/failure">
                                     <!-- <button class="uk-button uk-button-"></button>
                                     <input type="image"  border="0" name="submit" alt="Pagar con ComproPago"> -->
-                                
+                                    
                             </div>
                     </div>
                     <div class="uk-width-medium-1-2 uk-text-right total-payment-page">
@@ -93,6 +93,11 @@
 <%include includes/scripts.ejs%>
 <script src="https://js.stripe.com/v3/"></script>
 <script type="text/javascript">
+    $("#successUrl").val(document.location);
+    $("#failureUrl").val(document.location);
+</script>
+<script type="text/javascript">
+
     
     toggleLogo();
 
