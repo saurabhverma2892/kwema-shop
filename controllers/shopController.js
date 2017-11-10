@@ -36,6 +36,7 @@ module.exports = app => {
     function getPlanDetailsForEachCartItem(req,res,next){
         console.log("getPlanDetailsForEachCartItem");
         shopService.getPlanDetailsForEachCartItem(req).then(data=>{
+            console.log(data);
             res.send(data);
         }).catch(err=>{
             console.log(err);
@@ -177,6 +178,49 @@ module.exports = app => {
         })
     }
 
+    function getProductsPage(req,res,next){
+        shopService.getProductsForDesignName(req.params.designName).then(data=>{
+            console.log(data.products);
+            res.render("products", {products:data.products, language:req.userlanguage, categoryName:req.params.designName});
+        })
+    }
+
+    function getItemPage(req,res,next){
+        /*shopService.getProductsForDes(req.params.productName).then(data=>{
+            console.log(data);
+            res.render("plans",{products:data, product:data.productData,language:req.userlanguage});
+        })*/
+        shopService.getProductsForDesignName(req.params.designName).then(data=>{
+            console.log("worked here");
+            console.log(data.products);
+            console.log("=======");
+            console.log(req.params.designName);
+            var products = data.products;
+            shopService.getProductByProductAndDesignName(req.params.productName,data.id).then(product=>{
+                var product = product;
+                
+                res.render("plans",{design:data ,products:products, product:product,language:req.userlanguage});
+            }).catch(err=>{
+                next(err);
+            })
+        }).catch(err=>{
+            next(err);
+        })
+    }
+
+    function getPlansForProduct(req,res,next){
+        shopService.getProductsForDesignName(req.params.designName).then(data=>{
+            shopService.getProductByProductAndDesignName(req.params.productName,data.id).then(product=>{
+                console.log(product);
+                res.render("plansForProduct",{design:data ,product:product,language:req.userlanguage});
+            }).catch(err=>{
+                next(err);
+            })
+        }).catch(err=>{
+            next(err);
+        })
+    }
+
     
 
     return {
@@ -191,6 +235,9 @@ module.exports = app => {
         getPaymentByCashPage,
         successComroPayment,
         addWebHookNotification,
-        saveCashPaymentCart
+        saveCashPaymentCart,
+        getProductsPage,
+        getItemPage,
+        getPlansForProduct
     }
 }

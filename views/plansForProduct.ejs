@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kwema Shop</title>
+    <%include includes/styles.ejs%>
+</head>
+<body>
+    <%include includes/navbar.ejs %>
+    <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
+        <h1><%=product.design.name%> <%=language.collection%></h1>
+            <div class="uk-text-center">
+                <div class="cart-process">
+                    <div class="line active"></div><div class="line line2"></div>
+                    <div class="cart-circle left active">
+                        <div class="circle">1</div>
+                        <div class="text">Elige tu brazalete</div>
+                    </div>
+                    <div class="cart-circle center active">
+                        <div class="circle">2</div>
+                        <div class="text">Elige tu plan</div>
+                    </div>
+                    <div class="cart-circle right circle3">
+                        <div class="circle">3</div>
+                        <div class="text">Al carrito</div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-grid products product<%=product.id%>" data-uk-grid style="padding-top:30px;">
+                <div class="uk-width-medium-1-2 uk-flex uk-flex-middle uk-flex-center" style="margin-bottom:40px;">
+                    <div class="product-colors-container">
+                        <div class="uk-slidenav-position" data-uk-slideshow="{autoplay:true}">
+                            <ul class="uk-slideshow">
+                                <%if(product.images){%>
+                                    <%JSON.parse(product.images).forEach(function(image){%>
+                                        <li>
+                                            <img src="<%=image%>" width="200" height="200px">
+                                        </li>
+                                    <%})%>
+                                <%}%>
+                            </ul>
+                            <!-- <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+                            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a> -->
+                             <ul class="uk-dotnav uk-dotnav-contrast uk-position-bottom uk-flex-center">
+                                <%if(product.images){var i=0%>
+                                    <%JSON.parse(product.images).forEach(function(image){%>
+                                        <li>
+                                            <li data-uk-slideshow-item="<%=i%>"><a href=""></a></li>
+                                        </li>
+                                    <% i++ })%>
+                                <%}%>
+                            </ul> 
+                        </div>
+                        <p style="margin-bottom:0px; margin-top:40px;" class="pink-color"><b><%=product.name%></b></h4>
+                        <p style="margin-top:0px; margin-bottom:0px;" class="pink-color">(<%=product.details%>)</p>
+                        <p class="grey" style="margin-top: 0px;">$<%=product.price%></p>
+                    </div> 
+                </div>
+                <div class="uk-width-medium-1-2 uk-flex yk-flex-middle">
+                    <div class="product-features">
+                        
+                        <div class="uk-text-left">
+                            <p class="nomargin">Elige el plan que más se adapta a ti:</p>
+                            <div class="uk-grid uk-text-center" daya-uk-grid style="margin-top:14px;">
+                                <%product.plans.forEach(function(plan){%>
+                                    <div class="uk-width-small-1-3">
+                                        <div class="plan-select uk-flex uk-flex-middle uk-flex-center" plan-id="<%=plan.id%>">
+                                            <div>
+                                                <p class="nomargin"><b><%=plan.name%></b></p>
+                                                <p class="nomargin">$<%=plan.monthlyPrice%> MXN/mes</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <%})%>
+                            </div>
+                            <p clasa="nomargin"><b>Para las mejores amigas que lo comparten todo</b></p>
+                            <p class="pink-color nomargin"><b>1 usuario</b></p>
+                            <p class="grey nomargin">- Notifica a amigos y familiares usando datos móviles o a través de SMS</p>
+                            <p class="grey nomargin">- Agrega hasta 10 contactos de seguridad</p>
+                            <p class="grey nomargin">- Acceso a la comunidad de Kwema</p>
+                            <p class="grey nomargin">- Obtén el botón de pánico en la aplicación</p>
+
+                            <p class="grey"><small>Puedes mejorar tu plan en cualquier momento. Si estás dentro del plan Evening o Night, podrás cambiar a un plan menor después de 6 meses o pagando la diferencia de precio del dispositivo. Si no quedaste contenta con el servicio puedes cancelar en cualquier momento sin costo adicional. </small></p>
+                        </div> 
+
+                        <input type="hidden" name="planType" value="monthly">
+                        <input type="hidden" name="planId" value="">
+                        <input type="hidden" name="productId" value="<%=product.id%>">   
+                            
+                        <div class="uk-width-1-1 uk-text-left" style="margin-top:20px;">
+                                <div class="uk-grid" data-uk-grid>
+
+                                            <div class="uk-width-1-2 uk-text-left"><a data-uk-modal="{target:'#planDetails'}"><%=language.planDetails%></a></div>
+                                            
+                                            
+                                            <div class="uk-width-1-1 uk-text-center uk-margin">
+                                                <button class="uk-button uk-button-primary" id="addToCart">AÑADIR AL CARRITO</button>
+                                            </div>
+                                </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>        
+    </div>
+    <%include includes/footer.ejs%>
+
+    <div id="planDetails" class="uk-modal">
+        <div class="uk-modal-dialog" style="width:90%;">
+            <a class="uk-modal-close uk-close"></a>
+            <div class="uk-width-1-1 uk-text-center plans-about-us " >
+                <h2><%=language.explore.chooseplan%></h2>
+                <h4><%=language.explore.checkoutPlans%></h4>
+                <div class="uk-grid" data-uk-grid style="margin-left:0px;">
+                    <div class="uk-width-medium-1-3">
+                        <div class="inner-container-plans">
+                            <h4><b><%=language.explore.Day%></b></h4>
+                            <h3><%=language.explore.plan1%></h3>
+                            <b class="grey">
+                                <div ><%=language.explore.plan1y%></div>
+                            </b>
+                            <p class="grey"><%=language.explore.plan1f1%></p>
+                            <p class="grey"><%=language.explore.plan1f2%></p>
+                            <p class="grey"><%=language.explore.plan1f3%></p>
+                            <p class="grey"><%=language.explore.plan1f4%></p>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3">
+                        <div class="inner-container-plans">
+                            <h4><b><%=language.explore.Evening%></b></h4>
+                            <h3><%=language.explore.plan2%></h3>
+                            <b class="grey">
+                                <div><%=language.explore.plan2y%></div>
+                            </b>
+                            <p class="grey"><%=language.explore.plan1f1%></p>
+                            <p class="grey"><%=language.explore.plan1f2%></p>
+                            <p class="grey"><%=language.explore.plan1f3%></p>
+                            <p class="grey"><%=language.explore.plan1f4%></p>
+                            <p class="pink-color" style="font-size: 18px;"><b><%=language.explore.plan2d1%></b></p>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-3">
+                        <div class="inner-container-plans">
+                            <h4><b><%=language.explore.Night%></b></h4>
+                            <h3><%=language.explore.plan3%></h3>
+                            <b class="grey">
+                                <div><%=language.explore.plan3y%></div>
+                            </b>
+                            <p class="grey"><%=language.explore.plan1f1%></p>
+                            <p class="grey"><%=language.explore.plan1f2%></p>
+                            <p class="grey"><%=language.explore.plan1f3%></p>
+                            <p class="grey"><%=language.explore.plan1f4%></p>
+                            <p class="pink-color" style="font-size: 18px;"><b><%=language.explore.plan3d1%></b></p>
+                        </div>
+                    </div>
+                    <div class="uk-width-medium-1-1" style="padding:0px 10px; margin-top: 10px;">
+                        <div class="inner-container-plans">
+                            <h4><b><%=language.explore.Premium%></b></h4>
+                            <h3 class="pink-color"><b><%=language.explore.comingUp%></b></h3>
+                            <div class="grey"><%=language.explore.comingupf1%></div>
+                            <div class="grey"><small><%-language.explore.comingupf2%></small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+<%include includes/scripts.ejs%>
+
+<script type="text/javascript">
+    
+    toggleLogo();
+    function toggleLogo(){
+            $(".uk-navbar").addClass("active");
+            $(".logo-white").hide();
+            $(".logo-black").show("slow");
+    }
+
+    $(".plan-select").click(function(e){
+        $(".plan-select").removeClass("active");
+        var self = $(this);
+        self.addClass("active");
+    })
+
+    $(".plan-select").first().click()
+
+    $("#addToCart").click(function(e){
+        var self = $(".plan-select.active");
+        planId=self.attr("plan-id")
+        planType="monthly"
+        $.ajax({
+            url:"/shop/cart-session/add",
+            method:"POST",
+            data:{
+                planId:planId,
+                planType:planType
+            },
+            success:function(data){
+                console.log(data);
+                updateSideCart(data);
+                $(".line2").addClass("active");
+                $(".circle3").addClass("active");
+            },
+            error:function(err){
+                console.log(err);
+            }
+        })
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<%
+                                            product.plans.forEach(function(planDetails){
+                                            %>
+                                                <div class="uk-width-small-1-3 plan-details-plans">
+                                                    
+                                                        <div class="uk-text-center">
+                                                            <div class="uk-button uk-form-select select-plan-cover" value="<%=planDetails.devicePrice*language.currencyNumber%>" data-uk-form-select style="width:100%;">
+                                                                <span class="plans-text <%=planDetails.name%>"></span>
+                                                                <i class="uk-icon-caret-down"></i>
+                                                                <input type="hidden" name="planId" value="<%=planDetails.id%>">
+                                                                <input type="hidden" name="planType" value="" class="plan-type-hidden">
+                                                                <select value="" class="selectPlan">
+                                                                    <option selected="true" disabled="disabled" value=""><%=planDetails.name%></option>
+                                                                    <option value="monthly">$<%=planDetails.monthlyPrice*language.currencyNumber%> <%=language.currencyCode%><%=language.monthlypostFix%></option>
+                                                                    <!-- <option value="yearly">$<%=planDetails.yearlyPrice%><%=language.yearlypostFix%></option> -->
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                            <%
+                                            })
+                                            %>

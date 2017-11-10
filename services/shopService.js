@@ -190,6 +190,15 @@ module.exports = app => {
         })
     }
 
+    function getProductsForDesignName(name){
+        return Design.getDesignByName(name);
+    }
+
+    function getProductByProductAndDesignName(productName,designId){
+        console.log("all good");
+        return Product.getProductByNameAndDesign(productName,designId);
+    }
+
     return {
         getAllDesigns,
         getProductsForDesignId,
@@ -198,6 +207,8 @@ module.exports = app => {
         addShippingInfo,
         saveUserCardInfoAndMakeCharge,
         saveComproTransaction,
-        addWebHookNotification
+        addWebHookNotification,
+        getProductsForDesignName,
+        getProductByProductAndDesignName
     }
 }

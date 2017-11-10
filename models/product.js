@@ -112,12 +112,32 @@ module.exports = app => {
         })
     }
 
+    function getProductByNameAndDesign(productName,designId){
+        console.log("im here");
+        return Product.findOne({
+            include:[
+                {
+                    model:Design
+                },
+                {
+                    model:Plan
+                }
+            ],
+            where:{
+                name:productName,
+                designId:designId
+            },
+        })
+    }
+
+
 
     return {
         Product,
         initialize,
         getProductsForDesignId,
         getFirstProductByDesignId,
-        getProductById
+        getProductById,
+        getProductByNameAndDesign
     };
 };

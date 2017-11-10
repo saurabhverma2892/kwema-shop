@@ -8,6 +8,23 @@
     <%include includes/navbar.ejs %>
     <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center" style="padding-top:120px;">
         <h1><%=product.design.name%> <%=language.collection%></h1>
+            <div class="uk-text-center">
+                <div class="cart-process">
+                    <div class="line"></div><div class="line"></div>
+                    <div class="cart-circle left active">
+                        <div class="circle">1</div>
+                        <div class="text">Elige tu brazalete</div>
+                    </div>
+                    <div class="cart-circle center">
+                        <div class="circle">2</div>
+                        <div class="text">Elige tu plan</div>
+                    </div>
+                    <div class="cart-circle right">
+                        <div class="circle">3</div>
+                        <div class="text">Al carrito</div>
+                    </div>
+                </div>
+            </div>
             <div class="uk-grid products product<%=product.id%>" data-uk-grid style="padding-top:30px;">
                 <div class="uk-width-medium-1-2 uk-flex uk-flex-middle uk-flex-center" style="margin-bottom:40px;">
                     <div class="product-colors-container">
@@ -33,80 +50,93 @@
                                 <%}%>
                             </ul> 
                         </div>
+                        <p style="margin-bottom:0px; margin-top:40px;" class="pink-color"><b><%=product.name%></b></h4>
+                        <p style="margin-top:0px; margin-bottom:0px;" class="pink-color">(<%=product.details%>)</p>
+                        <p class="grey" style="margin-top: 0px;">$<%=product.price%></p>
                     </div> 
                 </div>
                 <div class="uk-width-medium-1-2 uk-flex yk-flex-middle">
                     <div class="product-features">
-                        <h4 style="margin-bottom:5px; margin-top:20px; font-size:30px;"><b><%=product.name%></b></h4>
-                        <p style="margin-top:0px; margin-bottom:10px;" class="pink-color"><b><%=product.details%></b></p>
-                        <div class="uk-grid" data-uk-grid>
-                            <div class="uk-width-small-1-3">
-                                <p class="small-top-bottom-margin-p"><img src="/images/cell.png"></p>
-                                <p class="grey small-top-bottom-margin-p">CR1220</p>
+                        
+                        <div class="uk-grid" data-uk-grid="{gutter: 20px}">
+                            <div class="uk-width-medium-1-3 uk-flex uk-flex-nowrap features-container">
+                                <div class="feature-image-cont">
+                                    <img src="/images/ficon1.png">
+                                </div>
+                                <div>
+                                    <p class="nomargin"><b>ELECTRÓNICA</b></p>
+                                    <p class="nomargin subdescription">Hecha en USA</p>
+                                </div>
                             </div>
-                            <div class="uk-width-small-1-3">
-                                <p class="small-top-bottom-margin-p"><img src="/images/chip.png"></p>
-                                <p class="small-top-bottom-margin-p grey"><%=language.madeInUs%></p>
+                            <div class="uk-width-medium-1-3 uk-flex uk-flex-nowrap features-container">
+                                <div class="feature-image-cont">
+                                    <img src="/images/ficon2.png">
+                                </div>
+                                <div>
+                                    <p class="nomargin"><b>MATERIAL</b></p>
+                                    <p class="nomargin subdescription">Baño de Oro de 18k</p>
+                                </div>
                             </div>
-                            <div class="uk-width-small-1-3">
-                                <p class="small-top-bottom-margin-p"><img src="/images/bluetooth.png"></p>
-                                <p class="grey small-top-bottom-margin-p"><%=language.lowEnergy%> (4.0)</p>
+                            <div class="uk-width-medium-1-3 uk-flex uk-flex-nowrap features-container">
+                                <div class="feature-image-cont">
+                                    <img src="/images/ficon3.png">
+                                </div>
+                                <div>
+                                    <p class="nomargin"><b>JOYA</b></p>
+                                    <p class="nomargin subdescription">Madre Perla</p>
+                                </div>
                             </div>
-                            <div class="uk-width-1-1 uk-text-left">
-                                <div>1. <%=language.chooseYourBracelet%></div>
-                                <div>2. <%=language.chooseYourPlan%></div>
-                                <div><small>(Subscripcion mensual + Precio de Dispositivo)</small></div>
+                            <div class="uk-width-medium-1-2 uk-flex uk-flex-nowrap features-container">
+                                <div class="feature-image-cont">
+                                    <img src="/images/ficon4.png">
+                                </div>
+                                <div>
+                                    <p class="nomargin"><b>DURACIÓN DE LA BATERÍA</b></p>
+                                    <p class="nomargin subdescription">6 Meses (dependiendo del uso)</p>
+                                </div>
                             </div>
-                            <div class="uk-width-1-1 uk-text-left" style="margin-top:20px;">
-                                <form action="/shop/usercart" method="POST" class="usercart">
-                                    <div class="uk-grid" data-uk-grid>
-                                        
-                                            <%
-                                            product.plans.forEach(function(planDetails){
-                                            %>
-                                                <div class="uk-width-small-1-3 plan-details-plans">
-                                                    
-                                                        <div class="uk-text-center">
-                                                            <div class="uk-button uk-form-select select-plan-cover" value="<%=planDetails.devicePrice*language.currencyNumber%>" data-uk-form-select style="width:100%;">
-                                                                <span class="plans-text <%=planDetails.name%>"></span>
-                                                                <i class="uk-icon-caret-down"></i>
-                                                                <input type="hidden" name="planId" value="<%=planDetails.id%>">
-                                                                <input type="hidden" name="planType" value="" class="plan-type-hidden">
-                                                                <select value="" class="selectPlan">
-                                                                    <option selected="true" disabled="disabled" value=""><%=planDetails.name%></option>
-                                                                    <option value="monthly">$<%=planDetails.monthlyPrice*language.currencyNumber%> <%=language.currencyCode%><%=language.monthlypostFix%></option>
-                                                                    <!-- <option value="yearly">$<%=planDetails.yearlyPrice%><%=language.yearlypostFix%></option> -->
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            <%
-                                            })
-                                            %>
-                                            <!-- <div style="margin-bottom: 0px;"><%=language.choosePlanTitle%></div> -->
-                                            <div class="pink-color" style="margin-bottom: 10px; margin-top: 10px;"><span class="plus" style="position: relative; top:-6px; margin-right: 4px;">+</span><span style="font-size: 30px;">$</span><span class="deviceBasePrice"><%=product.price*language.currencyNumber%></span> <%=language.currencyCode%>/<%=language.oneTimePayment%></div>
+                            <div class="uk-width-medium-1-2 uk-flex uk-flex-nowrap features-container">
+                                <div class="feature-image-cont">
+                                    <img src="/images/ficon5.png">
+                                </div>
+                                <div>
+                                    <p class="nomargin"><b>CONEXIÓN</b></p>
+                                    <p class="nomargin subdescription">Bluetooth 4.0 LE</p>
+                                </div>
+                            </div>
+                            <div class="uk-width-medium-1-1 uk-flex uk-flex-nowrap features-container">
+                                <div class="feature-image-cont">
+                                    <img src="/images/ficon6.png">
+                                </div>
+                                <div>
+                                    <p class="nomargin"><b>EN LA CAJA</b></p>
+                                    <p class="nomargin subdescription">Pulsera Kwema, Dispositivo Bluetooth (batería incluida)</p>
+                                </div>
+                            </div>
+                        </div>    
+                            
+                        <div class="uk-width-1-1 uk-text-left" style="margin-top:20px;">
+                                <div class="uk-grid" data-uk-grid>
 
-                                                <div class="uk-width-1-2 uk-text-left"><a data-uk-modal="{target:'#planDetails'}"><%=language.planDetails%></a></div>
-                                                <div class="uk-width-1-2 uk-text-right"> 
-                                                    <!-- <div class="uk-text-right"><p><a href="#"><%=language.alreadyHavePlan%></a></p></div> -->
-                                                </div>
-                                                <div class="product-selector uk-width-1-1 uk-text-center" >
-                                                    <%products.forEach(function(productdetails){%>
-                                                        <a href="/shop/plans?id=<%=product.design.id%>&&productId=<%=productdetails.id%>">
-                                                    <button type="button" style="background-color: <%=productdetails.color%>;" class="select-product <%=productdetails.name%> 
-                                                    <%
-                                                    if(productdetails.id == product.id){
-                                                        %>active<%
-                                                    }
-                                                    %>" value="<%=productdetails.id%>"></button></a>
-                                                    <%})%>
-                                                </div>
-                                                <div class="uk-width-1-1 uk-text-center">
-                                                    <button class="uk-button uk-button-primary" id="addToCart"><%=language.addToCart%></button>
-                                                </div>
-                                    </div>
-                                </form>
-                            </div>
+                                            <div class="uk-width-1-2 uk-text-left"><a data-uk-modal="{target:'#planDetails'}"><%=language.planDetails%></a></div>
+                                            
+                                            <div class="product-selector uk-width-1-1 uk-text-center" >
+                                                <%products.forEach(function(productdetails){%>
+                                                    <a href="/shop/products/<%=product.design.name%>/<%=productdetails.name%>">
+                                                <button type="button" style="background-color: <%=productdetails.color%>;" class="select-product <%=productdetails.name%> 
+                                                <%
+                                                if(productdetails.id == product.id){
+                                                    %>active<%
+                                                }
+                                                %>" value="<%=productdetails.id%>"></button></a>
+                                                <%})%>
+                                            </div>
+                                            <div class="uk-width-1-1 uk-text-center">
+                                                <a href="/shop/products/<%=product.design.name%>/<%=product.name%>/plans">
+                                                    <button class="uk-button uk-button-primary" id="addToCart">SELECCIONAR</button>
+                                                </a>
+                                            </div>
+                                </div>
                         </div>
                     </div> 
                 </div>
@@ -189,110 +219,6 @@
             $(".logo-black").show("slow");
     }
 
-    /*$(".choose-plan-button").click(function(){
-        $(".choose-plan-button").removeClass("active");
-        var self = $(this);
-        self.addClass("active");
-        var planId = self.val();
-        $("#planId").val(planId);
-    })*/
-
-    /*$("#checkoutForm").submit(function(){
-        var self = $(this);
-        if($("#planId").val().trim()==""){
-            return false;
-        }
-        else{
-            return true;
-        }
-    })*/
-
-    /*$(".usercart").submit(function(e){
-        cartModal.show();
-        var self = $(this);
-        $.ajax({
-            url:"/shop/usercart",
-            method:"POST",
-            data:self.serialize(),
-            success:function(data){
-
-                $(".cart-count").html(data.length);
-                $(".cart-details").html("");
-                data.forEach(function(cartItem){
-                    var amount=0;
-                    var amountPostfix="";
-                    if(cartItem.planType=="bracelet"){
-                        amount=cartItem.planDetails.devicePrice;
-                    }
-                    else if(cartItem.planType=="monthly"){
-                        amount=cartItem.planDetails.monthlyPrice;
-                        amountPostfix="/mo"
-                    }
-                    else if(cartItem.planType=="yearly"){
-                        amount=cartItem.planDetails.yearlyPrice;
-                        amountPostfix="/yr"
-                    }
-                    var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+'('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+amount+amountPostfix+'</p><p class="pink-color">Plan:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right"><span class="pink-color">'+cartItem.quantity+'</span></div></div>'
-                    console.log(itemHtml);
-                    $(".cart-details").append(itemHtml);
-                })
-            },
-            error:function(data){
-                console.log(err);
-            }
-        })
-        return false;
-    })*/
-
-    
-
-    
-
-
-    $(".selectPlan").change(function(e){
-        var self = $(this);
-        var devicePrice = self.parent().attr("value");
-        $(".deviceBasePrice").html(devicePrice);
-        console.log(devicePrice);
-        console.log(self.val());
-        $(".plan-type-hidden").val("");
-        self.prev().val(self.val());
-    });
-
-    $(".selectPlan").click(function(e){
-        var self = $(this);
-        var devicePrice = self.parent().attr("value");
-        $(".deviceBasePrice").html(devicePrice);
-        console.log(devicePrice);
-        console.log(self.val());
-        $(".plan-type-hidden").val("");
-        self.prev().val(self.val());
-    });
-
-    $(".uk-button.select-plan-cover").click(function(e){
-        var self = $(this);
-        $(".uk-button.select-plan-cover").removeClass("active");
-        self.addClass("active");
-
-    })
-
-    $(".usercart").submit(function(e){
-        var self = $(this);
-        console.log(self.serialize());
-        $.ajax({
-            url:"/shop/usercart",
-            method:"POST",
-            data:self.serialize(),
-            success:function(data){
-                updateSideCart(data)
-            },
-            error:function(err){
-                $.notify("Item already exists in cart", {position:"top center", className:"error"});
-                console.log(err);
-            }
-        })
-        return false;
-    });
 
 </script>
 </body>

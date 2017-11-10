@@ -451,9 +451,6 @@ footer p{
     display: inline-block;
     max-width: 400px;
 }
-.products{
-    display: none;
-}
 .products:nth-of-type(1) {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
@@ -775,4 +772,115 @@ footer{
 
 .quantityselector{
     display: none;
+}
+
+.products-container .product-image img{
+    height:200px;
+}
+
+.nomargin{
+    margin:0px;
+}
+
+.feature-image-cont{
+    min-width:35px;
+    margin-right: 10px;
+    text-align: left;
+}
+
+.features-container{
+    text-align: left;
+    padding-bottom: 20px;
+    min-width:170px;
+}
+
+.features-container .subdescription{
+    line-height: 1em !important;
+}
+
+.feature-image-cont img{
+    width:100%;
+}
+
+.cart-process .line{
+    width:50%;
+    height:4px;
+    background-color: #999;
+    border-radius: 18px;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 22px;
+}
+
+.cart-process{
+    max-width: 700px;
+    width:100%;
+    display: inline-block;
+    position: relative;
+}
+
+.cart-process .cart-circle{
+    display: inline-block;
+    position:relative;
+    top:-20px;
+    width:35px;
+}
+
+.cart-process .cart-circle .circle{
+    width:40px;
+    height:40px;
+    background-color: #999;
+    border-radius: 100%;
+    padding-top: 10px;
+    color:white;
+}
+
+.cart-process .cart-circle.active .circle{
+    background-color: #DB0988;
+}
+
+.cart-process .line.active{
+    background-color: #DB0988;
+}
+
+.cart-process .cart-circle.left{
+    float:left;
+    left:-10px;
+}
+
+.cart-process .cart-circle.right{
+    float:right;
+    right:-10px;
+}
+
+.cart-process .cart-circle .text{
+    width:100%;
+    white-space: nowrap;
+    position:relative;
+    left:-50%;
+    padding-top: 10px;
+    font-weight: bolder;
+    color:#999;
+}
+
+.cart-process .cart-circle.active .text{
+    color:#DB0988;
+}
+
+.plan-select{
+    width:100%;
+    border-radius: 20px;
+    border:2px solid #999;
+    height:100%;
+    padding:10px;
+    cursor: pointer;
+}
+
+.plan-select p{
+    color: inherit;
+}
+
+.plan-select.active{
+    color:#DB0988;
+    border-color: #DB0988;
 }

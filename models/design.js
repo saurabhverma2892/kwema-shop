@@ -62,10 +62,23 @@ module.exports = app => {
         });
     }
 
+    function getDesignByName(name){
+        return Design.findOne({
+            where:{
+                name:name
+            },
+            include:[
+            {
+                model:Product
+            }]
+        })
+    }
+
 
     return {
         Design,
         initialize,
-        getAllDesigns
+        getAllDesigns,
+        getDesignByName
     };
 };

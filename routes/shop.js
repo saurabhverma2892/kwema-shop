@@ -33,6 +33,24 @@ module.exports = app => {
         //res.render("cart");
     })
 
+    router.route("/products/:designName").get((req,res,next)=>{
+        console.log("workign in here");
+        console.log(req.params);
+        console.log(req.query);
+        console.log(req.body);
+        shopController.getProductsPage(req,res,next);
+    })
+
+    router.route("/products/:designName/:productName").get((req,res,next)=>{
+        console.log(req.params);
+        shopController.getItemPage(req,res,next);
+    })
+
+    router.route("/products/:designName/:productName/plans").get((req,res,next)=>{
+        console.log(req.params);
+        shopController.getPlansForProduct(req,res,next);
+    })
+
     router.route("/pay/card").get(isLoggedIn, (req,res,next)=>{
         shopController.getPaymentPage(req,res,next)
     })
@@ -116,6 +134,18 @@ module.exports = app => {
             res.redirect("/shop");
         }
         
+    })
+
+    router.route("/cart-session/add").post((req,res,next)=>{
+        console.log("im here");
+        console.log(req.body);
+        var usercartdetails = req.body;
+        if(!req.session.cart){
+            req.session.cart=[];
+        }
+        req.session.cart.push({planType:req.body.planType, planId:req.body.planId,quantity:1})
+        console.log(req.session.cart);
+        shopController.getPlanDetailsForEachCartItem(req,res,next);
     })
 
     router.route("/usercart").post((req,res,next)=>{
@@ -251,7 +281,6 @@ module.exports = app => {
     router.route("/paybycash/save").get((req,res,next)=>{
         shopController.saveCashPaymentCart(req,res,next);
     })
-
 
     return router;
 }
