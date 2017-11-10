@@ -31,6 +31,7 @@
                         var planPrice=amount;
                         var individualAmount = amount+(cart.planDetails.devicePrice*language.currencyNumber);
                         var quantity = cart.quantity;
+                        var planName = cart.planDetails.name;
                         totalAmount = totalAmount+individualAmount+language.taxAmount;
                         %>
                         <%include shared/carttop.ejs%>
@@ -58,7 +59,7 @@
                             <input type="text" name="address" placeholder="<%=language.Address%>" class="uk-input" value="<%=user.address%>" required> 
                         </div>
                         <div class="uk-width-1-2">
-                            <input type="text" name="country" placeholder="<%language.country%>" class="uk-input" value="<%=user.country%>" required>
+                            <input type="text" name="country" placeholder="<%=language.country%>" class="uk-input" value="<%=user.country%>" required>
                         </div>
                         <div class="uk-width-small-1-2">
                             <input type="text" name="city" placeholder="<%=language.City%>" class="uk-input" value="<%=user.city%>" required> 
@@ -73,7 +74,7 @@
                     <div class="uk-width-medium-1-2 uk-text-left">
                         <p style="margin-bottom: 2px;"><b><%=language.shippingNotification%></b></p>
                         <p style="margin:0px; margin-bottom: 2px;"><%=language.shippingNotp1%></p>
-                        <p style="margin:0px; margin-bottom: 4px;"><%=language.shippingNotp2%></p>
+                        <!-- <p style="margin:0px; margin-bottom: 4px;"><%=language.shippingNotp2%></p> -->
                         <div>
                             <input type="text" name="email" class="uk-input" value="<%=user.email%>" placeholder="<%=language.login.emailAddress%>*" required> 
                         </div>

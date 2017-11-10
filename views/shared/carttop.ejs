@@ -2,7 +2,7 @@
     <div class="cart-product-image inline-block inline-block-top" style="background-image: url('<%=cart.planDetails.product.primaryImage%>');"></div>
     <div class="inline-block inline-block-top main-cart-details-list-details">
         <p><b><%=cart.planDetails.product.name%> <%=cart.planDetails.product.details%></b></p>
-        <p><b><%=language.Ship%>:</b> <%language.tenDays%> | <%-language.freeShippingText%> | <a href="/shop/delivery-address"><%-language.getDeliveryAddress%></a></p>
+        <p><b><%=language.ship%></b> <%=language.tenfifdays%> | <%=language.shipping%> <span class="pink-color"><%=language.mexicousd%></span> | <span class="pink-color"><%=language.restoftheworld%></span> <%=language.wewillcontact%></p>
     </div>
 </div>
 <div class="uk-width-medium-2-5 uk-text-right main-cart-right-details" style="font-size: 18px;">
@@ -13,7 +13,7 @@
         <small> Bracelet: </small><b class="pink-color">$<%=braceletPrice%> <%=language.currencyCode%></b>
     </div>
     <div>
-        <small> Plan: </small><b class="pink-color">$<%=amount%> <%=language.currencyCode%></b><%=amountPostFix%>
+        <small> Plan: <%=planName%> </small><b class="pink-color">$<%=amount%> <%=language.currencyCode%></b><%=amountPostFix%>
     </div>
     <div>
         <small>Quantity: <%=quantity%></small>

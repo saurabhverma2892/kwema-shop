@@ -53,6 +53,12 @@ module.exports = app => {
         },
         primaryImage:{
             type: Sequelize.STRING
+        },
+        material:{
+            type: Sequelize.STRING
+        },
+        stone:{
+            type: Sequelize.STRING
         }
     },
     {

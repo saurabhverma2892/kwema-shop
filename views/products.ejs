@@ -7,7 +7,7 @@
 <body>
     <%include includes/navbar.ejs %>
     <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center products-container" style="padding-top:120px;">
-        <h1 style="padding-bottom:80px;">EXPLORE THE EVE COLLECTION</h1>
+        <h1 style="padding-bottom:80px; text-transform: uppercase;"><%=language.productsTitle%> <%=categoryName%></h1>
         <div class="uk-grid" data-uk-grid>
             <%products.forEach(function(product){ %>
                     <div class="uk-width-medium-1-3" style="margin-bottom:35px;">

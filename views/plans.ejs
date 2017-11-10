@@ -12,12 +12,16 @@
                 <div class="cart-process">
                     <div class="line"></div><div class="line"></div>
                     <div class="cart-circle left active">
-                        <div class="circle">1</div>
-                        <div class="text">Elige tu brazalete</div>
+                        <a href="/shop/products/<%=product.design.name%>/<%=product.name%>">
+                            <div class="circle">1</div>
+                            <div class="text">Elige tu brazalete</div>
+                        </a>
                     </div>
                     <div class="cart-circle center">
-                        <div class="circle">2</div>
-                        <div class="text">Elige tu plan</div>
+                        <a href="/shop/products/<%=product.design.name%>/<%=product.name%>/plans">
+                            <div class="circle">2</div>
+                            <div class="text">Elige tu plan</div>
+                        </a>
                     </div>
                     <div class="cart-circle right">
                         <div class="circle">3</div>
@@ -51,8 +55,7 @@
                             </ul> 
                         </div>
                         <p style="margin-bottom:0px; margin-top:40px;" class="pink-color"><b><%=product.name%></b></h4>
-                        <p style="margin-top:0px; margin-bottom:0px;" class="pink-color">(<%=product.details%>)</p>
-                        <p class="grey" style="margin-top: 0px;">$<%=product.price%></p>
+                        <p class="pink-color" style="margin-top: 0px;">$<%=product.price%></p>
                     </div> 
                 </div>
                 <div class="uk-width-medium-1-2 uk-flex yk-flex-middle">
@@ -74,7 +77,7 @@
                                 </div>
                                 <div>
                                     <p class="nomargin"><b>MATERIAL</b></p>
-                                    <p class="nomargin subdescription">Baño de Oro de 18k</p>
+                                    <p class="nomargin subdescription"><%=product.material%></p>
                                 </div>
                             </div>
                             <div class="uk-width-medium-1-3 uk-flex uk-flex-nowrap features-container">
@@ -83,7 +86,7 @@
                                 </div>
                                 <div>
                                     <p class="nomargin"><b>JOYA</b></p>
-                                    <p class="nomargin subdescription">Madre Perla</p>
+                                    <p class="nomargin subdescription"><%=product.stone%></p>
                                 </div>
                             </div>
                             <div class="uk-width-medium-1-2 uk-flex uk-flex-nowrap features-container">
@@ -114,11 +117,16 @@
                                 </div>
                             </div>
                         </div>    
+                        <div class="uk-text-left" class="pink-color">
+                            <a href="https://youtu.be/QzJ57no86SE" target="_blank">
+                                <i class="fa fa-play-circle-o pink-color how-it-works" style="font-size: 40px; margin-right: 10px;"></i><span class="pink-color how-it-works"> <%=language.seeHowWorks%></span>
+                            </a>
+                        </div>
                             
                         <div class="uk-width-1-1 uk-text-left" style="margin-top:20px;">
                                 <div class="uk-grid" data-uk-grid>
 
-                                            <div class="uk-width-1-2 uk-text-left"><a data-uk-modal="{target:'#planDetails'}"><%=language.planDetails%></a></div>
+                                            <!-- <div class="uk-width-1-2 uk-text-left"><a data-uk-modal="{target:'#planDetails'}"><%=language.planDetails%></a></div> -->
                                             
                                             <div class="product-selector uk-width-1-1 uk-text-center" >
                                                 <%products.forEach(function(productdetails){%>
@@ -147,7 +155,7 @@
     <div id="planDetails" class="uk-modal">
         <div class="uk-modal-dialog" style="width:90%;">
             <a class="uk-modal-close uk-close"></a>
-            <div class="uk-width-1-1 uk-text-center plans-about-us " >
+            <div class="uk-width-1-1 uk-text-center plans-about-us padding-top-bottom padding-sides">
                 <h2><%=language.explore.chooseplan%></h2>
                 <h4><%=language.explore.checkoutPlans%></h4>
                 <div class="uk-grid" data-uk-grid style="margin-left:0px;">
@@ -156,12 +164,12 @@
                             <h4><b><%=language.explore.Day%></b></h4>
                             <h3><%=language.explore.plan1%></h3>
                             <b class="grey">
-                                <div ><%=language.explore.plan1y%></div>
+                                <div ><%=language.plandetails.plan1.p2%></div>
                             </b>
-                            <p class="grey"><%=language.explore.plan1f1%></p>
-                            <p class="grey"><%=language.explore.plan1f2%></p>
-                            <p class="grey"><%=language.explore.plan1f3%></p>
-                            <p class="grey"><%=language.explore.plan1f4%></p>
+                            <p class="grey"> <%=language.plandetails.plan1.p3%></p>
+                            <p class="grey"> <%=language.plandetails.plan1.p4%></p>
+                            <p class="grey"> <%=language.plandetails.plan1.p5%></p>
+                            <p class="grey"> <%=language.plandetails.plan1.p6%></p>
                         </div>
                     </div>
                     <div class="uk-width-medium-1-3">
@@ -169,13 +177,13 @@
                             <h4><b><%=language.explore.Evening%></b></h4>
                             <h3><%=language.explore.plan2%></h3>
                             <b class="grey">
-                                <div><%=language.explore.plan2y%></div>
+                                <div ><%=language.plandetails.plan2.p2%></div>
                             </b>
-                            <p class="grey"><%=language.explore.plan1f1%></p>
-                            <p class="grey"><%=language.explore.plan1f2%></p>
-                            <p class="grey"><%=language.explore.plan1f3%></p>
-                            <p class="grey"><%=language.explore.plan1f4%></p>
-                            <p class="pink-color" style="font-size: 18px;"><b><%=language.explore.plan2d1%></b></p>
+                            <p class="grey"> <%=language.plandetails.plan2.p3%></p>
+                            <p class="grey"> <%=language.plandetails.plan2.p4%></p>
+                            <p class="grey"> <%=language.plandetails.plan2.p5%></p>
+                            <p class="grey"> <%=language.plandetails.plan2.p6%></p>
+                            
                         </div>
                     </div>
                     <div class="uk-width-medium-1-3">
@@ -183,14 +191,12 @@
                             <h4><b><%=language.explore.Night%></b></h4>
                             <h3><%=language.explore.plan3%></h3>
                             <b class="grey">
-                                <div><%=language.explore.plan3y%></div>
+                                <div ><%=language.plandetails.plan3.p2%></div>
                             </b>
-                            <p class="grey"><%=language.explore.plan1f1%></p>
-                            <p class="grey"><%=language.explore.plan1f2%></p>
-                            <p class="grey"><%=language.explore.plan1f3%></p>
-                            <p class="grey"><%=language.explore.plan1f4%></p>
-                            <p class="pink-color" style="font-size: 18px;"><b><%=language.explore.plan3d1%></b></p>
-
+                            <p class="grey"> <%=language.plandetails.plan3.p3%></p>
+                            <p class="grey"> <%=language.plandetails.plan3.p4%></p>
+                            <p class="grey"> <%=language.plandetails.plan3.p5%></p>
+                            <p class="grey"> <%=language.plandetails.plan3.p6%></p>
                         </div>
                     </div>
                     <div class="uk-width-medium-1-1" style="padding:0px 10px; margin-top: 10px;">

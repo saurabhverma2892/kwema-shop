@@ -884,3 +884,16 @@ footer{
     color:#DB0988;
     border-color: #DB0988;
 }
+
+.how-it-works{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.plan-details{
+    display: none;
+}
+
+.plan-details.active{
+    display: inline-block;
+}

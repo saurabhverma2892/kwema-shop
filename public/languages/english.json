@@ -96,7 +96,7 @@
     "State":"State",
     "zipCode":"Zip Code",
     "shippingNotification":"Shipping Notifications",
-    "shippingNotp1":"Shipment notification emails are sent to the billing contact.",
+    "shippingNotp1":"The notifications of your order will be sent to the contact below",
     "shippingNotp2":"Another recipient email adress may be added below",
     "optionalEmail":"Email (optional)",
     "TOTAL":"TOTAL",
@@ -149,12 +149,12 @@
         "stats3":"women suffer physical or sexual violence",
         "chooseplan":"CHOOSE YOUR PLAN",
         "checkoutPlans":"Check out our subscription plans:",
-        "Day":"Day",
-        "Evening":"Evening",
-        "Night":"Night",
-        "plan1":"$ 90,00/mensual",
-        "plan2":"$165,00 /mensual",
-        "plan3":"$215,00 /mensual",
+        "Day":"Lady Liberty",
+        "Evening":"BFFs",
+        "Night":"Girl Power",
+        "plan1":"$2.99 USD/month",
+        "plan2":"$4.99 USD /month",
+        "plan3":"$7.99 USD/month",
         "plan1y":"1 usuario",
         "plan2y":"2 usuario",
         "plan3y":"3 usuario",
@@ -188,11 +188,49 @@
     "submittedSuccessfully":"We have recieved your query",
     "iagreetermsandconditions":"I agree to the ",
     "termsAndConditions":"Terms And Conditions",
-    "country":"country",
+    "country":"Country",
     "languageClass":"english-flag",
     "currencyNumber":1,
     "currencyCode":"USD",
     "taxAmount":5,
-    "selectedCountry":"USA"
+    "selectedCountry":"USA",
+    "productsTitle":"EXPLORE THE COLLECTION",
+    "seeHowWorks":"SEE HOW IT WORKS",
+    "changePlanText":"You can improve your plan at any time. If you are in the BFFs or Girl Power plan, you can change to a smaller plan after 6 months. If you were not happy with the service you can cancel at any time without additional cost.",
+    "plandetails":{
+        "plan1":{
+            "p1":"For every strong, independent woman",
+            "p2":"1 user",
+            "p3":"Notify friends and family using mobile data or via SMS",
+            "p4":"Add up to 10 contacts to your Safety Network",
+            "p5":"Access to Kwema’s Community",
+            "p6":"Get Panic Button on App"
+        },
+        "plan2":{
+            "p1":"For best friends to share everything",
+            "p2":"Up to 2 users",
+            "p3":"Notify friends and family using mobile data or via SMS",
+            "p4":"Add up to 10 contacts to your Safety Network",
+            "p5":"Access to Kwema’s Community",
+            "p6":"Get Panic Button on App"
+        },
+        "plan3":{
+            "p1":"For family above all, always and forever",
+            "p2":"Up to 3 users",
+            "p3":"Notify friends and family using mobile data or via SMS",
+            "p4":"Add unlimited contacts to your Safety Network",
+            "p5":"Access to Kwema’s Community",
+            "p6":"Get Panic Button on App"
+        }
+    },
+    "checkout":"CHECKOUT",
+    "shipsin10days":"Ships in 10 - 15 days",
+    "ship":"Ship:",
+    "tenfifdays":"10 - 15 days",
+    "shipping":"Shipping",
+    "mexicousd":"Mexico USD $5.00",
+    "restoftheworld":"Rest of the World,",
+    "wewillcontact":"we will contact you once the purchase is finished"
+
 }
 

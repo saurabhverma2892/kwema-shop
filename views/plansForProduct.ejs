@@ -12,12 +12,16 @@
                 <div class="cart-process">
                     <div class="line active"></div><div class="line line2"></div>
                     <div class="cart-circle left active">
-                        <div class="circle">1</div>
-                        <div class="text">Elige tu brazalete</div>
+                        <a href="/shop/products/<%=product.design.name%>/<%=product.name%>">
+                            <div class="circle">1</div>
+                            <div class="text">Elige tu brazalete</div>
+                        </a>
                     </div>
                     <div class="cart-circle center active">
-                        <div class="circle">2</div>
-                        <div class="text">Elige tu plan</div>
+                        <a href="/shop/products/<%=product.design.name%>/<%=product.name%>/plans">
+                            <div class="circle">2</div>
+                            <div class="text">Elige tu plan</div>
+                        </a>
                     </div>
                     <div class="cart-circle right circle3">
                         <div class="circle">3</div>
@@ -61,25 +65,45 @@
                         <div class="uk-text-left">
                             <p class="nomargin">Elige el plan que más se adapta a ti:</p>
                             <div class="uk-grid uk-text-center" daya-uk-grid style="margin-top:14px;">
+                                <%var i = 1%>
                                 <%product.plans.forEach(function(plan){%>
                                     <div class="uk-width-small-1-3">
-                                        <div class="plan-select uk-flex uk-flex-middle uk-flex-center" plan-id="<%=plan.id%>">
+                                        <div class="plan-select uk-flex uk-flex-middle uk-flex-center" plan-id="<%=plan.id%>" number="<%=i%>">
                                             <div>
                                                 <p class="nomargin"><b><%=plan.name%></b></p>
                                                 <p class="nomargin">$<%=plan.monthlyPrice%> MXN/mes</p>
                                             </div>
                                         </div>
                                     </div>
-                                <%})%>
+                                <%i++})%>
                             </div>
-                            <p clasa="nomargin"><b>Para las mejores amigas que lo comparten todo</b></p>
-                            <p class="pink-color nomargin"><b>1 usuario</b></p>
-                            <p class="grey nomargin">- Notifica a amigos y familiares usando datos móviles o a través de SMS</p>
-                            <p class="grey nomargin">- Agrega hasta 10 contactos de seguridad</p>
-                            <p class="grey nomargin">- Acceso a la comunidad de Kwema</p>
-                            <p class="grey nomargin">- Obtén el botón de pánico en la aplicación</p>
+                            <div class="plan-details plan1 active uk-margin">
+                                <p clasa="nomargin"><b><%=language.plandetails.plan1.p1%></b></p>
+                                <p class="pink-color nomargin"><b><%=language.plandetails.plan1.p2%></b></p>
+                                <p class="grey nomargin">- <%=language.plandetails.plan1.p3%></p>
+                                <p class="grey nomargin">- <%=language.plandetails.plan1.p4%></p>
+                                <p class="grey nomargin">- <%=language.plandetails.plan1.p5%></p>
+                                <p class="grey nomargin">- <%=language.plandetails.plan1.p6%></p>
+                            </div>
+                            <div class="plan-details plan2 uk-margin">
+                                <p clasa="nomargin"><b><%=language.plandetails.plan2.p1%></b></p>
+                                <p class="pink-color nomargin"><b><%=language.plandetails.plan2.p2%></b></p>
+                                <p class="grey nomargin">- <%=language.plandetails.plan2.p3%></p>
+                                <p class="grey nomargin">- <%=language.plandetails.plan2.p4%></p>
+                                <p class="grey nomargin">- <%=language.plandetails.plan2.p5%></p>
+                                <p class="grey nomargin">- <%=language.plandetails.plan2.p6%></p>
+                            </div>
+                            <div class="plan-details plan3 uk-margin">
+                                <p clasa="nomargin"><b><%=language.plandetails.plan3.p1%></b></p>
+                                <p class="pink-color nomargin"><b><%=language.plandetails.plan3.p2%></b></p>
+                                <p class="grey nomargin">- <%=language.plandetails.plan3.p3%></p>
+                                <p class="grey nomargin">- <%=language.plandetails.plan3.p4%></p>
+                                <p class="grey nomargin">- <%=language.plandetails.plan3.p5%></p>
+                                <p class="grey nomargin">- <%=language.plandetails.plan3.p6%></p>
+                            </div>
+                            
 
-                            <p class="grey"><small>Puedes mejorar tu plan en cualquier momento. Si estás dentro del plan Evening o Night, podrás cambiar a un plan menor después de 6 meses o pagando la diferencia de precio del dispositivo. Si no quedaste contenta con el servicio puedes cancelar en cualquier momento sin costo adicional. </small></p>
+                            <p class="grey"><small><%=language.changePlanText%></small></p>
                         </div> 
 
                         <input type="hidden" name="planType" value="monthly">
@@ -106,7 +130,7 @@
     <div id="planDetails" class="uk-modal">
         <div class="uk-modal-dialog" style="width:90%;">
             <a class="uk-modal-close uk-close"></a>
-            <div class="uk-width-1-1 uk-text-center plans-about-us " >
+            <div class="uk-width-1-1 uk-text-center plans-about-us padding-top-bottom padding-sides">
                 <h2><%=language.explore.chooseplan%></h2>
                 <h4><%=language.explore.checkoutPlans%></h4>
                 <div class="uk-grid" data-uk-grid style="margin-left:0px;">
@@ -115,12 +139,12 @@
                             <h4><b><%=language.explore.Day%></b></h4>
                             <h3><%=language.explore.plan1%></h3>
                             <b class="grey">
-                                <div ><%=language.explore.plan1y%></div>
+                                <div ><%=language.plandetails.plan1.p2%></div>
                             </b>
-                            <p class="grey"><%=language.explore.plan1f1%></p>
-                            <p class="grey"><%=language.explore.plan1f2%></p>
-                            <p class="grey"><%=language.explore.plan1f3%></p>
-                            <p class="grey"><%=language.explore.plan1f4%></p>
+                            <p class="grey"> <%=language.plandetails.plan1.p3%></p>
+                            <p class="grey"> <%=language.plandetails.plan1.p4%></p>
+                            <p class="grey"> <%=language.plandetails.plan1.p5%></p>
+                            <p class="grey"> <%=language.plandetails.plan1.p6%></p>
                         </div>
                     </div>
                     <div class="uk-width-medium-1-3">
@@ -128,13 +152,13 @@
                             <h4><b><%=language.explore.Evening%></b></h4>
                             <h3><%=language.explore.plan2%></h3>
                             <b class="grey">
-                                <div><%=language.explore.plan2y%></div>
+                                <div ><%=language.plandetails.plan2.p2%></div>
                             </b>
-                            <p class="grey"><%=language.explore.plan1f1%></p>
-                            <p class="grey"><%=language.explore.plan1f2%></p>
-                            <p class="grey"><%=language.explore.plan1f3%></p>
-                            <p class="grey"><%=language.explore.plan1f4%></p>
-                            <p class="pink-color" style="font-size: 18px;"><b><%=language.explore.plan2d1%></b></p>
+                            <p class="grey"> <%=language.plandetails.plan2.p3%></p>
+                            <p class="grey"> <%=language.plandetails.plan2.p4%></p>
+                            <p class="grey"> <%=language.plandetails.plan2.p5%></p>
+                            <p class="grey"> <%=language.plandetails.plan2.p6%></p>
+                            
                         </div>
                     </div>
                     <div class="uk-width-medium-1-3">
@@ -142,13 +166,12 @@
                             <h4><b><%=language.explore.Night%></b></h4>
                             <h3><%=language.explore.plan3%></h3>
                             <b class="grey">
-                                <div><%=language.explore.plan3y%></div>
+                                <div ><%=language.plandetails.plan3.p2%></div>
                             </b>
-                            <p class="grey"><%=language.explore.plan1f1%></p>
-                            <p class="grey"><%=language.explore.plan1f2%></p>
-                            <p class="grey"><%=language.explore.plan1f3%></p>
-                            <p class="grey"><%=language.explore.plan1f4%></p>
-                            <p class="pink-color" style="font-size: 18px;"><b><%=language.explore.plan3d1%></b></p>
+                            <p class="grey"> <%=language.plandetails.plan3.p3%></p>
+                            <p class="grey"> <%=language.plandetails.plan3.p4%></p>
+                            <p class="grey"> <%=language.plandetails.plan3.p5%></p>
+                            <p class="grey"> <%=language.plandetails.plan3.p6%></p>
                         </div>
                     </div>
                     <div class="uk-width-medium-1-1" style="padding:0px 10px; margin-top: 10px;">
@@ -181,6 +204,9 @@
         $(".plan-select").removeClass("active");
         var self = $(this);
         self.addClass("active");
+        var number = self.attr("number");
+        $(".plan-details").removeClass("active");
+        $(".plan"+number).addClass("active");
     })
 
     $(".plan-select").first().click()
