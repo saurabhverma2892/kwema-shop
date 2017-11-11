@@ -11,9 +11,9 @@ module.exports = app => {
 
     let stripeService = app.services.stripeService;
 
-    function getAllDesigns(){
+    function getAllDesigns(currency){
         return new Promise((resolve,reject)=>{
-            Design.getAllDesigns().then(data=>{
+            Design.getAllDesigns(currency).then(data=>{
                 return resolve(data);
             }).catch(err=>{
                 return reject(err);
@@ -66,13 +66,13 @@ module.exports = app => {
         })
     }
 
-    function getPlanDetailsForEachCartItem(req){
+    function getPlanDetailsForEachCartItem(req, currency){
         var promises = [];
         return new Promise((resolve,reject)=>{
             var i = 0;
             req.session.cart.forEach(cartItem=>{
                 var promisePlan = new Promise((resolve2,reject2)=>{
-                    Plan.getPlanById(cartItem.planId).then(data=>{
+                    Plan.getPlanById(cartItem.planId, currency).then(data=>{
                         cartItem.planDetails=data;
                         return resolve2(cartItem);
                     }).catch(err=>{
@@ -190,13 +190,13 @@ module.exports = app => {
         })
     }
 
-    function getProductsForDesignName(name){
-        return Design.getDesignByName(name);
+    function getProductsForDesignName(name, currency){
+        return Design.getDesignByName(name, currency);
     }
 
-    function getProductByProductAndDesignName(productName,designId){
+    function getProductByProductAndDesignName(productName,designId,currency){
         console.log("all good");
-        return Product.getProductByNameAndDesign(productName,designId);
+        return Product.getProductByNameAndDesign(productName,designId,currency);
     }
 
     return {

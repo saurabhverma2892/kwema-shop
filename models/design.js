@@ -6,6 +6,7 @@ module.exports = app => {
     let logger = app.helpers.logger;
     let errorFormatter = app.helpers.errorFormatter;
     let Product = null;
+    let Currency = null;
 
     var Design = sequelize.define("design", {  
         id: {
@@ -49,28 +50,43 @@ module.exports = app => {
 
     function initialize(){
         Product=app.models.product.Product;
+        Currency=app.models.currency.Currency;
         Design.hasMany(Product,{foreignKey:'designId'});
+        Design.hasMany(Currency,{foreignKey:'designId'})
     }
 
-    function getAllDesigns(){
+    function getAllDesigns(currency){
         return Design.findAll({
             include:[
                 {
                     model:Product
+                },
+                {
+                    model:Currency,
+                    where:{
+                        currency:currency
+                    }
                 }
             ]
         });
     }
 
-    function getDesignByName(name){
+    function getDesignByName(name, currency){
         return Design.findOne({
             where:{
                 name:name
             },
             include:[
-            {
-                model:Product
-            }]
+                {
+                    model:Product,
+                },
+                {
+                    model:Currency,
+                    where:{
+                        currency:currency
+                    }
+                }
+            ]
         })
     }
 

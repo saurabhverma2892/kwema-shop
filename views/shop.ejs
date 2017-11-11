@@ -37,7 +37,7 @@
                 </div>
                 <div class="product-description">
                     <p><b><%=language.collection%> <%=design.name%></b></p>
-                    <p>$<%=design.price*language.currencyNumber%> <%=language.currencyCode%></p>
+                    <p>$<%-design.currencies[0].value%> <%-design.currencies[0].currency%></p>
                     <a href="/shop/products/<%=design.name%>"><button class="uk-button uk-button-primary"><%=language.buyNowButton%></button></a>
                 </div>
             </div>

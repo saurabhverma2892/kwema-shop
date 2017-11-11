@@ -2,8 +2,8 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    
-    queryInterface.createTable('contact', {
+
+    queryInterface.createTable('currency', {
         id: {
               allowNull: false,
               autoIncrement: true,
@@ -16,21 +16,24 @@ module.exports = {
         updatedAt: {
             type: Sequelize.DATE
         },
-        name: {
+        currency: {
             type: Sequelize.STRING
         },
-        email: {
-            type: Sequelize.STRING
+        value: {
+            type: Sequelize.INTEGER
         },
-        message: {
-          type: Sequelize.TEXT
+        planId: {
+            type: Sequelize.INTEGER
         },
-        status: {
-          type: Sequelize.STRING
+        productId: {
+            type: Sequelize.INTEGER
+        },
+        designId:{
+          type: Sequelize.INTEGER
         }
     },
     {
-        tableName: "contact",
+        tableName: "currency",
         timestamps: true
     });
 
@@ -38,12 +41,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.dropTable('users');
-    */
+    
   }
 };

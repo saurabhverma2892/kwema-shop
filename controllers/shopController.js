@@ -5,7 +5,8 @@ module.exports = app => {
     let shopService = app.services.shopService;
 
     function getDesignsAndRenderShop(req,res,next){
-        shopService.getAllDesigns().then(data=>{
+        shopService.getAllDesigns(req.session.currency).then(data=>{
+            console.log(data);
             res.render("shop", {designs:data, language:req.userlanguage});
         }).catch(err=>{
             console.log(err);
@@ -35,7 +36,7 @@ module.exports = app => {
 
     function getPlanDetailsForEachCartItem(req,res,next){
         console.log("getPlanDetailsForEachCartItem");
-        shopService.getPlanDetailsForEachCartItem(req).then(data=>{
+        shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(data=>{
             console.log(data);
             res.send(data);
         }).catch(err=>{
@@ -59,7 +60,7 @@ module.exports = app => {
             if(req.user){
                 user=req.user;
             }
-            shopService.getPlanDetailsForEachCartItem(req).then(data=>{
+            shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(data=>{
                 res.render("cart", {cartDetails:data, user:user,language:req.userlanguage});
             })
         }
@@ -86,14 +87,14 @@ module.exports = app => {
         }
         else
         {
-            shopService.getPlanDetailsForEachCartItem(req).then(data=>{
+            shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(data=>{
                 res.render("paybycard", {cartDetails:data, user:req.user,language:req.userlanguage});
             });
         }
     }
 
     function saveUserCardInfoAndMakeCharge(req,res,next){
-        shopService.getPlanDetailsForEachCartItem(req).then(cartItems=>{
+        shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(cartItems=>{
             shopService.saveUserCardInfoAndMakeCharge(cartItems,req.body,req.user).then(data=>{
                 req.session.cart=[];
                 res.redirect("/shop/kwema-app");
@@ -119,7 +120,7 @@ module.exports = app => {
         }
         else
         {
-            shopService.getPlanDetailsForEachCartItem(req).then(data=>{
+            shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(data=>{
                 req.session.save(function(err) {
                   // session saved
                     res.render("paybycompropago", {cartDetails:data, user:req.user,language:req.userlanguage});
@@ -132,7 +133,7 @@ module.exports = app => {
         console.log("wokring in here");
         console.log(req.session.cart);
         console.log(req.session);
-        shopService.getPlanDetailsForEachCartItem(req).then(cartItems=>{
+        shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(cartItems=>{
             shopService.saveComproTransaction(cartItems,req.user).then(data=>{
                 console.log("transacted well");
                 res.send(true);
@@ -179,9 +180,9 @@ module.exports = app => {
     }
 
     function getProductsPage(req,res,next){
-        shopService.getProductsForDesignName(req.params.designName).then(data=>{
+        shopService.getProductsForDesignName(req.params.designName, req.session.currency).then(data=>{
             console.log(data.products);
-            res.render("products", {products:data.products, language:req.userlanguage, categoryName:req.params.designName});
+            res.render("products", {products:data.products, language:req.userlanguage, categoryName:req.params.designName, design:data});
         })
     }
 
@@ -190,7 +191,7 @@ module.exports = app => {
             console.log(data);
             res.render("plans",{products:data, product:data.productData,language:req.userlanguage});
         })*/
-        shopService.getProductsForDesignName(req.params.designName).then(data=>{
+        shopService.getProductsForDesignName(req.params.designName, req.session.currency).then(data=>{
             console.log("worked here");
             console.log(data.products);
             console.log("=======");
@@ -209,8 +210,8 @@ module.exports = app => {
     }
 
     function getPlansForProduct(req,res,next){
-        shopService.getProductsForDesignName(req.params.designName).then(data=>{
-            shopService.getProductByProductAndDesignName(req.params.productName,data.id).then(product=>{
+        shopService.getProductsForDesignName(req.params.designName, req.session.currency).then(data=>{
+            shopService.getProductByProductAndDesignName(req.params.productName,data.id,req.session.currency).then(product=>{
                 console.log(product);
                 res.render("plansForProduct",{design:data ,product:product,language:req.userlanguage});
             }).catch(err=>{

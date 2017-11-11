@@ -56,7 +56,7 @@
                         </div>
                         <p style="margin-bottom:0px; margin-top:40px;" class="pink-color"><b><%=product.name%></b></h4>
                         <p style="margin-top:0px; margin-bottom:0px;" class="pink-color">(<%=product.details%>)</p>
-                        <p class="grey" style="margin-top: 0px;">$<%=product.price%></p>
+                        <p class="grey" style="margin-top: 0px;">$<%=design.currencies[0].value%> <%=design.currencies[0].currency%></p>
                     </div> 
                 </div>
                 <div class="uk-width-medium-1-2 uk-flex yk-flex-middle">
@@ -71,7 +71,7 @@
                                         <div class="plan-select uk-flex uk-flex-middle uk-flex-center" plan-id="<%=plan.id%>" number="<%=i%>">
                                             <div>
                                                 <p class="nomargin"><b><%=plan.name%></b></p>
-                                                <p class="nomargin">$<%=plan.monthlyPrice%> MXN/mes</p>
+                                                <p class="nomargin">$<%=plan.currencies[0].value%> <%=plan.currencies[0].currency%>/mes</p>
                                             </div>
                                         </div>
                                     </div>

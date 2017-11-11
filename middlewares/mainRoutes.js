@@ -3,6 +3,10 @@
 module.exports = app => {
 
     function chooseLanguage(req,res,next){
+        if(!req.session.currency){
+            req.session.currency=process.env.PREFERRED_CURRENCY;
+        }
+        
         if(!req.session.language){
             req.session.language=process.env.PREFERRED_LANGUAGE;
         }
@@ -16,6 +20,8 @@ module.exports = app => {
             req.userlanguage=json;
             next();
         }
+
+        
     }
 
     app.get("/", chooseLanguage, (req, res, next) => {

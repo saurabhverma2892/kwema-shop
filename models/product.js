@@ -7,6 +7,7 @@ module.exports = app => {
     let errorFormatter = app.helpers.errorFormatter;
     let Design = null;
     let Plan = null;
+    let Currency = null;
 
     var Product = sequelize.define("product", {  
         id: {
@@ -69,6 +70,7 @@ module.exports = app => {
     function initialize(){
         Design = app.models.design.Design;
         Plan=app.models.plan.Plan;
+        Currency=app.models.currency.Currency;
         Product.belongsTo(Design,{foreignKey:'designId', target: 'id'});
         Product.hasMany(Plan,{foreignKey:'productId', target: 'id'});
     }
@@ -118,7 +120,7 @@ module.exports = app => {
         })
     }
 
-    function getProductByNameAndDesign(productName,designId){
+    function getProductByNameAndDesign(productName,designId, currency){
         console.log("im here");
         return Product.findOne({
             include:[
@@ -126,7 +128,15 @@ module.exports = app => {
                     model:Design
                 },
                 {
-                    model:Plan
+                    model:Plan,
+                    include:[
+                        {
+                            model:Currency,
+                            where:{
+                                currency:currency
+                            }
+                        }
+                    ]
                 }
             ],
             where:{
