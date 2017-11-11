@@ -6,7 +6,7 @@ module.exports = app => {
         if(!req.session.currency){
             req.session.currency=process.env.PREFERRED_CURRENCY;
         }
-        
+
         if(!req.session.language){
             req.session.language=process.env.PREFERRED_LANGUAGE;
         }
@@ -40,6 +40,7 @@ module.exports = app => {
 
     app.post("/language",(req,res,next)=>{
         req.session.language=req.body.language;
+        req.session.currency=req.body.currency;
         res.send(true);
     })
 

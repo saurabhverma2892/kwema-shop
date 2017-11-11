@@ -195,15 +195,18 @@
     $(".language-select").click(function(e){
         var self = $(this);
         var language = "english";
+        var currency = "USD";
         if(self.hasClass("spanish-flag")){
             language="spanish";
+            currency="MXN";
         }
 
         $.ajax({
             url:"/language",
             method:"POST",
             data:{
-                language:language
+                language:language,
+                currency:currency
             },
             success:function(data){
                 location.reload();
