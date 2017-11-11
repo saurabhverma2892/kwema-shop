@@ -197,7 +197,7 @@ module.exports = app => {
             console.log("=======");
             console.log(req.params.designName);
             var products = data.products;
-            shopService.getProductByProductAndDesignName(req.params.productName,data.id).then(product=>{
+            shopService.getProductByProductAndDesignName(req.params.productName,data.id, req.session.currency).then(product=>{
                 var product = product;
                 
                 res.render("plans",{design:data ,products:products, product:product,language:req.userlanguage});
