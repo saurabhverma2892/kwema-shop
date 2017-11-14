@@ -37,8 +37,10 @@ module.exports = {
     {
         tableName: "discount",
         timestamps: true
-    }).then(data=>{
-      queryInterface.bulkInsert("currency", [
+    }).then(function(data){
+
+
+      queryInterface.bulkInsert("discount", [
         {
           name: "Xmas",
           details: "Christmas discount",
@@ -49,11 +51,7 @@ module.exports = {
           details: "Christmas discount",
           designId:2
         }
-      ]).then(data=>{
-
-        console.log(data);
-      })
-
+      ])
 
     });
   },
