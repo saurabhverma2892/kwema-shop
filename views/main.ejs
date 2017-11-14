@@ -203,6 +203,57 @@
     </div>
     <%include includes/footer.ejs%>
 
+
+
+
+
+
+
+
+    <div id="xmas" class="uk-modal">
+        <div class="uk-modal-dialog xmas-container" style="width:90%;padding:0px; background-image: url('/images/snowflakes.png'); background-size: cover; background-position:top center;">
+            <a class="uk-modal-close uk-close" style="margin-top: 10px; margin-right: 10px;"></a>
+            <div class="uk-width-1-1 uk-text-center">
+                <img src="/images/missletoe.png">
+                <h1 style="margin-top:0px;" class="xmas-font"><%=language.xmasSpecial%></h1>
+                <h2 style="font-weight:bolder; margin-top:40px; margin-bottom:0px;"><%=language.whatYouWaitingFor%></h2>
+                <h1 class="ribbon" style=" margin-top:20px;">
+                   <strong class="ribbon-content"><%=language.ribbonMessage%></strong>
+                </h1>
+            </div>
+            <div class="free-plan-details  uk-text-center" style=" padding-top: 20px; padding-bottom: 10px;">
+                <h2 style="font-size: 30px;"><%=language.twoYearsPlanFree%></h2>
+            </div>
+            <div class="padding-top-bottom padding-sides uk-grid uk-text-center" data-uk-grid style="padding-bottom: 0px;">
+                <div class="uk-width-medium-1-4" style="padding-bottom: 0px;">
+                    <img src="/images/pacificcollation.png">
+                </div>
+                <div class="uk-width-medium-1-4" style="padding-bottom: 20px;">
+                    <p><b><%=language.design1%></b> <%=language.collection%></p>
+                    <p class="pink-color" style="margin-bottom: 0px;"> <%=language.sale%> <span style="font-size:24px;">$<%=language.design1price%></span> <%=language.design1pricepost%></p>
+                    <p class="grey nomargin">including <b><%=language.libertyplan%></b></p>
+                </div>
+                <div class="uk-width-medium-1-4" style="padding-bottom: 0px;">
+                    <img src="/images/evecollection.png">
+                </div>
+                <div class="uk-width-medium-1-4" style="padding-bottom: 20px;">
+                    <p><b><%=language.design2%></b> <%=language.collection%></p>
+                    <p class="pink-color" style="margin-bottom: 0px;"><%=language.sale%> <span style="font-size:24px;">$<%=language.design2price%></span> <%=language.design2pricepost%></p>
+                    <p class="grey nomargin"><%=language.including%> <b><%=language.libertyplan%></b></p>
+                </div>
+            </div>
+            <div class="uk-text-center padding-top-bottom" style="padding-top: 10px;">
+                <a href="/xmas">
+                    <button class="uk-button uk-button-primary" style="padding-right: 20px; font-size: 18px;">
+                        <%=language.seeOffers%> &nbsp &nbsp<i class="fa fa-chevron-right"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
 <%include includes/scripts.ejs%>
 <script type="text/javascript">
     
@@ -245,6 +296,8 @@
         })
         return false;
     })
+
+    UIkit.modal("#xmas").show();
 </script>
 
 </body>

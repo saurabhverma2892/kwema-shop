@@ -199,6 +199,10 @@ module.exports = app => {
         return Product.getProductByNameAndDesign(productName,designId,currency);
     }
 
+    function getAllProducts(currency){
+        return Product.getAllProducts(currency);
+    }
+
     return {
         getAllDesigns,
         getProductsForDesignId,
@@ -209,6 +213,7 @@ module.exports = app => {
         saveComproTransaction,
         addWebHookNotification,
         getProductsForDesignName,
-        getProductByProductAndDesignName
+        getProductByProductAndDesignName,
+        getAllProducts
     }
 }

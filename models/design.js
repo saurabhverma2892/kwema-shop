@@ -7,6 +7,7 @@ module.exports = app => {
     let errorFormatter = app.helpers.errorFormatter;
     let Product = null;
     let Currency = null;
+    let Discount = null;
 
     var Design = sequelize.define("design", {  
         id: {
@@ -51,8 +52,10 @@ module.exports = app => {
     function initialize(){
         Product=app.models.product.Product;
         Currency=app.models.currency.Currency;
+        Discount=app.models.discount.Discount;
         Design.hasMany(Product,{foreignKey:'designId'});
-        Design.hasMany(Currency,{foreignKey:'designId'})
+        Design.hasMany(Currency,{foreignKey:'designId'});
+        Design.hasMany(Discount,{foreignKey:'designId'});
     }
 
     function getAllDesigns(currency){

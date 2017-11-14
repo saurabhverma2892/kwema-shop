@@ -5,10 +5,9 @@ module.exports = app => {
     let sequelize = app.db.connection;
     let logger = app.helpers.logger;
     let errorFormatter = app.helpers.errorFormatter;
-    let Design = null;
-    let Plan = null;
+    let Currency = null;
 
-    var Currency = sequelize.define("currency", {  
+    var Discount = sequelize.define("discount", {  
         id: {
               allowNull: false,
               autoIncrement: true,
@@ -21,10 +20,13 @@ module.exports = app => {
         updatedAt: {
             type: Sequelize.DATE
         },
-        currency: {
+        name: {
             type: Sequelize.STRING
         },
-        value: {
+        details: {
+            type: Sequelize.STRING
+        },
+        percentage: {
             type: Sequelize.INTEGER
         },
         planId: {
@@ -33,27 +35,22 @@ module.exports = app => {
         productId: {
             type: Sequelize.INTEGER
         },
-        designId: {
-            type: Sequelize.INTEGER
-        },
-        discountId: {
-            type: Sequelize.INTEGER
+        designId:{
+          type: Sequelize.INTEGER
         }
     },
     {
-        tableName: "currency",
+        tableName: "discount",
         timestamps: true
     });
 
     function initialize(){
-        Design=app.models.design.Design;
-        Plan=app.models.plan.Plan;
-        /*Currency.hasOne(Design,{foreignKey:"designId"});*/
-        /*Currency.hasOne(Plan,{foreignKey:"planId"});*/
+        Currency=app.models.currency.Currency;
+        Discount.hasMany(Currency,{foreignKey:'discountId'});
     }
 
     return {
-        Currency,
+        Discount,
         initialize
     };
 };

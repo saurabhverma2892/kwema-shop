@@ -8,6 +8,7 @@ module.exports = app => {
     let Design = null;
     let Plan = null;
     let Currency = null;
+    let Discount = null;
 
     var Product = sequelize.define("product", {  
         id: {
@@ -71,6 +72,7 @@ module.exports = app => {
         Design = app.models.design.Design;
         Plan=app.models.plan.Plan;
         Currency=app.models.currency.Currency;
+        Discount=app.models.discount.Discount;
         Product.belongsTo(Design,{foreignKey:'designId', target: 'id'});
         Product.hasMany(Plan,{foreignKey:'productId', target: 'id'});
     }
@@ -146,6 +148,45 @@ module.exports = app => {
         })
     }
 
+    function getAllProducts(currency){
+        return Product.findAll({
+            include:[
+                {
+                    model:Design,
+                    include:[
+                        {
+                            model:Currency,
+                            where:{
+                                currency:currency
+                            }
+                        },
+                        {
+                            model:Discount,
+                            include:[
+                            {
+                                model:Currency,
+                                where:{
+                                    currency:currency
+                                }
+                            }]
+                        }
+                    ]
+                },
+                {
+                    model:Plan,
+                    include:[
+                        {
+                            model:Currency,
+                            where:{
+                                currency:currency
+                            }
+                        }
+                    ]
+                }
+            ]
+        })
+    }
+
 
 
     return {
@@ -154,6 +195,7 @@ module.exports = app => {
         getProductsForDesignId,
         getFirstProductByDesignId,
         getProductById,
-        getProductByNameAndDesign
+        getProductByNameAndDesign,
+        getAllProducts
     };
 };

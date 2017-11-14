@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kwema Shop</title>
+    <%include includes/styles.ejs%>
+</head>
+<body class="xmas-container">
+    <%include includes/navbar.ejs %>
+    <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center products-container xmas" style="padding-top:80px; background-image:url('/images/snowflakes.png')">
+        <div class="uk-text-center">
+            <img src="/images/missletoe.png">
+            <h1 style="margin-top:2px;" class="xmas-font">Xmas Special</h1>
+            <h2 style="font-weight:bolder; margin-top:40px; margin-bottom:0px;">Let Xmas Begin!</h2>
+            <h1 class="ribbon" style="margin-bottom:100px; margin-top:20px;">
+               <strong class="ribbon-content">Don’t miss out on this Xmas special ends November 30th</strong>
+            </h1>
+        </div>
+        
+        <!-- animation:'slide-horizontal', -->
+        <div data-uk-slideset="{ small: 2, medium: 4, large: 4}">
+            <div class="uk-slidenav-position">
+                <ul class="uk-grid uk-slideset">
+                    <%products.forEach(function(product){ %>
+                    <li>
+                        <div>
+                            <form>
+                                <div class="image-container-slideset" style="background-image:url('<%=product.primaryImage%>')">
+                                </div>
+                                <div class="x-mas-prices">
+                                    <p><b><%=product.name%></b></p>
+                                    <p class="nomargin">
+                                        <span class="strikeout">$<%=product.design.currencies[0].value%> <%=product.design.currencies[0].currency%></span>
+                                        <span class="discounted-price">$<%=product.design.discounts[0].currencies[0].value%> <%=product.design.discounts[0].currencies[0].currency%></span>
+                                    </p>
+                                    <button class="uk-button uk-button-primary uk-margin">
+                                        BUY NOW
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <%})%>
+                </ul>
+                <a href="" class="uk-slidenav uk-slidenav-previous" data-uk-slideset-item="previous"></a>
+                <a href="" class="uk-slidenav uk-slidenav-next" data-uk-slideset-item="next"></a>
+            </div>
+        </div>
+    </div>   
+    <div class="free-plan-details padding-top-bottom uk-text-center">
+        <h2>2 YEARS FREE  Lady Liberty Plan</h2>
+        <p>Each of our bracelets come with our Lady Liberty Plan. All you have to do is choose your bracelet!</p>
+    </div>
+    <div class="plan-details-xmas uk-text-center padding-top-bottom">
+            <h4 class="nomargin"><b>Our <span class="pink-color"><%=language.explore.Day%></span> comes with:</b></h4>
+            <p class="pink-color nomargin"><b><%=language.plandetails.plan1.p2%></b></p>
+            <p class=" nomargin"> - <%=language.plandetails.plan1.p3%></p>
+            <p class=" nomargin"> - <%=language.plandetails.plan1.p4%></p>
+            <p class=" nomargin"> - <%=language.plandetails.plan1.p5%></p>
+            <p class=" nomargin"> - <%=language.plandetails.plan1.p6%></p>
+            <p class="nomargin" style="margin-top:10px;"><b>LIMITED-TIME OFFER. Available until 30th november 2017.</b></p>
+            <p class="nomargin"><b>Terms and conditions apply.</b></p>
+    </div>
+    <%include includes/footer.ejs%>
+
+
+<%include includes/scripts.ejs%>
+
+<script type="text/javascript">
+    
+    toggleLogo();
+    function toggleLogo(){
+            $(".uk-navbar").addClass("active");
+            $(".logo-white").hide();
+            $(".logo-black").show("slow");
+    }
+
+</script>
+</body>
+</html>

@@ -46,6 +46,7 @@ app.models.transaction.initialize();
 app.models.user.initialize();
 app.models.plan.initialize();
 app.models.currency.initialize();
+app.models.discount.initialize();
 
 if (process.env.NODE_ENV !== "test") {
 

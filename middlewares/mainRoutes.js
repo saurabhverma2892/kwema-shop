@@ -2,6 +2,8 @@
 
 module.exports = app => {
 
+    let shopService = app.services.shopService;
+
     function chooseLanguage(req,res,next){
         if(!req.session.currency){
             req.session.currency=process.env.PREFERRED_CURRENCY;
@@ -34,6 +36,15 @@ module.exports = app => {
 
     app.use("/shop",chooseLanguage, app.routes.shop);
 
+    app.get("/xmas",chooseLanguage,(req,res,next)=>{
+        shopService.getAllProducts(req.session.currency).then(data=>{
+            //console.log(data);
+            console.log("im here");
+            //res.send(data);
+            res.render("christmas",{products:data, language:req.userlanguage});
+        })
+    })
+
     app.get("/*", (req,res,next)=>{
         res.redirect("/");
     });
@@ -45,6 +56,8 @@ module.exports = app => {
     })
 
     app.use("/contact",chooseLanguage, app.routes.contact);
+
+    
 
 
     /*app.get("/shop/plans", (req, res, next) => {

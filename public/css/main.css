@@ -10,13 +10,16 @@
     font-weight: bold;
 }
 
-
-
 @font-face{
     font-family: Roboto;
     src:url(/fonts/Roboto-Light.ttf);
     font-style: italic;
     font-weight: lighter;
+}
+
+@font-face{
+    font-family: Sofia;
+    src:url(/fonts/Sofia-Regular.otf);
 }
 
 h1, h2, h3, h4, h5, h6,p, html{
@@ -896,4 +899,107 @@ footer{
 
 .plan-details.active{
     display: inline-block;
+}
+
+
+
+
+/*----------christmas--------*/
+
+.image-container-slideset{
+    height:200px;
+    background-size: cover;
+    background-position: center center;
+}
+
+.xmas{
+    background-size: cover;
+    background-position: top center;
+}
+
+.xmas-font{
+    font-family:Sofia;
+    color:#DA0E36;
+    font-size: 50px;
+}
+
+
+
+.ribbon {
+ font-size: 16px !important;
+ /* This ribbon is based on a 16px font side and a 24px vertical rhythm. I've used em's to position each element for scalability. If you want to use a different font size you may have to play with the position of the ribbon elements */
+
+ width: 50%;
+    
+ position: relative;
+ background: #DA0E36;
+ color: #fff;
+ text-align: center;
+ margin: 2em auto 3em; /* Based on 24px vertical rhythm. 48px bottom margin - normally 24 but the ribbon 'graphics' take up 24px themselves so we double it. */
+}
+.ribbon:before, .ribbon:after {
+ content: "";
+ position: absolute;
+ display: block;
+ bottom: -1em;
+ border: 1.5em solid #b00a2b;
+ z-index: -1;
+}
+.ribbon:before {
+ left: -2em;
+ border-right-width: 1.5em;
+ border-left-color: transparent;
+}
+.ribbon:after {
+ right: -2em;
+ border-left-width: 1.5em;
+ border-right-color: transparent;
+}
+.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
+ content: "";
+ position: absolute;
+ display: block;
+ border-style: solid;
+ border-color: #890922 transparent transparent transparent;
+ bottom: -1em;
+}
+.ribbon .ribbon-content:before {
+ left: 0;
+ border-width: 1em 0 0 1em;
+}
+.ribbon .ribbon-content:after {
+ right: 0;
+ border-width: 1em 1em 0 0;
+}
+
+.xmas-container .uk-navbar.active{
+    background:#DA0E36 !important; 
+}
+
+.x-mas-prices{
+    margin-top: 20px;
+}
+
+.strikeout{
+    text-decoration: line-through;
+}
+
+.xmas-container .discounted-price{
+    color:#DB0988;
+}
+
+.xmas-container .uk-slidenav-position .uk-slidenav{
+    top:30% !important;
+}
+
+.xmas-container .free-plan-details{
+    background-color:#DA0E36;
+    color:white; 
+}
+
+.xmas-container .free-plan-details p, .xmas-container .free-plan-details h2{
+    color:white;
+}
+.xmas-container .free-plan-details p{
+    margin-bottom: 0px;
 }
