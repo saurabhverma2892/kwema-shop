@@ -16,29 +16,17 @@
                 <div class="uk-grid" data-uk-grid style="padding-top:30px;">
 
                     <%
-                    var totalAmount = 0;
-                    cartDetails.forEach(function(cart){%>
-                        <%
-                        if(cart.planType=="monthly"){
-                            var amount=cart.planDetails.currencies[0].value;
-                            var amountPostFix = "/mo";
-                        }
-                        var braceletPrice=cart.planDetails.design.currencies[0].value;
-                        if(discount){
-                            braceletPrice=cart.planDetails.design.discounts[0].currencies[0].value;
-                        }
+                        var totalAmount = 0;
+                        var amount=0;
+                        var amountPostFix = "/mo";
+                        var braceletPrice=cartDetails.design.discounts[0].currencies[0].value;
                         var planPrice=amount;
-                        if(discount=="xmas"){
-                            amount=0;
-                            planPrice=0;
-                        }
                         var individualAmount = amount+braceletPrice;
-                        var quantity = cart.quantity;
-                        var planName = cart.planDetails.name;
+                        var quantity = 1;
+                        var planName = cartDetails.plans[0].name;
                         totalAmount = totalAmount+individualAmount;
                         %>
-                        <%include shared/carttop.ejs%>
-                    <%})%>
+                        
 
                     
                 </div>
@@ -88,7 +76,12 @@
                 <div class="uk-grid uk-text-left" data-uk-grid>
                     <div class="uk-width-medium-1-2 uk-text-right total-payment-page"></div>
                     <div class="uk-width-medium-1-2 uk-text-right total-payment-page">
-                        <%include shared/carttotal.ejs%>
+                        
+                        <h2><%=language.TOTAL%></h2>
+                        <p style="margin-bottom: 0px;"><b><%=language.Subtotal%> $<%=(totalAmount-language.taxAmount)%> <%=language.currencyCode%></b></p>
+                        <p style="margin-top: 2px;" class="grey"><b><%=language.FreeShipping%> $<%=language.taxAmount%> <%=language.currencyCode%></b></p>
+                        <p class="order-main-total"><b><%=language.orderTotal%> $<%=totalAmount%> <%=language.currencyCode%></b></p>
+
                         <div>
                             <button class="uk-button uk-button-primary"><%=language.proceedToPay%>  <i class="fa fa-caret-right"></i></button>
                         </div>

@@ -8,6 +8,7 @@ module.exports = app => {
     let Product = null;
     let Design=null;
     let Currency=null;
+    let Discount=null;
 
     var Plan = sequelize.define("plan", {  
         id: {
@@ -53,6 +54,7 @@ module.exports = app => {
         Product=app.models.product.Product;
         Design=app.models.design.Design;
         Currency=app.models.currency.Currency;
+        Discount=app.models.discount.Discount;
 
         Plan.belongsTo(Product,{foreignKey:"productId"});
         Plan.belongsTo(Design,{foreignKey:"designId"});
@@ -84,12 +86,23 @@ module.exports = app => {
                 {
                     model:Design,
                     include:[
-                    {
-                        model:Currency,
-                        where:{
-                            currency:currency
+                        {
+                            model:Currency,
+                            where:{
+                                currency:currency
+                            }
+                        },
+                        {
+                            model:Discount,
+                            include:[
+                            {
+                                model:Currency,
+                                where:{
+                                    currency:currency
+                                }
+                            }]
                         }
-                    }]
+                    ]
                 },
                 {
                     model:Currency,

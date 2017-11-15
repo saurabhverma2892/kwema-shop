@@ -37,7 +37,6 @@ module.exports = app => {
     function getPlanDetailsForEachCartItem(req,res,next){
         console.log("getPlanDetailsForEachCartItem");
         shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(data=>{
-            console.log(data);
             res.send(data);
         }).catch(err=>{
             console.log(err);
@@ -61,7 +60,7 @@ module.exports = app => {
                 user=req.user;
             }
             shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(data=>{
-                res.render("cart", {cartDetails:data, user:user,language:req.userlanguage});
+                res.render("cart", {cartDetails:data, user:user,language:req.userlanguage, discount:req.session.discount});
             })
         }
         
@@ -88,7 +87,7 @@ module.exports = app => {
         else
         {
             shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(data=>{
-                res.render("paybycard", {cartDetails:data, user:req.user,language:req.userlanguage});
+                res.render("paybycard", {cartDetails:data, user:req.user,language:req.userlanguage, discount:req.session.discount});
             });
         }
     }
@@ -123,7 +122,7 @@ module.exports = app => {
             shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(data=>{
                 req.session.save(function(err) {
                   // session saved
-                    res.render("paybycompropago", {cartDetails:data, user:req.user,language:req.userlanguage});
+                    res.render("paybycompropago", {cartDetails:data, user:req.user,language:req.userlanguage,discount:req.session.discount});
                 })
             });
         }
@@ -222,8 +221,14 @@ module.exports = app => {
         })
     }
 
-    
+    function getCartForXmas(req,res,next){
+        shopService.getProductByIdForChristmas(req.session.currency,req.body.productId).then(data=>{
+            //res.send(data);
+            res.render("cart",{cartDetails:data, language:req.userlanguage, discount:true});
+        })
+    }
 
+    
     return {
         getDesignsAndRenderShop,
         getProductsForDesignId,
@@ -239,6 +244,7 @@ module.exports = app => {
         saveCashPaymentCart,
         getProductsPage,
         getItemPage,
-        getPlansForProduct
+        getPlansForProduct,
+        getCartForXmas
     }
 }

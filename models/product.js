@@ -187,6 +187,48 @@ module.exports = app => {
         })
     }
 
+    function getProductByIdForChristmas(currency,id){
+        return Product.findAll({
+            where:{
+                id:id
+            },
+            include:[
+                {
+                    model:Design,
+                    include:[
+                        {
+                            model:Currency,
+                            where:{
+                                currency:currency
+                            }
+                        },
+                        {
+                            model:Discount,
+                            include:[
+                            {
+                                model:Currency,
+                                where:{
+                                    currency:currency
+                                }
+                            }]
+                        }
+                    ]
+                },
+                {
+                    model:Plan,
+                    include:[
+                        {
+                            model:Currency,
+                            where:{
+                                currency:currency
+                            }
+                        }
+                    ]
+                }
+            ]
+        })
+    }
+
 
 
     return {
@@ -196,6 +238,7 @@ module.exports = app => {
         getFirstProductByDesignId,
         getProductById,
         getProductByNameAndDesign,
-        getAllProducts
+        getAllProducts,
+        getProductByIdForChristmas
     };
 };

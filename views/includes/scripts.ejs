@@ -81,7 +81,14 @@
                     amountPricePost=cartItem.planDetails.currencies[0].currency;
                     amountPostfix="/mo"
                 }
+
                 var devicePrice = cartItem.planDetails.design.currencies[0].value;
+                if(cartItem.discount){
+                    devicePrice = cartItem.planDetails.design.discounts[0].currencies[0].value;
+                }
+                if(cartItem.discount=="xmas"){
+                    amount=0;
+                }
                 var devicePricePost = cartItem.planDetails.design.currencies[0].currency;
                 var quantity=cartItem.quantity
                 totalAmount=totalAmount+amount+devicePrice;

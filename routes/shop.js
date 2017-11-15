@@ -282,6 +282,23 @@ module.exports = app => {
         shopController.saveCashPaymentCart(req,res,next);
     })
 
+
+    router.route("/christmas").post((req,res,next)=>{
+        var usercartdetails = req.body;
+        if(!req.session.cart){
+            req.session.cart=[];
+        }
+        var i = 0;
+        
+        req.session.cart.push({planType:"monthly", planId:req.body.planId,quantity:1});
+        if(!req.session.discount){
+            req.session.discount=[];
+        }
+        req.session.discount="xmas";
+        //req.session.cart.push(usercartdetails);
+        shopController.getPlanDetailsForEachCartItem(req,res,next);
+    })
+
     return router;
 }
 

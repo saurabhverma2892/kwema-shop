@@ -23,7 +23,14 @@
                             var amountPostFix = "/mo";
                         }
                         var braceletPrice=cart.planDetails.design.currencies[0].value;
+                        if(discount){
+                            braceletPrice=cart.planDetails.design.discounts[0].currencies[0].value;
+                        }
                         var planPrice=amount;
+                        if(discount=="xmas"){
+                            amount=0;
+                            planPrice=0;
+                        }
                         var individualAmount = amount+braceletPrice;
                         var quantity = cart.quantity;
                         var planName = cart.planDetails.name;

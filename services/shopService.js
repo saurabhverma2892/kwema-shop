@@ -74,6 +74,9 @@ module.exports = app => {
                 var promisePlan = new Promise((resolve2,reject2)=>{
                     Plan.getPlanById(cartItem.planId, currency).then(data=>{
                         cartItem.planDetails=data;
+                        if(req.session.discount){
+                            cartItem.discount=req.session.discount;
+                        }
                         return resolve2(cartItem);
                     }).catch(err=>{
                         return reject(err);
@@ -110,9 +113,6 @@ module.exports = app => {
                     var planAmount = 0;
                     if(cartItemDetails.planType=="monthly"){
                         planAmount = cartItemDetails.planDetails.monthlyPrice;
-                    }
-                    else if(cartItemDetails.planType=="yearly"){
-                        planAmount = cartItemDetails.planDetails.yearlyPrice;
                     }
                     amount = amount+planAmount+cartItemDetails.planDetails.devicePrice;
                     console.log("total amount is");
@@ -203,6 +203,23 @@ module.exports = app => {
         return Product.getAllProducts(currency);
     }
 
+
+    /*xmas*/
+
+    function getProductByIdForChristmas(currency,id){
+        return new Promise((resolve,reject)=>{
+            Product.getProductByIdForChristmas(currency,id).then(data=>{
+                data.forEach(cartDetails=>{
+                    cartDetails.planDetails=cartDetails.plans[0];
+                })
+
+                return resolve(data);
+            }).catch(err=>{
+                return reject(err);
+            })
+        })
+    }
+
     return {
         getAllDesigns,
         getProductsForDesignId,
@@ -214,6 +231,7 @@ module.exports = app => {
         addWebHookNotification,
         getProductsForDesignName,
         getProductByProductAndDesignName,
-        getAllProducts
+        getAllProducts,
+        getProductByIdForChristmas
     }
 }

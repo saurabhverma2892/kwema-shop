@@ -9,10 +9,10 @@
     <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center products-container xmas" style="padding-top:80px; background-image:url('/images/snowflakes.png')">
         <div class="uk-text-center">
             <img src="/images/missletoe.png">
-            <h1 style="margin-top:2px;" class="xmas-font">Xmas Special</h1>
-            <h2 style="font-weight:bolder; margin-top:40px; margin-bottom:0px;">Let Xmas Begin!</h2>
+            <h1 style="margin-top:2px;" class="xmas-font"><%=language.xmasspecial%></h1>
+            <h2 style="font-weight:bolder; margin-top:40px; margin-bottom:0px;"><%=language.letXmasBegin%></h2>
             <h1 class="ribbon" style="margin-bottom:100px; margin-top:20px;">
-               <strong class="ribbon-content">Don’t miss out on this Xmas special ends November 30th</strong>
+               <strong class="ribbon-content"><%=language.dontMissOut%></strong>
             </h1>
         </div>
         
@@ -23,7 +23,7 @@
                     <%products.forEach(function(product){ %>
                     <li>
                         <div>
-                            <form>
+                            <form action="/shop/christmas" method="POST" class="christmas-checkout">
                                 <div class="image-container-slideset" style="background-image:url('<%=product.primaryImage%>')">
                                 </div>
                                 <div class="x-mas-prices">
@@ -32,8 +32,9 @@
                                         <span class="strikeout">$<%=product.design.currencies[0].value%> <%=product.design.currencies[0].currency%></span>
                                         <span class="discounted-price">$<%=product.design.discounts[0].currencies[0].value%> <%=product.design.discounts[0].currencies[0].currency%></span>
                                     </p>
+                                    <input type="hidden" name="planId" value="<%=product.plans[0].id%>">
                                     <button class="uk-button uk-button-primary uk-margin">
-                                        BUY NOW
+                                        <%=language.buyNowButton%>
                                     </button>
                                 </div>
                             </form>
@@ -47,18 +48,18 @@
         </div>
     </div>   
     <div class="free-plan-details padding-top-bottom uk-text-center">
-        <h2>2 YEARS FREE  Lady Liberty Plan</h2>
-        <p>Each of our bracelets come with our Lady Liberty Plan. All you have to do is choose your bracelet!</p>
+        <h2><%=language.twoYearsFree%></h2>
+        <p><%=language.twoYearsFreeExplain%></p>
     </div>
     <div class="plan-details-xmas uk-text-center padding-top-bottom">
-            <h4 class="nomargin"><b>Our <span class="pink-color"><%=language.explore.Day%></span> comes with:</b></h4>
+            <h4 class="nomargin"><b><%=language.our%> <span class="pink-color"><%=language.explore.Day%></span> <%=language.comesWith%>:</b></h4>
             <p class="pink-color nomargin"><b><%=language.plandetails.plan1.p2%></b></p>
             <p class=" nomargin"> - <%=language.plandetails.plan1.p3%></p>
             <p class=" nomargin"> - <%=language.plandetails.plan1.p4%></p>
             <p class=" nomargin"> - <%=language.plandetails.plan1.p5%></p>
             <p class=" nomargin"> - <%=language.plandetails.plan1.p6%></p>
-            <p class="nomargin" style="margin-top:10px;"><b>LIMITED-TIME OFFER. Available until 30th november 2017.</b></p>
-            <p class="nomargin"><b>Terms and conditions apply.</b></p>
+            <p class="nomargin" style="margin-top:10px;"><b><%=language.limitedTimeOffer%></b></p>
+            <p class="nomargin"><b><%=language.termsAndConditionsApply%></b></p>
     </div>
     <%include includes/footer.ejs%>
 
@@ -73,6 +74,25 @@
             $(".logo-white").hide();
             $(".logo-black").show("slow");
     }
+
+    $(".christmas-checkout").submit(function(e){
+        var self = $(this);
+
+        $.ajax({
+            url:"/shop/christmas",
+            method:"POST",
+            data:self.serialize(),
+            success:function(data){
+                console.log(data);
+                updateSideCart(data);
+            },
+            error:function(err){
+                console.log(err);
+            }
+        })
+
+        return false;
+    })
 
 </script>
 </body>

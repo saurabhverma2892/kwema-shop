@@ -38,8 +38,6 @@ module.exports = app => {
 
     app.get("/xmas",chooseLanguage,(req,res,next)=>{
         shopService.getAllProducts(req.session.currency).then(data=>{
-            //console.log(data);
-            console.log("im here");
             //res.send(data);
             res.render("christmas",{products:data, language:req.userlanguage});
         })
