@@ -241,7 +241,11 @@
                     <img src="/images/evecollection.png">
                 </div>
                 <div class="uk-width-medium-1-4" style="padding-bottom: 20px;">
-                    <p><%=language.collection%> <b><%=language.design2%></b></p>
+                <%if(language.collection=="Collection"){%>
+                        <p> <b><%=language.design2%></b> <%=language.collection%></p>
+                    <%}else{%>
+                        <p> <%=language.collection%> <b><%=language.design2%></b></p>
+                    <%}%>
                     <p class="pink-color" style="margin-bottom: 0px;"><%=language.sale%> <span style="font-size:24px;">$<%=language.design2price%></span> <%=language.design2pricepost%></p>
                     <p class="grey nomargin"><b><%=language.libertyplan%> <%=language.including%></b></p>
                 </div>
