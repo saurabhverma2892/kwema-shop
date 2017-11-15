@@ -92,10 +92,12 @@
                 var devicePricePost = cartItem.planDetails.design.currencies[0].currency;
                 var quantity=cartItem.quantity
                 totalAmount=totalAmount+amount+devicePrice;
+                console.log("kjsdhfjlkashfd");
+                console.log(totalAmount);
                 var itemHtml = '<div class="uk-grid" data-uk-grid=""><div class="uk-width-small-1-5"><div class="cart-product-image" style="background-image:url('+cartItem.planDetails.product.primaryImage+'); height:100%;"></div></div><div class="uk-width-small-3-5 uk-text-left cart-all-details-sidebar"><p>'+cartItem.planDetails.product.name+'('+cartItem.planDetails.product.details+')'+'</p><p class="pink-color">$'+devicePrice+" "+devicePricePost+'</p><p class="pink-color">$'+amount+" "+amountPricePost+'</p><p class="pink-color"><%=language.Plan%>:'+cartItem.planDetails.name+'</p></div><div class="uk-width-small-1-5 uk-text-right" style="position:relative;"><button class="delete-button" type="button" value="'+cartItem.planId+'" itemtype="'+cartItem.planType+'"><i class="fa fa-trash"></i></button><span class="pink-color">'+'<div class="uk-width-small-1-1 uk-text-center uk-flex uk-flex-nowrap quantityselector"><span class="pink-color minus"><i class="fa fa-minus" value="'+cartItem.planId+'" itemtype="'+cartItem.planType+'"></i></span><input readonly class="quantity" type="text" style="display:inline; width:25px !important; padding:2px!important; text-align:center; margin:0px 5px;" value="'+cartItem.quantity+'" name="quantity"/><input type="hidden" name="planType" value="'+cartItem.planType+'"/><input type="hidden" name="planId" value="'+cartItem.planId+'"/><span class="pink-color plus"><i class="fa fa-plus" value="'+cartItem.planId+'" itemtype="'+cartItem.planType+'"></i></span></div>'+'</span></div></div>'
                 $(".cart-details").append(itemHtml);
                 console.log()
-                $(".subtotal").html(totalAmount*<%=language.currencyNumber%>);
+                $(".subtotal").html(totalAmount);
             })
         }
         else
