@@ -10,9 +10,13 @@ module.exports = app => {
               email: user.email,
               source: token,
             }).then((customer)=>{
+              console.log("got customer");
+              console.log(customer);
               // YOUR CODE: Save the customer ID and other info in a database for later.
               return resolve(customer);
             }).catch(err=>{
+                console.log("error coming in user");
+                console.log(err);
                 return reject(err);
             })
         })
@@ -26,8 +30,12 @@ module.exports = app => {
               currency: "usd",
               customer: id,
             }).then((transactionInfo)=>{
+                console.log("got transaction");
+                console.log(transactionInfo);
                 return resolve(transactionInfo);
             }).catch(err=>{
+                console.log("getting error");
+                console.log(err);
                 return reject(err);
             })
         })

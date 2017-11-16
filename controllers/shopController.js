@@ -93,8 +93,8 @@ module.exports = app => {
     }
 
     function saveUserCardInfoAndMakeCharge(req,res,next){
-        shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(cartItems=>{
-            shopService.saveUserCardInfoAndMakeCharge(cartItems,req.body,req.user).then(data=>{
+        shopService.getPlanDetailsForEachCartItem(req, "USD").then(cartItems=>{
+            shopService.saveUserCardInfoAndMakeCharge(cartItems,req.body,req.user, req.session.discount).then(data=>{
                 req.session.cart=[];
                 res.redirect("/shop/kwema-app");
             }).catch(err=>{

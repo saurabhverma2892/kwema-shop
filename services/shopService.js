@@ -103,7 +103,7 @@ module.exports = app => {
         })
     }
 
-    function saveUserCardInfoAndMakeCharge(cartItems,params, user){
+    function saveUserCardInfoAndMakeCharge(cartItems, params, user, discount){
         var promises = [];
         var amount = 0;
 
@@ -114,7 +114,18 @@ module.exports = app => {
                     if(cartItemDetails.planType=="monthly"){
                         planAmount = cartItemDetails.planDetails.monthlyPrice;
                     }
-                    amount = amount+planAmount+cartItemDetails.planDetails.devicePrice;
+                    if(discount=="xmas"){
+                        planAmount=0;
+                    }
+                    var itemPrice=cartItemDetails.planDetails.design.currencies[0].value;
+                    if(discount){
+                        console.log("working in discounts");
+                        console.log(cartItemDetails.planDetails.design.discounts[0].currencies[0].value);
+                        itemPrice = cartItemDetails.planDetails.design.discounts[0].currencies[0].value;
+                    }
+                    amount = amount+planAmount+itemPrice;
+                    console.log("planAmount is "+planAmount);
+                    console.log("itemPrice is "+itemPrice);
                     console.log("total amount is");
                     console.log(amount);
                     var cartPromise = CartItem.addCartItem(user,cartCreated.id,cartItemDetails);
