@@ -111,11 +111,13 @@ module.exports = app => {
             Cart.addNewCart(user).then(cartCreated=>{
                 cartItems.forEach(cartItemDetails=>{
                     var planAmount = 0;
+                    var transportPrice = 0;
                     if(cartItemDetails.planType=="monthly"){
                         planAmount = cartItemDetails.planDetails.monthlyPrice;
                     }
                     if(discount=="xmas"){
                         planAmount=0;
+                        transportPrice=5;
                     }
                     var itemPrice=cartItemDetails.planDetails.design.currencies[0].value;
                     if(discount){
@@ -123,7 +125,7 @@ module.exports = app => {
                         console.log(cartItemDetails.planDetails.design.discounts[0].currencies[0].value);
                         itemPrice = cartItemDetails.planDetails.design.discounts[0].currencies[0].value;
                     }
-                    amount = amount+planAmount+itemPrice;
+                    amount = amount+planAmount+itemPrice+transportPrice;
                     console.log("planAmount is "+planAmount);
                     console.log("itemPrice is "+itemPrice);
                     console.log("total amount is");
