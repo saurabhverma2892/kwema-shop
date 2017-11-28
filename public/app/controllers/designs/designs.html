@@ -1,0 +1,89 @@
+<div class="admin-container products">
+    
+    <div class="uk-margin">
+        <div class="uk-text-right">
+            <button class="uk-button uk-button-primary" ng-click="designsController.addNew()">Add New Design &nbsp&nbsp<i class="fa fa-plus"></i></button>
+        </div>
+        <table class="uk-table uk-table-striped uk-table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Details</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-show="designsController.addingNew">
+                    <td></td>
+                    <td><input type="file" ng-model="designsController.newdesign.primaryImage" id="image"></td>
+                    <td><input type="text" ng-model="designsController.newdesign.name"></td>
+                    <td><input type="text" ng-model="designsController.newdesign.details"></td>
+                    <td>
+                        <div class="uk-text-right">
+                            <button class="uk-button uk-button-primary" ng-click="designsController.addNewCurrency()"><i class="fa fa-plus"></i></button>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Currency</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tr ng-repeat="currency in designsController.newdesign.currencies">
+                                <td><input type="text" ng-model="currency.currency"></td>
+                                <td><input type="text" ng-model="currency.value"></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td><button class="uk-button uk-button-danger" ng-click="designsController.cancelAddNewDesign()">Cancel</button><button class="uk-button uk-button-primary" ng-click="designsController.addNewDesign()">Add</button></td>
+                </tr>
+
+                <tr ng-repeat="design in designsController.designs">
+                    <td><div>{{design.id}}</div></td>
+                    <td>
+                        <div class="product-image" style="background-image: url({{design.primaryImage}});"></div>
+                        <div ng-show="design.editing">
+                            <input type="file" ng-model="design.newdesign.primaryImage" id="image">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-hide="design.editing">{{design.name}}</div>
+                        <div ng-show="design.editing">
+                            <input type="text" ng-model="design.newdesign.name">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-hide="design.editing">{{design.details}}</div>
+                        <div ng-show="design.editing">
+                            <input type="text" ng-model="design.newdesign.details">
+                        </div>
+                    </td>
+                    <td class="prices">
+                        <table>
+                            <tr ng-repeat="currency in design.currencies">
+                                <td>{{currency.value}}</td>
+                                <td>{{currency.currency}}</td>
+                                <td ng-show="design.editing"><i class="fa fa-trash"></i></td>
+                            </tr>
+                        </table>
+                        <div ng-show="design.editing" class="uk-text-center">
+                            <button class="uk-button uk-button-primary"><i class="fa fa-plus"></i></button>
+                        </div>
+
+                    </td>
+                    <td class="uk-width-2-10">
+                        <div ng-hide="design.editing">
+                            <button class="uk-button uk-button-warning" ng-click="designsController.editingDesign(design)">Edit</button><button class="uk-button uk-button-danger" ng-click="designsController.deleteDesign(design)">Delete</button>
+                        </div>
+                        <div ng-show="design.editing">
+                            <button class="uk-button uk-button-danger" ng-click="designsController.cancelEditing(design)">Cancel</button><button class="uk-button uk-button-primary" ng-click="designsController.saveEditedDesign(design)">Save</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

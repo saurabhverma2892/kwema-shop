@@ -93,11 +93,44 @@ module.exports = app => {
         })
     }
 
+    function getAllDesignsForAdmin(){
+        return Design.findAll({
+            include:[
+            {
+                model:Currency
+            }
+            ]
+        });
+    }
+
+    function updateDesign(params){
+        return Design.update({
+            name:params.name,
+            details:params.details
+        },
+        {
+            where:{
+                id:params.id
+            }
+        })
+    }
+
+    function deleteDesign(id){
+        return Design.destroy({
+            where:{
+                id:id
+            }
+        })
+    }
+
 
     return {
         Design,
         initialize,
         getAllDesigns,
-        getDesignByName
+        getDesignByName,
+        getAllDesignsForAdmin,
+        updateDesign,
+        deleteDesign
     };
 };

@@ -137,7 +137,8 @@ module.exports = app => {
                     console.log("resolved all");
                     stripeService.getUserDetails(params.stripeToken,user).then(paymentInfo=>{
                         User.savePaymentInfo(paymentInfo.id,user).then(response=>{
-                            stripeService.chargeUser(amount,paymentInfo.id).then(transactionInfo=>{
+                            var amountInCents = amount*100;
+                            stripeService.chargeUser(amountInCents,paymentInfo.id).then(transactionInfo=>{
                                 Transaction.addTransaction(transactionInfo,user,cartCreated.id).then(data=>{
                                     console.log("transaction added");
                                     return resolve(transactionInfo);

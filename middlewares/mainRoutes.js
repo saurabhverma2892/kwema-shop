@@ -22,8 +22,6 @@ module.exports = app => {
             req.userlanguage=json;
             next();
         }
-
-        
     }
 
     app.get("/", chooseLanguage, (req, res, next) => {
@@ -43,8 +41,13 @@ module.exports = app => {
         })
     })
 
-    app.get("/*", (req,res,next)=>{
-        res.redirect("/");
+    app.get("/admin/*",chooseLanguage, (req,res,next)=>{
+        res.render("admin", {language:req.userlanguage});
+    });
+
+    app.get("/admin",chooseLanguage, (req,res,next)=>{
+        res.redirect("/admin/products");
+        //res.render("admin", {language:req.userlanguage});
     });
 
     app.post("/language",(req,res,next)=>{
@@ -55,7 +58,14 @@ module.exports = app => {
 
     app.use("/contact",chooseLanguage, app.routes.contact);
 
+    app.use("/api",chooseLanguage, app.routes.api);
+
+    app.get("/*", (req,res,next)=>{
+        res.redirect("/");
+    });
+
     
+
 
 
     /*app.get("/shop/plans", (req, res, next) => {

@@ -1,0 +1,97 @@
+<div class="admin-container products">
+    
+    <div class="uk-margin">
+        <div class="uk-text-right">
+            <button class="uk-button uk-button-primary" ng-click="productsController.addNew()">Add New Product &nbsp&nbsp<i class="fa fa-plus"></i></button>
+        </div>
+        <table class="uk-table uk-table-striped uk-table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Picture</th>
+                    <th>Name</th>
+                    <th>Details</th>
+                    <th>Stone</th>
+                    <th>Material</th>
+                    <th>Design</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-show="productsController.addingNew">
+                    <td></td>
+                    <td><input type="file" ng-model="productsController.newproduct.primaryImage" id="image"></td>
+                    <td><input type="text" ng-model="productsController.newproduct.name"></td>
+                    <td><input type="text" ng-model="productsController.newproduct.details"></td>
+                    <td><input type="text" ng-model="productsController.newproduct.stone"></td>
+                    <td><input type="text" ng-model="productsController.newproduct.material"></td>
+                    <td>
+                        <select ng-model="productsController.newproduct.designId">
+                            <option ng-repeat="design in productsController.designs" ng-value="{{design.id}}">{{design.name}}</option>
+                        </select>
+                    </td>
+                    <td></td>
+                    <td><button class="uk-button uk-button-danger" ng-click="productsController.cancelAddNewProduct()">Cancel</button><button class="uk-button uk-button-primary" ng-click="productsController.addNewProduct()">Add</button></td>
+                </tr>
+                <tr ng-repeat="product in productsController.products">
+                    <td><div>{{product.id}}</div></td>
+                    <td>
+                        <div class="product-image" style="background-image: url({{product.primaryImage}});"></div>
+                        <div ng-show="product.editing">
+                            <input type="file" ng-model="product.newproduct.primaryImage" id="image">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-hide="product.editing">{{product.name}}</div>
+                        <div ng-show="product.editing">
+                            <input type="text" ng-model="product.newproduct.name">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-hide="product.editing">{{product.details}}</div>
+                        <div ng-show="product.editing">
+                            <input type="text" ng-model="product.newproduct.details">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-hide="product.editing">{{product.stone}}</div>
+                        <div ng-show="product.editing">
+                            <input type="text" ng-model="product.newproduct.stone">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-hide="product.editing">{{product.material}}</div>
+                        <div ng-show="product.editing">
+                            <input type="text" ng-model="product.newproduct.material">
+                        </div>
+                    </td>
+                    <td>
+                        <div ng-hide="product.editing">{{product.design.name}}</div>
+                        <div ng-show="product.editing">
+                            <select ng-model="product.newproduct.designId">
+                                <option ng-repeat="design in productsController.designs" ng-value="{{design.id}}">{{design.name}}</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="prices">
+                        <table>
+                            <tr ng-repeat="currency in product.design.currencies">
+                                <td>{{currency.value}}</td>
+                                <td>{{currency.currency}}</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="uk-width-2-10">
+                        <div ng-hide="product.editing">
+                            <button class="uk-button uk-button-warning" ng-click="productsController.editingProduct(product)">Edit</button><button class="uk-button uk-button-danger" ng-click="productsController.deleteProduct(product)">Delete</button>
+                        </div>
+                        <div ng-show="product.editing">
+                            <button class="uk-button uk-button-danger" ng-click="productsController.cancelEditing(product)">Cancel</button><button class="uk-button uk-button-primary" ng-click="productsController.saveEditedProduct(product)">Save</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

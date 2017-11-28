@@ -1,0 +1,46 @@
+<nav class="uk-navbar">
+    <a href="/" class="uk-navbar-brand">
+        <img src="/images/logo.png" class="logo-white">
+        <img src="/images/logo2.png" class="logo-black">
+    </a>
+    <div class="uk-navbar-flip">
+        <ul class="uk-navbar-nav">
+            <li class="uk-visible-small">
+                <a href="#toggler" class="uk-navbar-nav uk-navbar-toggle" data-uk-offcanvas style="padding-left: 0px;"></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="uk-navbar-flip uk-hidden-small">
+            <ul class="uk-navbar-nav">
+                <li><a ui-sref="products">Products</a></li>
+                <li><a ui-sref="designs">Designs</a></li>
+                <li><a >Plans</a></li>
+                <li><a >Discounts</a></li>
+                <li><a >Currencies</a></li>
+            </ul>
+    </div>
+</nav>
+<div id="toggler" class="uk-offcanvas">
+    <div class="uk-offcanvas-bar">
+        <ul>
+            <li><a ui-sref="products">Products</a></li>
+            <li><a ui-sref="designs">Designs</a></li>
+            <li><a >Plans</a></li>
+            <li><a >Discounts</a></li>
+            <li><a >Currencies</a></li>
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript">
+    
+    toggleLogo();
+
+    function toggleLogo(){
+            $(".uk-navbar").addClass("active");
+            $(".logo-white").hide();
+            $(".logo-black").show("slow");
+    }
+
+</script>

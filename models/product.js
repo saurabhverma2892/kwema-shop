@@ -229,6 +229,112 @@ module.exports = app => {
         })
     }
 
+    function getAllProductsForAdmin(){
+        return Product.findAll({
+            include:[
+                {
+                    model:Design,
+                    include:[
+                        {
+                            model:Currency
+                        },
+                        {
+                            model:Discount,
+                            include:[
+                            {
+                                model:Currency
+                            }]
+                        }
+                    ]
+                },
+                {
+                    model:Plan,
+                    include:[
+                        {
+                            model:Currency
+                        }
+                    ]
+                }
+            ]
+        });
+    }
+
+    function updateProduct(params){
+        return Product.update({
+            name:params.name,
+            material:params.material,
+            details:params.details,
+            stone:params.stone,
+            designId:params.designId
+        },{
+            where:{
+                id:params.id
+            }
+        })
+    }
+
+    function deleteProduct(id){
+        return Product.destroy({
+            where:{
+                id:id
+            }
+        })
+    }
+
+    function deleteProductsByDesignId(id){
+        return Product.destroy({
+            where:{
+                designId:id
+            }
+        })
+    }
+
+    function addNewProduct(params){
+        console.log(params);
+
+        return Product.create({
+            name:params.name,
+            details:params.details,
+            designId:params.designId,
+            stone:params.stone,
+            material:params.material
+        }).then(data=>{
+            console.log("working in finding the same product");
+            return Product.findOne({
+                where:{
+                    id:data.id
+                },
+                include:[
+                    {
+                        model:Design,
+                        include:[
+                            {
+                                model:Currency
+                            },
+                            {
+                                model:Discount,
+                                include:[
+                                {
+                                    model:Currency
+                                }]
+                            }
+                        ]
+                    },
+                    {
+                        model:Plan,
+                        include:[
+                            {
+                                model:Currency
+                            }
+                        ]
+                    }
+                ]
+            })
+        })
+
+
+    }
+
 
 
     return {
@@ -239,6 +345,11 @@ module.exports = app => {
         getProductById,
         getProductByNameAndDesign,
         getAllProducts,
-        getProductByIdForChristmas
+        getProductByIdForChristmas,
+        getAllProductsForAdmin,
+        updateProduct,
+        deleteProduct,
+        deleteProductsByDesignId,
+        addNewProduct
     };
 };
