@@ -93,6 +93,7 @@ module.exports = app => {
     }
 
     function saveUserCardInfoAndMakeCharge(req,res,next){
+        /*this always needs to be sending USD since the stripe payments need the money ot be sent in USD cents*/
         shopService.getPlanDetailsForEachCartItem(req, "USD").then(cartItems=>{
             shopService.saveUserCardInfoAndMakeCharge(cartItems,req.body,req.user, req.session.discount).then(data=>{
                 req.session.cart=[];
@@ -129,19 +130,13 @@ module.exports = app => {
     }
 
     function saveCashPaymentCart(req,res,next){
-        console.log("wokring in here");
-        console.log(req.session.cart);
-        console.log(req.session);
         shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(cartItems=>{
             shopService.saveComproTransaction(cartItems,req.user).then(data=>{
-                console.log("transacted well");
                 res.send(true);
             }).catch(err=>{
-                console.log(err);
                 next(err);
             })
         }).catch(err=>{
-            console.log(err);
             next(err);
         })
     }

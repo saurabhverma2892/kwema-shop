@@ -32,53 +32,7 @@ module.exports = app => {
             })      
     });
 
-
-    /*passport.use('local-login', new LocalStrategy({
-        usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true
-    },
-    function(req, email, password, done) {
-
-      process.nextTick(function() {
-
-                Student.find({ where: {email: email} }).then(function(student) {
-
-                    if (student) {
-                        var test = student.validPassword(password);
-                        if(test){
-                            student.password = undefined;
-                            return done(null, student);
-                        }
-                        return done(null, false);
-                    } 
-                });
-          })
-        }
-    ));
-
-    passport.use('local-login', new LocalStrategy({
-        usernameField : 'email',
-        passwordField : 'password',
-        passReqToCallback : true
-    },
-    function(req, email, password, done) {
-      process.nextTick(function() {
-                console.log("workin in here");
-                User.find({ where: {email: email} }).then(function(user) {
-                    if (user) {
-                        var test = user.validPassword(password);
-                        if(test){
-                            user.password = undefined;
-                            return done(null, user);
-                        }
-                        return done(null, false);
-                    } 
-                });
-          })
-        }
-    ));*/
-
+    /*for user signup*/
 
     passport.use('local-signup', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
@@ -119,6 +73,8 @@ module.exports = app => {
 
     }));
 
+    /*for user login*/
+
     passport.use('local-login', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
             usernameField : 'email',
@@ -150,6 +106,7 @@ module.exports = app => {
     }));
 
 
+    /*new startegy which checks the user at checkout and redirects accordingly to the checkout or to the login page*/
 
     passport.use('local-checkout-login', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
@@ -158,8 +115,6 @@ module.exports = app => {
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
         function(req, email, password, done) { // callback with email and password from our form
-            console.log("herhehehehr");
-            console.log("workignnnn");
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
             var password = generator.generate({
@@ -199,6 +154,7 @@ module.exports = app => {
             }).catch(err=>{
                 return done(null, false, req.flash('signupMessage', 'Error in finding user '+err));
             });
+            
     }));
 
     return passport;

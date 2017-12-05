@@ -41,14 +41,14 @@ module.exports = app => {
         })
     })
 
-    /*app.get("/admin/*",chooseLanguage, (req,res,next)=>{
+    app.get("/admin/*",chooseLanguage, (req,res,next)=>{
         res.render("admin", {language:req.userlanguage});
     });
 
     app.get("/admin",chooseLanguage, (req,res,next)=>{
         res.redirect("/admin/products");
         //res.render("admin", {language:req.userlanguage});
-    });*/
+    });
 
     app.post("/language",(req,res,next)=>{
         req.session.language=req.body.language;
