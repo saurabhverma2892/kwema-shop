@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "apidoc -i ./routes -o ./public/apidoc/ ; node_modules/.bin/sequelize db:migrate; node app",
+    "start": "node_modules/.bin/sequelize db:migrate; node app",
     "test": "./node_modules/.bin/mocha ./test/**/*.js",
     "postinstall": "bower cache clean && bower install"
   },
