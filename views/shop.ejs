@@ -36,8 +36,11 @@
                     </div>
                 </div>
                 <div class="product-description">
-                    <p><b><%=language.collection%> <%=design.name%></b></p>
+                    <p><b><%=design.name%> <%=language.collection%></b></p>
                     <p>$<%-design.currencies[0].value%> <%-design.currencies[0].currency%></p>
+                    <%if(design.name=="Eve"){%>
+                    <p>(Out Of Stock)</p>
+                    <%}%>
                     <a href="/shop/products/<%=design.name%>"><button class="uk-button uk-button-primary"><%=language.buyNowButton%></button></a>
                 </div>
             </div>
