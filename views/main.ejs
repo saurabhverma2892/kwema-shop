@@ -28,6 +28,23 @@
             </ul> -->
         </div>
     </div>
+    <div class="banner-slider">
+        <div class="uk-slidenav-position" data-uk-slideshow="{kenburns:true, autoplay:true}">
+            <ul class="uk-slideshow uk-overlay-active uk-slideshow-fullscreen" data-uk-slideshow>
+                <li>
+                    <img src="/images/bg2.png" width="800" height="400">
+                    <div class="uk-overlay-panel uk-overlay-background uk-overlay-fade overlay-inside-content uk-flex uk-flex-center uk-flex-middle uk-text-center">
+                        <div class="overlay-inside-content wow fadeInUp">
+                            <h1><%=language.slider2.heading%></h1>
+                            <p><a target="_blank" href="https://www.youtube.com/watch?v=swa8jAPRZhs&feature=youtu.be"><button class="uk-button uk-button-primary"><i class="fa fa-youtube" style="margin-right: 10px; font-size: 20px;"></i><%=language.slider2.button%></button></a></p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!-- <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a> -->
+        </div>
+    </div>
     <div class="uk-width-1-1 padding-sides padding-top-bottom">
         <div class="uk-grid uk-flex-middle min-vh " data-uk-grid >
             <div class="uk-width-medium-1-2 uk-flex uk-flex-center wow fadeInLeft">
@@ -57,23 +74,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="banner-slider">
-        <div class="uk-slidenav-position" data-uk-slideshow="{kenburns:true, autoplay:true}">
-            <ul class="uk-slideshow uk-overlay-active uk-slideshow-fullscreen" data-uk-slideshow>
-                <li>
-                    <img src="/images/bg2.png" width="800" height="400">
-                    <div class="uk-overlay-panel uk-overlay-background uk-overlay-fade overlay-inside-content uk-flex uk-flex-center uk-flex-middle uk-text-center">
-                        <div class="overlay-inside-content wow fadeInUp">
-                            <h1><%=language.slider2.heading%></h1>
-                            <p><a target="_blank" href="https://www.youtube.com/watch?v=swa8jAPRZhs&feature=youtu.be"><button class="uk-button uk-button-primary"><i class="fa fa-youtube" style="margin-right: 10px; font-size: 20px;"></i><%=language.slider2.button%></button></a></p>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <!-- <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
-            <a href="" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a> -->
         </div>
     </div>
     <div class="uk-width-1-1 padding-sides padding-top-bottom uk-text-center features" style="background-color: #232525;">
@@ -305,7 +305,7 @@
         return false;
     })
 
-    UIkit.modal("#xmas").show();
+    //UIkit.modal("#xmas").show();
 </script>
 
 </body>

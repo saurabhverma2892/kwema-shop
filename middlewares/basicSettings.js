@@ -8,7 +8,7 @@ let morgan = require("morgan");
 let dotenv = require("dotenv");
 let passport = require("passport");
 let session = require("express-session");
-let flash    = require('connect-flash');
+let flash = require('connect-flash');
 
 
 module.exports = app => {
