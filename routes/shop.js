@@ -41,6 +41,7 @@ module.exports = app => {
 
     router.route("/cart").get((req,res,next)=>{
         //todo by cart Id
+        console.log("in cart");
         shopController.getCartDetails(req,res,next)
         //res.render("cart");
     })
@@ -121,6 +122,7 @@ module.exports = app => {
     **/
 
     router.route("/checkout").get((req,res,next)=>{
+        console.log("redirecting to shop cart");
         res.redirect("/shop/cart");
     })
 
@@ -210,40 +212,36 @@ module.exports = app => {
 
         var planIds = [];
         var planTypes = [];
-        var quantities = [];
 
-        if(Object.prototype.toString.call( req.body.planId )  == '[object Array]'){
-            planIds = req.body.planId;
-            planTypes = req.body.planType;
+        var productIds = [];
+        var productNames = [];
+        var quantities = [];
+        if(Object.prototype.toString.call( req.body.productId )  == '[object Array]'){
+            productIds = req.body.productId;
+            productNames = req.body.productName;
             quantities = req.body.quantity;
         }
         else{
-            planIds.push(req.body.planId);
-            planTypes.push(req.body.planType);
+            productIds.push(req.body.productId);
+            productNames.push(req.body.productName);
             quantities.push(req.body.quantity);
         }
 
         var i = 0;
         var error = false;
-        
-        planIds.forEach(planId=>{
-
-            if(((planTypes[i] == "monthly" || planTypes[i] == "yearly") && (typeof planId=="string") && (quantities[i]>0))){
-                carToAdd.push({planId:planId,planType:planTypes[i],quantity:quantities[i]})
-            }
-            else
-            {
-                error = true;
-            }
-
+        productIds.forEach(productId=>{
+            carToAdd.push({productId:productId,productName:productNames[i],quantity:quantities[i]});
             i++;
         })
 
         if(!error){
             req.session.cart=carToAdd;
+            console.log("req.session.cart");
+            console.log(req.session.cart);
             res.redirect("/shop/cart");
         }
         else{
+            console.log("ajlskdfhasdf");
             req.flash("message","Error in form data");
             res.redirect("/shop");
         }
@@ -273,9 +271,10 @@ module.exports = app => {
         if(!req.session.cart){
             req.session.cart=[];
         }
-        req.session.cart.push({planType:req.body.planType, planId:req.body.planId,quantity:1})
+        req.session.cart.push({productId:req.body.productId,quantity:1})
         console.log(req.session.cart);
-        shopController.getPlanDetailsForEachCartItem(req,res,next);
+        shopController.getProductDetailsForEachCartItem(req,res,next);
+        //shopController.getPlanDetailsForEachCartItem(req,res,next);
 
         
     })
@@ -329,7 +328,7 @@ module.exports = app => {
         if(!req.session.cart){
             req.session.cart=[];
         }
-        shopController.getPlanDetailsForEachCartItem(req,res,next);
+        shopController.getProductDetailsForEachCartItem(req,res,next);
         //res.send(req.session.cart);
 
         /**

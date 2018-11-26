@@ -110,23 +110,10 @@ module.exports = app => {
         return new Promise((resolve,reject)=>{
             Cart.addNewCart(user).then(cartCreated=>{
                 cartItems.forEach(cartItemDetails=>{
-                    var planAmount = 0;
                     var transportPrice = 0;
-                    if(cartItemDetails.planType=="monthly"){
-                        planAmount = cartItemDetails.planDetails.monthlyPrice;
-                    }
-                    if(discount=="xmas"){
-                        planAmount=0;
-                        transportPrice=5;
-                    }
-                    var itemPrice=cartItemDetails.planDetails.design.currencies[0].value;
-                    if(discount){
-                        console.log("working in discounts");
-                        console.log(cartItemDetails.planDetails.design.discounts[0].currencies[0].value);
-                        itemPrice = cartItemDetails.planDetails.design.discounts[0].currencies[0].value;
-                    }
-                    amount = amount+planAmount+itemPrice+transportPrice;
-                    console.log("planAmount is "+planAmount);
+                    var itemPrice = cartItemDetails.productDetails[0].design.currencies[0].value
+                    
+                    amount = amount+itemPrice+transportPrice;
                     console.log("itemPrice is "+itemPrice);
                     console.log("total amount is");
                     console.log(amount);
@@ -134,7 +121,6 @@ module.exports = app => {
                     promises.push(cartPromise);
                 })
                 Promise.all(promises).then(cartItemsData=>{
-                    console.log("resolved all");
                     stripeService.getUserDetails(params.stripeToken,user).then(paymentInfo=>{
                         User.savePaymentInfo(paymentInfo.id,user).then(response=>{
                             var amountInCents = amount*100;
@@ -165,15 +151,8 @@ module.exports = app => {
         return new Promise((resolve,reject)=>{
             Cart.addNewCart(user).then(cartCreated=>{
                 cartItems.forEach(cartItemDetails=>{
-                    console.log("all good here too");
-                    var planAmount = 0;
-                    if(cartItemDetails.planType=="monthly"){
-                        planAmount = cartItemDetails.planDetails.monthlyPrice;
-                    }
-                    else if(cartItemDetails.planType=="yearly"){
-                        planAmount = cartItemDetails.planDetails.yearlyPrice;
-                    }
-                    amount = amount+planAmount+cartItemDetails.planDetails.devicePrice;
+                    
+                    amount = amount+cartItemDetails.productDetails[0].design.currencies[0].value;
                     var cartPromise = CartItem.addCartItem(user,cartCreated.id,cartItemDetails);
                     promises.push(cartPromise);
                     console.log("all pushed");
@@ -234,6 +213,39 @@ module.exports = app => {
         })
     }
 
+
+    function getProductDetailsForEachCartItem(req, currency){
+        console.log(req.session.cart);
+        var promises = [];
+        return new Promise((resolve,reject)=>{
+            var i = 0;
+            req.session.cart.forEach(cartItem=>{
+                var promisePlan = new Promise((resolve2,reject2)=>{
+                    Product.getProductByIdForCart(cartItem.productId,currency).then(data=>{
+                        cartItem.productDetails=data;
+                        if(req.session.discount){
+                            cartItem.discount=req.session.discount;
+                        }
+                        return resolve2(cartItem);
+                    }).catch(err=>{
+                        return reject2(err);
+                    })
+                })
+
+                promises.push(promisePlan);
+            });
+
+            Promise.all(promises).then(data=>{
+                console.log("resolved all");
+                return resolve(data);
+            })
+            
+        })
+    }
+
+
+
+
     return {
         getAllDesigns,
         getProductsForDesignId,
@@ -246,6 +258,7 @@ module.exports = app => {
         getProductsForDesignName,
         getProductByProductAndDesignName,
         getAllProducts,
-        getProductByIdForChristmas
+        getProductByIdForChristmas,
+        getProductDetailsForEachCartItem
     }
 }

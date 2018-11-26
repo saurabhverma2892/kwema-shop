@@ -16,28 +16,31 @@
                 <div class="uk-grid" data-uk-grid style="padding-top:30px;">
                     <%
                     var totalAmount = 0;
-                    cartDetails.forEach(function(cart){%>
-                        <%
-                        if(cart.planType=="monthly"){
-                            var amount=cart.planDetails.currencies[0].value;
-                            var amountPostFix = "/mo";
+                    var amount = 0;
+                    cartDetails.forEach(function(cartItem){
+                        /*if(cartItem.planType=="monthly"){
+                            amount=cartItem.planDetails.currencies[0].value;
+                            amountPricePost=cartItem.planDetails.currencies[0].currency;
+                            amountPostfix="/mo"
+                        }*/
+
+                        amount=cartItem.productDetails[0].design.currencies[0].value;
+
+                        var braceletPrice = cartItem.productDetails[0].design.currencies[0].value;
+                        /*if(cartItem.discount){
+                            devicePrice = cartItem.design.discounts[0].currencies[0].value;
                         }
-                        var braceletPrice=cart.planDetails.design.currencies[0].value;
-                        if(discount){
-                            braceletPrice=cart.planDetails.design.discounts[0].currencies[0].value;
-                        }
-                        var planPrice=amount;
-                        if(discount=="xmas"){
+                        if(cartItem.discount=="xmas"){
                             amount=0;
-                            planPrice=0;
-                        }
-                        var individualAmount = amount+braceletPrice;
-                        var quantity = cart.quantity;
-                        var planName = cart.planDetails.name;
-                        totalAmount = totalAmount+individualAmount;
-                        %>
-                        <%include shared/carttop.ejs%>
-                    <%})%>
+                        }*/
+                        var devicePricePost = cartItem.productDetails[0].design.currencies[0].currency;
+                        var quantity=cartItem.quantity
+                        totalAmount=totalAmount+amount;
+                    %>
+                    <%include shared/carttop.ejs%>
+                    <%
+                    })
+                    %>
                     
                 </div>
             </div>
@@ -84,13 +87,7 @@
                             </div>
                     </div>
 
-                    <!-- <div class="uk-width-medium-1-2 uk-text-right total-payment-page">
-                        
-                        <p><b>Subtotal <%=totalAmount%>$</b></p>
-                        <p class="grey"><b>Free Shipping</b></p>
-                        <p><b>Order Total <%=totalAmount%>$</b></p>
-                        <div><button class="uk-button uk-button-primary">PAY NOW <i class="fa fa-caret-right"></i></button></div>
-                    </div> -->
+                   
                 </div>
             </div>
         </div>

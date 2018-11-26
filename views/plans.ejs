@@ -10,21 +10,21 @@
         <h1><%=product.design.name%> <%=language.collection%></h1>
             <div class="uk-text-center">
                 <div class="cart-process">
-                    <div class="line"></div><div class="line"></div>
+                    <div class="line"></div><!-- <div class="line"></div> -->
                     <div class="cart-circle left active">
                         <a href="/shop/products/<%=product.design.name%>/<%=product.name%>">
                             <div class="circle">1</div>
                             <div class="text">Elige tu brazalete</div>
                         </a>
                     </div>
-                    <div class="cart-circle center">
+                    <!-- <div class="cart-circle center">
                         <a href="/shop/products/<%=product.design.name%>/<%=product.name%>/plans">
                             <div class="circle">2</div>
                             <div class="text">Elige tu plan</div>
                         </a>
-                    </div>
+                    </div> -->
                     <div class="cart-circle right">
-                        <div class="circle">3</div>
+                        <div class="circle">2</div>
                         <div class="text">Al carrito</div>
                     </div>
                 </div>
@@ -140,9 +140,12 @@
                                                 <%})%>
                                             </div>
                                             <div class="uk-width-1-1 uk-text-center">
-                                                <a href="/shop/products/<%=product.design.name%>/<%=product.name%>/plans">
+                                                <!-- <a href="/shop/products/<%=product.design.name%>/<%=product.name%>/plans">
                                                     <button class="uk-button uk-button-primary" id="addToCart">SELECCIONAR</button>
-                                                </a>
+                                                </a> -->
+                                                <div class="uk-width-1-1 uk-text-center uk-margin">
+                                                    <button class="uk-button uk-button-primary" id="addToCart" productid="<%=product.id%>">Add To Cart</button>
+                                                </div>
                                             </div>
                                 </div>
                         </div>
@@ -212,8 +215,6 @@
         </div>
     </div>
 
-    
-
 <%include includes/scripts.ejs%>
 
 <script type="text/javascript">
@@ -224,6 +225,28 @@
             $(".logo-white").hide();
             $(".logo-black").show("slow");
     }
+
+    $("#addToCart").click(function(e){
+        var self = $(this);
+        var productId = self.attr("productid")
+
+        $.ajax({
+            url:"/shop/cart-session/add",
+            method:"POST",
+            data:{
+                productId:productId
+            },
+            success:function(data){
+                console.log(data);
+                updateSideCart(data);
+                $(".line2").addClass("active");
+                $(".circle3").addClass("active");
+            },
+            error:function(err){
+                console.log(err);
+            }
+        })
+    })
 
 
 </script>

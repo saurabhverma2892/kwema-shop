@@ -44,6 +44,17 @@ module.exports = app => {
         })
     }
 
+    function getProductDetailsForEachCartItem(req,res,next){
+        shopService.getProductDetailsForEachCartItem(req,req.session.currency).then(data=>{
+            console.log("getProductDetailsForEachCartItem");
+            console.log(data);
+            res.send(data);
+        }).catch(err=>{
+            console.log(err);
+            next(err);
+        })
+    }
+
     function getCartDetails(req,res,next){
         if(!req.session.cart){
             req.flash("message","Please add items to cart first");
@@ -59,7 +70,12 @@ module.exports = app => {
             if(req.user){
                 user=req.user;
             }
-            shopService.getPlanDetailsForEachCartItem(req, req.session.currency).then(data=>{
+            else
+            {
+
+            }
+            shopService.getProductDetailsForEachCartItem(req, req.session.currency).then(data=>{
+                console.log(data);
                 res.render("cart", {cartDetails:data, user:user,language:req.userlanguage, discount:req.session.discount});
             })
         }
@@ -94,7 +110,7 @@ module.exports = app => {
 
     function saveUserCardInfoAndMakeCharge(req,res,next){
         /*this always needs to be sending USD since the stripe payments need the money ot be sent in USD cents*/
-        shopService.getPlanDetailsForEachCartItem(req, "USD").then(cartItems=>{
+        shopService.getProductDetailsForEachCartItem(req, "USD").then(cartItems=>{
             shopService.saveUserCardInfoAndMakeCharge(cartItems,req.body,req.user, req.session.discount).then(data=>{
                 req.session.cart=[];
                 res.redirect("/shop/kwema-app");
@@ -240,6 +256,7 @@ module.exports = app => {
         getProductsPage,
         getItemPage,
         getPlansForProduct,
-        getCartForXmas
+        getCartForXmas,
+        getProductDetailsForEachCartItem
     }
 }

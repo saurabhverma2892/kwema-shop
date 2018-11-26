@@ -51,12 +51,12 @@ module.exports = app => {
     }
 
     function addCartItem(user,cartId,cartItemDetails){
+        console.log(cartItemDetails);
         return CartItem.create({
             userId:user.id,
             cartId:cartId,
-            planId:cartItemDetails.planId,
-            quantity:cartItemDetails.quantity,
-            planType:cartItemDetails.planType
+            productId:cartItemDetails.productId,
+            quantity:cartItemDetails.quantity
         })
     }
 

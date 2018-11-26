@@ -331,8 +331,37 @@ module.exports = app => {
                 ]
             })
         })
+    }
 
-
+    function getProductByIdForCart(id,currency){
+        return Product.findAll({
+            where:{
+                id:id
+            },
+            include:[
+                {
+                    model:Design,
+                    include:[
+                        {
+                            model:Currency,
+                            where:{
+                                currency:currency
+                            }
+                        },
+                        {
+                            model:Discount,
+                            include:[
+                            {
+                                model:Currency,
+                                where:{
+                                    currency:currency
+                                }
+                            }]
+                        }
+                    ]
+                }
+            ]
+        })
     }
 
 
@@ -350,6 +379,7 @@ module.exports = app => {
         updateProduct,
         deleteProduct,
         deleteProductsByDesignId,
-        addNewProduct
+        addNewProduct,
+        getProductByIdForCart
     };
 };
