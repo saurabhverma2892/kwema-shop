@@ -192,7 +192,7 @@
   "languageClass":"spanish-flag",
   "currencyNumber":18,
   "currencyCode":"MXN",
-  "taxAmount":95,
+  "taxAmount":0,
   "selectedCountry":"Mexico",
   "productsTitle":"EXPLORA LA COLECCIÓN",
   "seeHowWorks":"VER COMO FUNCIONA",
@@ -254,5 +254,16 @@
   "our":"Nuestro",
   "comesWith":"viene con",
   "limitedTimeOffer":"OFERTA POR TIEMPO LIMITADO. Disponible hasta el 24 de Diciembre del 2017. Hasta agotar existencias.",
-  "termsAndConditionsApply":"Se aplican términos y condiciones."
+  "termsAndConditionsApply":"Se aplican términos y condiciones.",
+  "chooseYourBracelet":"Elige tu brazalete",
+  "toCart":"Al carrito",
+  "electronics":"ELECTRÓNICA",
+  "madeInUSA":"Hecha en USA",
+  "material":"MATERIAL",
+  "stone":"JOYA",
+  "batteryDuration":"DURACIÓN DE LA BATERÍA",
+  "batteryDurationDescription":"6 Meses (dependiendo del uso)",
+  "connection":"CONEXIÓN",
+  "inTheBox":"EN LA CAJA",
+  "inTheBoxDescription":"Pulsera Kwema, Dispositivo Bluetooth (batería incluida)"
 }

@@ -456,7 +456,7 @@ module.exports = app => {
 
     router.route("/usercart/delete").post((req,res,next)=>{
         req.session.cart.forEach(cartDetails=>{
-            if(cartDetails.planType==req.body.planType && cartDetails.planId == req.body.planId){
+            if(cartDetails.productId==req.body.productId){
                 console.log("splicing");
                 req.session.cart.splice(req.session.cart.indexOf(cartDetails),1);
                 res.send(req.session.cart);

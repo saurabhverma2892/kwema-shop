@@ -192,7 +192,7 @@
     "languageClass":"english-flag",
     "currencyNumber":1,
     "currencyCode":"USD",
-    "taxAmount":5,
+    "taxAmount":0,
     "selectedCountry":"USA",
     "productsTitle":"EXPLORE THE COLLECTION",
     "seeHowWorks":"SEE HOW IT WORKS",
@@ -254,6 +254,17 @@
     "our":"Our",
     "comesWith":"comes with",
     "limitedTimeOffer":"LIMITED-TIME OFFER. Available until 24th December 2017. While stocks last.",
-    "termsAndConditionsApply":"Terms and conditions apply."
+    "termsAndConditionsApply":"Terms and conditions apply.",
+    "chooseYourBracelet":"Choose Your Bracelet",
+    "toCart":"To Cart",
+    "electronics":"ELECTRONICS",
+    "madeInUSA":"Made In USA",
+    "material":"MATERIAL",
+    "stone":"STONE",
+    "batteryDuration":"BATTERY DURATION",
+    "batteryDurationDescription":"6 Months (Depending on Usage)",
+    "connection":"CONNECTION",
+    "inTheBox":"IN THE BOX",
+    "inTheBoxDescription":"Kwema Bracelet, Bluetooth Device (Battery Included)"
 }
 

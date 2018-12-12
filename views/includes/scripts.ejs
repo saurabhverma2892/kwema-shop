@@ -149,18 +149,16 @@
 
     $(document).on("click",".delete-button",function(){
         var self = $(this);
-        var planId = self.val();
-        var planType = self.attr("itemtype");
+        var productId = self.val();
+        //var planType = self.attr("itemtype");
 
-        console.log(planId);
-        console.log(planType);
+        console.log(productId);
 
         $.ajax({
             url:"/shop/usercart/delete",
             method:"POST",
             data:{
-                planId:planId,
-                planType:planType
+                productId:productId
             },
             success:function(data){
                 updateSideCart(data);
