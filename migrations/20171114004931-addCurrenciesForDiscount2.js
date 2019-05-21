@@ -25,7 +25,6 @@ module.exports = {
         discountId:2
       }
     ]);
-
   },
 
   down: (queryInterface, Sequelize) => {

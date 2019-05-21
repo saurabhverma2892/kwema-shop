@@ -130,7 +130,7 @@ module.exports = {
             price: 140,
             images: '["/images/evecollection.png"]'
           }
-      ]),
+      ])
     ])
     
   },
