@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    queryInterface.bulkInsert("currency", [
+    return queryInterface.bulkInsert("currency", [
       {
         currency: "USD",
         value: 99,
@@ -123,9 +123,6 @@ module.exports = {
         value:59,
         planId:22
       },
-
-
-
       {
         currency:"USD",
         value:4.99,
@@ -226,14 +223,6 @@ module.exports = {
         value:99,
         planId:26
       },
-
-
-
-
-
-
-
-
 
       {
         currency:"USD",

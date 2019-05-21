@@ -2,49 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    queryInterface.dropTable('plan');
-    
-    queryInterface.createTable('plan', {
-        id: {
-              allowNull: false,
-              autoIncrement: true,
-              primaryKey: true,
-              type: Sequelize.INTEGER
-        },
-        createdAt: {
-            type: Sequelize.DATE
-        },
-        updatedAt: {
-            type: Sequelize.DATE
-        },
-        details: {
-            type: Sequelize.TEXT
-        },
-        devicePrice: {
-          type: Sequelize.INTEGER
-        },
-        monthlyPrice: {
-          type: Sequelize.INTEGER
-        },
-        yearlyPrice: {
-          type: Sequelize.INTEGER
-        },
-        productId: {
-          type: Sequelize.INTEGER
-        },
-        designId: {
-          type: Sequelize.INTEGER
-        },
-        name: {
-          type: Sequelize.STRING
-        }
-    },
-    {
-        tableName: "plan",
-        timestamps: true
-    });
-
-    queryInterface.bulkInsert('plan', [
+    return queryInterface.bulkInsert('plan', [
       {
         name: 'Day',
         details: '[]',
@@ -336,6 +294,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    queryInterface.dropTable('plan');
+    
   }
 };

@@ -3,7 +3,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
 
-    queryInterface.bulkInsert("currency", [
+    return queryInterface.bulkInsert("currency", [
       {
         currency: "USD",
         value: 89,
