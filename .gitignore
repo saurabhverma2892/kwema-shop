@@ -6,4 +6,3 @@ node_modules/
 public/apidoc
 public/bower_components
 .env
-certificates/
