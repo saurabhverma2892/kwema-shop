@@ -63,40 +63,20 @@ module.exports = {
 
       },
       {
-        name: "California",
+        name: "Rose Gold",
         details: "Rose-gold plated",
         designId:1,
-        price: 69,
+        price: 129,
         images:'["/images/rosepo1.jpg","/images/rosepo2.jpg","/images/rosepo3.jpg","/images/rosepo4.jpg"]',
         color:"#EFD1C6",
         primaryImage:"/images/rosepo1.jpg"
 
       },
       {
-        name: "Sunshine",
-        details: "Gold-plated",
-        designId:1,
-        price: 69,
-        images:'["/images/goldpo1.jpg","/images/goldpo2.jpg","/images/goldpo3.jpg","/images/goldpo4.jpg"]',
-        color:"#C9A656",
-        primaryImage:"/images/goldpo1.jpg"
-
-      },
-      {
-        name: "Acapulco",
-        details: "Silver-plated",
-        designId:1,
-        price: 69,
-        images:'["/images/silverpo1.jpg","/images/silverpo2.jpg","/images/silverpo3.jpg","/images/silverpo4.jpg"]',
-        color:"#A2A2A2",
-        primaryImage:"/images/silverpo1.jpg"
-
-      },
-      {
-        name: "Valpo",
+        name: "Black",
         details: "Rhodium plated",
         designId:1,
-        price: 69,
+        price: 129,
         images:'["/images/blackpo1.jpg","/images/blackpo2.jpg","/images/blackpo3.jpg","/images/blackpo3.jpg"]',
         color:"#000000",
         primaryImage:"/images/blackpo1.jpg"
